@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Search, ShoppingCart } from "lucide-react";
 import { Navigation } from "./Navigation";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 import { cn } from "@/lib/utils";
 
 interface HeaderDict {
@@ -21,12 +22,14 @@ export function Header({
       <div className="container mx-auto flex h-14 items-center justify-between px-4">
         <Link
           href={base}
-          className="font-heading text-lg font-bold uppercase tracking-tight text-brand-text-high"
+          className="flex flex-col items-start font-heading font-bold uppercase tracking-tight"
         >
-          <span className="text-brand-accent">GO</span> PARACORD CO.
+          <span className="text-xl text-brand-text-high">KORA</span>
+          <span className="text-sm text-brand-accent">PARACORD</span>
         </Link>
         <Navigation lang={lang} dict={dict.nav} />
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-4">
+          <LanguageSwitcher currentLang={lang} />
           <button
             type="button"
             className="rounded p-2 text-brand-text-high hover:bg-brand-bg-card"
