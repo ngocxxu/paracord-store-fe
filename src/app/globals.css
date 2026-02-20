@@ -5,6 +5,17 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --background: #191715;
+    --foreground: #AFA9A4;
+    --card: #111111;
+    --card-foreground: #FFFFFF;
+    --primary: #FF5E00;
+    --primary-foreground: #FFFFFF;
+    --muted-foreground: #AFA9A4;
+    --input: #332F2C;
+    --ring: #FF5E00;
+  }
   body {
     @apply bg-brand-bg-primary text-brand-text-medium font-body antialiased;
   }

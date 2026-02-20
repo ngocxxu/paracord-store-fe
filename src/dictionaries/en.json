@@ -1,8 +1,70 @@
 {
+  "topBar": "100% HANDCRAFTED | FREE SHIPPING OVER $50",
   "nav": {
-    "home": "Home",
-    "builder": "Builder",
-    "cart": "Cart"
+    "shop": "Shop",
+    "customBuild": "Custom Build",
+    "lookbook": "Lookbook",
+    "theCraft": "The Craft"
+  },
+  "navAria": {
+    "search": "Search",
+    "cart": "Shopping cart"
+  },
+  "hero": {
+    "badge": "New Collection Drop",
+    "headline": "Handwoven Gear for Everyday Carry",
+    "subheadline": "Engineered for durability. Styled for the streets. 100% USA Made.",
+    "ctaPrimary": "Shop the Collection",
+    "ctaSecondary": "Build Your Own"
+  },
+  "valueProps": [
+    { "title": "100% Handwoven", "description": "Artisan crafted in the USA with precision" },
+    { "title": "Custom Tailored Fit", "description": "Sized exactly to your wrist measurements" },
+    { "title": "Premium Paracord", "description": "Genuine 7-strand 550 cord, rot resistant" },
+    { "title": "Heavy-Duty Hardware", "description": "Marine-grade stainless steel shackles" }
+  ],
+  "featured": {
+    "label": "The Standard Issue",
+    "title": "Featured Gear",
+    "viewAll": "View All Products"
+  },
+  "builderTeaser": {
+    "label": "The Craft",
+    "headline": "Mastery in Every Single Knot",
+    "paragraph": "Each piece is woven by hand with the same attention to detail that goes into survival gear. We source the finest materials and build everything locally.",
+    "feature1Title": "Quality Assurance",
+    "feature1Desc": "Each piece is stress-tested before shipping.",
+    "feature2Title": "Lifetime Warranty",
+    "feature2Desc": "If it unravels, we re-weave it. For free.",
+    "cta": "Watch the Process"
+  },
+  "newsletter": {
+    "headline": "Join the Crew",
+    "description": "Get early access to limited edition drops and 10% off your first order.",
+    "placeholder": "Enter your email",
+    "submit": "Subscribe",
+    "privacyNote": "No spam, just gear. Unsubscribe anytime."
+  },
+  "footer": {
+    "shop": "Shop",
+    "about": "About",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "copyright": "© 2023 Paracord Co. All rights reserved."
+  },
+  "products": {
+    "cobra": {
+      "title": "The Cobra Weave",
+      "description": "Classic survival strap, available in 20+ colors."
+    },
+    "hkSnapLanyard": {
+      "title": "HK Snap Lanyard",
+      "description": "Quick-release lanyard for keys and gear."
+    },
+    "titanSurvivalCord": {
+      "title": "Titan Survival Cord",
+      "description": "High-visibility survival cord, 50 feet."
+    }
   },
   "builder": {
     "title": "Custom Paracord Builder",

@@ -1,8 +1,70 @@
 {
+  "topBar": "100% THỦ CÔNG | MIỄN PHÍ VẬN CHUYỂN TRÊN $50",
   "nav": {
-    "home": "Trang chủ",
-    "builder": "Tạo dây",
+    "shop": "Cửa hàng",
+    "customBuild": "Tạo dây",
+    "lookbook": "Lookbook",
+    "theCraft": "The Craft"
+  },
+  "navAria": {
+    "search": "Tìm kiếm",
     "cart": "Giỏ hàng"
+  },
+  "hero": {
+    "badge": "Bộ Sưu Tập Mới",
+    "headline": "Dây Paracord Cho EDC",
+    "subheadline": "Bền bỉ. Phong cách. 100% sản xuất tại Mỹ.",
+    "ctaPrimary": "Xem bộ sưu tập",
+    "ctaSecondary": "Tự thiết kế"
+  },
+  "valueProps": [
+    { "title": "100% Thủ Công", "description": "Thủ công tại Mỹ với độ chính xác cao" },
+    { "title": "Vừa Cổ Tay", "description": "Đo đúng theo kích thước cổ tay của bạn" },
+    { "title": "Paracord Cao Cấp", "description": "Dây 550 7 sợi chính hãng, chống mục" },
+    { "title": "Phụ Kiện Chắc Chắn", "description": "Khóa thép không gỉ chuẩn hàng hải" }
+  ],
+  "featured": {
+    "label": "The Standard Issue",
+    "title": "Sản Phẩm Nổi Bật",
+    "viewAll": "Xem tất cả"
+  },
+  "builderTeaser": {
+    "label": "The Craft",
+    "headline": "Tinh Xảo Từng Nút Thắt",
+    "paragraph": "Mỗi sản phẩm được đan tay với sự chú ý như thiết bị sinh tồn. Chúng tôi dùng nguyên liệu tốt nhất và sản xuất tại chỗ.",
+    "feature1Title": "Đảm Bảo Chất Lượng",
+    "feature1Desc": "Mỗi sản phẩm được kiểm tra trước khi giao.",
+    "feature2Title": "Bảo Hành Trọn Đời",
+    "feature2Desc": "Nếu bung chỉ, chúng tôi đan lại. Miễn phí.",
+    "cta": "Xem quy trình"
+  },
+  "newsletter": {
+    "headline": "Tham Gia Crew",
+    "description": "Nhận ưu đãi sớm và giảm 10% đơn đầu.",
+    "placeholder": "Nhập email",
+    "submit": "Đăng ký",
+    "privacyNote": "Không spam. Hủy bất cứ lúc nào."
+  },
+  "footer": {
+    "shop": "Cửa hàng",
+    "about": "Về chúng tôi",
+    "faq": "FAQ",
+    "contact": "Liên hệ",
+    "copyright": "© 2023 Paracord Co. Bảo lưu mọi quyền."
+  },
+  "products": {
+    "cobra": {
+      "title": "The Cobra Weave",
+      "description": "Dây đeo cổ điển, hơn 20 màu."
+    },
+    "hkSnapLanyard": {
+      "title": "HK Snap Lanyard",
+      "description": "Dây đeo tháo nhanh cho chìa khóa và đồ dùng."
+    },
+    "titanSurvivalCord": {
+      "title": "Titan Survival Cord",
+      "description": "Dây sinh tồn phản quang, 50 feet."
+    }
   },
   "builder": {
     "title": "Tạo dây paracord tùy chọn",
