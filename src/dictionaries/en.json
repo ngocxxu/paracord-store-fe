@@ -65,15 +65,58 @@
   "products": {
     "cobra": {
       "title": "The Cobra Weave",
-      "description": "Classic survival strap, available in 20+ colors."
+      "description": "Classic survival strap, heavy duty."
     },
     "hkSnapLanyard": {
       "title": "HK Snap Lanyard",
-      "description": "Quick-release lanyard for keys and gear."
+      "description": "Quick release keychain, matte hardware."
     },
     "titanSurvivalCord": {
       "title": "Titan Survival Cord",
-      "description": "High-visibility survival cord, 50 feet."
+      "description": "100ft hank with tinder strand."
+    },
+    "monkeyFistKeyfob": {
+      "title": "Monkey Fist Keyfob",
+      "description": "Steel ball core for self defense."
+    },
+    "k9TacticalCollar": {
+      "title": "K9 Tactical Collar",
+      "description": "Broad weave for large breeds."
+    },
+    "tacticalWatchStrap": {
+      "title": "Tactical Watch Strap",
+      "description": "Compatible with most dive watches."
+    }
+  },
+  "shop": {
+    "collectionLabel": "THE COLLECTION",
+    "allGear": "ALL GEAR",
+    "sortBy": "Sort by:",
+    "featured": "FEATURED",
+    "priceAsc": "Price: Low to High",
+    "priceDesc": "Price: High to Low",
+    "clearAll": "CLEAR ALL",
+    "categoryLabel": "CATEGORY",
+    "cordTypeLabel": "CORD TYPE",
+    "colorLabel": "COLOR",
+    "priceRangeLabel": "PRICE RANGE",
+    "categories": {
+      "bracelets": "Bracelets",
+      "lanyards": "Lanyards",
+      "keychains": "Keychains",
+      "petGear": "Pet Gear"
+    },
+    "cordTypes": {
+      "550": "550 Paracord",
+      "titan": "Titan Cord"
+    },
+    "priceRange": {
+      "min": "$0",
+      "max": "$100+"
+    },
+    "pagination": {
+      "prev": "Previous",
+      "next": "Next"
     }
   },
   "builder": {

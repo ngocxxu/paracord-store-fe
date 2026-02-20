@@ -9,6 +9,7 @@ const config: Config = {
         brand: {
           "bg-primary": "#191715",
           "bg-surface": "#2C2724",
+          "bg-sidebar": "#252220",
           "bg-card": "#111111",
           accent: "#FF5E00",
           "accent-hover": "#E65500",

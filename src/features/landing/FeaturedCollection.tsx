@@ -29,7 +29,7 @@ export function FeaturedCollection({
             </h2>
           </div>
           <Link
-            href={`/${locale}`}
+            href={`/${locale}/shop`}
             className="inline-flex items-center gap-2 text-sm font-medium uppercase text-brand-accent hover:underline"
           >
             {dict.viewAll}

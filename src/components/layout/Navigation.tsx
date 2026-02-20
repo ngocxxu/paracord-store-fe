@@ -12,7 +12,7 @@ export function Navigation({ lang, dict }: { lang: string; dict: NavDict }) {
   return (
     <nav className="flex gap-6" aria-label="Main">
       <Link
-        href={base}
+        href={`${base}/shop`}
         className="text-sm font-medium uppercase tracking-wide text-brand-text-high hover:underline"
       >
         {dict.shop}

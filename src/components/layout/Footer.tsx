@@ -30,7 +30,7 @@ export function Footer({
         </Link>
         <nav className="flex gap-6" aria-label="Footer">
           <Link
-            href={base}
+            href={`${base}/shop`}
             className="text-sm text-brand-text-medium hover:underline"
           >
             {dict.shop}

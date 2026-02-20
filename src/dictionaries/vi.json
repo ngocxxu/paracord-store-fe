@@ -65,15 +65,58 @@
   "products": {
     "cobra": {
       "title": "The Cobra Weave",
-      "description": "Dây đeo cổ điển, hơn 20 màu."
+      "description": "Dây đeo cổ điển, chắc chắn."
     },
     "hkSnapLanyard": {
       "title": "HK Snap Lanyard",
-      "description": "Dây đeo tháo nhanh cho chìa khóa và đồ dùng."
+      "description": "Keychain tháo nhanh, hardware mờ."
     },
     "titanSurvivalCord": {
       "title": "Titan Survival Cord",
-      "description": "Dây sinh tồn phản quang, 50 feet."
+      "description": "Cuộn 100ft có sợi mồi lửa."
+    },
+    "monkeyFistKeyfob": {
+      "title": "Monkey Fist Keyfob",
+      "description": "Lõi thép cho tự vệ."
+    },
+    "k9TacticalCollar": {
+      "title": "K9 Tactical Collar",
+      "description": "Dệt rộng cho chó lớn."
+    },
+    "tacticalWatchStrap": {
+      "title": "Tactical Watch Strap",
+      "description": "Tương thích hầu hết đồng hồ lặn."
+    }
+  },
+  "shop": {
+    "collectionLabel": "BỘ SƯU TẬP",
+    "allGear": "TẤT CẢ GEAR",
+    "sortBy": "Sắp xếp:",
+    "featured": "NỔI BẬT",
+    "priceAsc": "Giá: Thấp đến Cao",
+    "priceDesc": "Giá: Cao đến Thấp",
+    "clearAll": "XÓA HẾT",
+    "categoryLabel": "DANH MỤC",
+    "cordTypeLabel": "LOẠI DÂY",
+    "colorLabel": "MÀU",
+    "priceRangeLabel": "KHOẢNG GIÁ",
+    "categories": {
+      "bracelets": "Vòng tay",
+      "lanyards": "Dây đeo",
+      "keychains": "Móc khóa",
+      "petGear": "Đồ thú cưng"
+    },
+    "cordTypes": {
+      "550": "550 Paracord",
+      "titan": "Titan Cord"
+    },
+    "priceRange": {
+      "min": "0đ",
+      "max": "100+"
+    },
+    "pagination": {
+      "prev": "Trước",
+      "next": "Sau"
     }
   },
   "builder": {

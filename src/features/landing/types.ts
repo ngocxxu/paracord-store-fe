@@ -34,6 +34,23 @@ export interface LandingDict {
   };
   navAria: { search: string; cart: string };
   products: Record<string, { title: string; description: string }>;
+  shop?: {
+    collectionLabel: string;
+    allGear: string;
+    sortBy: string;
+    featured: string;
+    priceAsc: string;
+    priceDesc: string;
+    clearAll: string;
+    categoryLabel: string;
+    cordTypeLabel: string;
+    colorLabel: string;
+    priceRangeLabel: string;
+    categories: Record<string, string>;
+    cordTypes: Record<string, string>;
+    priceRange: { min: string; max: string };
+    pagination: { prev: string; next: string };
+  };
 }
 
 export interface FeaturedProductItem {
