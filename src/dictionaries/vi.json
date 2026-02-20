@@ -1,0 +1,11 @@
+{
+  "nav": {
+    "home": "Trang chủ",
+    "builder": "Tạo dây",
+    "cart": "Giỏ hàng"
+  },
+  "builder": {
+    "title": "Tạo dây paracord tùy chọn",
+    "selectColor": "Chọn màu"
+  }
+}

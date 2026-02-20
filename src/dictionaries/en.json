@@ -1,0 +1,11 @@
+{
+  "nav": {
+    "home": "Home",
+    "builder": "Builder",
+    "cart": "Cart"
+  },
+  "builder": {
+    "title": "Custom Paracord Builder",
+    "selectColor": "Select color"
+  }
+}
