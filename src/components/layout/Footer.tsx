@@ -1,5 +1,6 @@
-import Link from "next/link";
+import { Logo } from "@/components/Logo";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 interface FooterDict {
   shop: string;
@@ -24,11 +25,8 @@ export function Footer({
       )}
     >
       <div className="container mx-auto flex flex-col items-center justify-between gap-6 px-4 md:flex-row">
-        <Link
-          href={base}
-          className="font-heading text-lg font-bold uppercase tracking-tight text-brand-text-high"
-        >
-          <span className="text-brand-accent">CO</span> PARACORD CO.
+        <Link href={base} className="flex items-center">
+          <Logo height={28} width={120} />
         </Link>
         <nav className="flex gap-6" aria-label="Footer">
           <Link
@@ -56,7 +54,7 @@ export function Footer({
             {dict.contact}
           </Link>
         </nav>
-        <span className="text-sm text-brand-text-medium">{dict.copyright}</span>
+        <span className="text-sm text-brand-text-medium">{`© ${new Date().getFullYear()} ${dict.copyright}`}</span>
       </div>
     </footer>
   );
