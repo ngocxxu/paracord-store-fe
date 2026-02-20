@@ -30,7 +30,7 @@ export function Navigation({ lang, dict }: { lang: string; dict: NavDict }) {
         {dict.lookbook}
       </Link>
       <Link
-        href={`${base}#the-craft`}
+        href={`${base}#gear-in-the-wild`}
         className="text-sm font-medium uppercase tracking-wide text-brand-text-high hover:underline"
       >
         {dict.theCraft}

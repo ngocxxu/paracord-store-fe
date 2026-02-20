@@ -1,12 +1,11 @@
-import { getDictionary } from "@/lib/dictionary";
-import { Hero } from "@/features/landing/Hero";
-import { ValueProps } from "@/features/landing/ValueProps";
 import { FeaturedCollection } from "@/features/landing/FeaturedCollection";
-import { BuilderTeaser } from "@/features/landing/BuilderTeaser";
-import { NewsletterSection } from "@/features/landing/NewsletterSection";
+import { GearInTheWildSection } from "@/features/landing/GearInTheWildSection";
+import { Hero } from "@/features/landing/Hero";
 import { SectionWrapper } from "@/features/landing/SectionWrapper";
-import { FEATURED_PRODUCTS } from "@/features/landing/data";
+import { ValueProps } from "@/features/landing/ValueProps";
+import { FEATURED_PRODUCTS, GEAR_IN_THE_WILD_IMAGES } from "@/features/landing/data";
 import type { LandingDict, ResolvedProduct } from "@/features/landing/types";
+import { getDictionary } from "@/lib/dictionary";
 
 function resolveProducts(dict: LandingDict): ResolvedProduct[] {
   return FEATURED_PRODUCTS.map((item) => {
@@ -45,10 +44,13 @@ export default async function LandingPage({
         products={products}
         locale={lang}
       />
-      <section id="the-craft" aria-label="The Craft">
-        <BuilderTeaser dict={dict.builderTeaser} locale={lang} />
+      <section id="gear-in-the-wild" aria-label="Gear in the Wild">
+        <GearInTheWildSection
+          dict={dict.gearInTheWild}
+          images={GEAR_IN_THE_WILD_IMAGES}
+        />
       </section>
-      <NewsletterSection dict={dict.newsletter} />
+      {/* <NewsletterSection dict={dict.newsletter} /> */}
     </>
   );
 }

@@ -4,7 +4,7 @@
     "shop": "Shop",
     "customBuild": "Custom Build",
     "lookbook": "Lookbook",
-    "theCraft": "The Craft"
+    "theCraft": "Gear in the Wild"
   },
   "navAria": {
     "search": "Search",
@@ -18,25 +18,35 @@
     "ctaSecondary": "Build Your Own"
   },
   "valueProps": [
-    { "title": "100% Handwoven", "description": "Artisan crafted in the USA with precision" },
-    { "title": "Custom Tailored Fit", "description": "Sized exactly to your wrist measurements" },
-    { "title": "Premium Paracord", "description": "Genuine 7-strand 550 cord, rot resistant" },
-    { "title": "Heavy-Duty Hardware", "description": "Marine-grade stainless steel shackles" }
+    {
+      "title": "100% Handwoven",
+      "description": "Artisan crafted in the USA with precision"
+    },
+    {
+      "title": "Custom Tailored Fit",
+      "description": "Sized exactly to your wrist measurements"
+    },
+    {
+      "title": "Everyday Paracord",
+      "description": "Reliable 7-strand core for daily adventures"
+    },
+    {
+      "title": "Accessible Quality",
+      "description": "Crafted for everyone, priced for everyday"
+    }
   ],
   "featured": {
     "label": "The Standard Issue",
     "title": "Featured Gear",
     "viewAll": "View All Products"
   },
-  "builderTeaser": {
-    "label": "The Craft",
-    "headline": "Mastery in Every Single Knot",
-    "paragraph": "Each piece is woven by hand with the same attention to detail that goes into survival gear. We source the finest materials and build everything locally.",
-    "feature1Title": "Quality Assurance",
-    "feature1Desc": "Each piece is stress-tested before shipping.",
-    "feature2Title": "Lifetime Warranty",
-    "feature2Desc": "If it unravels, we re-weave it. For free.",
-    "cta": "Watch the Process"
+  "gearInTheWild": {
+    "title": "GEAR IN THE WILD",
+    "subtitleBefore": "Join thousands of adventurers relying on KORA gear every day. Tag ",
+    "hashtag": "#KoraGear",
+    "subtitleAfter": " to be featured.",
+    "cta": "Follow us on Instagram",
+    "instagramUrl": "https://instagram.com"
   },
   "newsletter": {
     "headline": "Join the Crew",

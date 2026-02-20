@@ -10,15 +10,13 @@ export interface LandingDict {
   };
   valueProps: Array<{ title: string; description: string }>;
   featured: { label: string; title: string; viewAll: string };
-  builderTeaser: {
-    label: string;
-    headline: string;
-    paragraph: string;
-    feature1Title: string;
-    feature1Desc: string;
-    feature2Title: string;
-    feature2Desc: string;
+  gearInTheWild: {
+    title: string;
+    subtitleBefore: string;
+    hashtag: string;
+    subtitleAfter: string;
     cta: string;
+    instagramUrl: string;
   };
   newsletter: {
     headline: string;
