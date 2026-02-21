@@ -135,7 +135,24 @@
     "customizations": "TÙY CHỌN",
     "total": "TỔNG",
     "sizeAndFit": "KÍCH CỠ",
+    "howToMeasure": "Hướng dẫn đo",
     "addOns": "PHỤ KIỆN",
+    "sizes": { "s": "S", "m": "M", "l": "L", "xl": "XL", "custom": "Tùy chọn" },
+    "fitDescription": {
+      "s": "Vòng cổ tay 15cm - 16cm",
+      "m": "Vòng cổ tay 16cm - 17cm",
+      "l": "Vòng cổ tay 17cm - 18cm",
+      "xl": "Vòng cổ tay 18cm - 19cm"
+    },
+    "customSizePlaceholder": "Vòng cổ tay (cm)",
+    "measureGuideTitle": "Hướng dẫn đo vòng cổ tay",
+    "measureGuideClose": "Đóng",
+    "measureSteps": [
+      "Quấn thước dây quanh cổ tay ngay dưới xương cổ tay.",
+      "Giữ thước vừa khít nhưng không siết chặt.",
+      "Ghi số đo (cm) tại điểm thước gặp nhau.",
+      "Dùng số đo đó để chọn size hoặc nhập vào Tùy chọn."
+    ],
     "models": { "bracelet": "Vòng tay", "keychain": "Móc khóa" },
     "weaves": {
       "cobra": "Cobra",

@@ -31,9 +31,16 @@ export interface BuilderDict {
   customizations: string;
   total: string;
   sizeAndFit: string;
+  howToMeasure: string;
   addOns: string;
   models: Record<BuilderModel, string>;
   weaves: Record<string, string>;
   buckles: Record<string, string>;
   colors: Record<string, string>;
+  sizes: Record<string, string>;
+  fitDescription: Record<string, string>;
+  customSizePlaceholder: string;
+  measureGuideTitle: string;
+  measureGuideClose: string;
+  measureSteps: string[];
 }

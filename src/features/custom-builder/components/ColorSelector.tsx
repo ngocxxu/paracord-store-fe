@@ -13,7 +13,7 @@ const PRESET_COLORS = [
 ];
 
 export function ColorSelector({ className }: { className?: string }) {
-  const { selectedColorIds, toggleColor } = useBuilderStore();
+  const { innerCoreColorId, setInnerCoreColorId } = useBuilderStore();
 
   return (
     <div className={cn("flex flex-wrap gap-2", className)}>
@@ -21,15 +21,15 @@ export function ColorSelector({ className }: { className?: string }) {
         <button
           key={id}
           type="button"
-          aria-pressed={selectedColorIds.includes(id)}
+          aria-pressed={innerCoreColorId === id}
           className={cn(
             "h-10 w-10 rounded-full border-2 transition-colors",
-            selectedColorIds.includes(id)
-              ? "border-foreground ring-2 ring-offset-2"
-              : "border-muted hover:border-foreground/50"
+            innerCoreColorId === id
+              ? "border-brand-accent ring-2 ring-brand-accent ring-offset-2 ring-offset-brand-bg-primary"
+              : "border-brand-border hover:border-brand-text-medium"
           )}
           style={{ backgroundColor: hex }}
-          onClick={() => toggleColor(id)}
+          onClick={() => setInnerCoreColorId(id)}
         />
       ))}
     </div>

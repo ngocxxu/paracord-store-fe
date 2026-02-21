@@ -135,7 +135,24 @@
     "customizations": "CUSTOMIZATIONS",
     "total": "TOTAL",
     "sizeAndFit": "SIZE & FIT",
+    "howToMeasure": "How to Measure",
     "addOns": "ADD-ONS",
+    "sizes": { "s": "S", "m": "M", "l": "L", "xl": "XL", "custom": "Custom" },
+    "fitDescription": {
+      "s": "Fits wrists 15cm - 16cm",
+      "m": "Fits wrists 16cm - 17cm",
+      "l": "Fits wrists 17cm - 18cm",
+      "xl": "Fits wrists 18cm - 19cm"
+    },
+    "customSizePlaceholder": "Wrist (cm)",
+    "measureGuideTitle": "Wrist measurement guide",
+    "measureGuideClose": "Close",
+    "measureSteps": [
+      "Wrap a soft tape around your wrist just below the wrist bone.",
+      "Keep the tape snug but not tight.",
+      "Note the measurement in cm where the tape meets.",
+      "Use that value to pick your size or enter it in Custom."
+    ],
     "models": { "bracelet": "Bracelets", "keychain": "Keychains" },
     "weaves": {
       "cobra": "Cobra Weave",

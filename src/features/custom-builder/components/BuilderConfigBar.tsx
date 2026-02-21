@@ -28,14 +28,28 @@ function getBuckleLabel(dict: BuilderDict, buckleId: string): string {
 }
 
 export function BuilderConfigBar({ lang, dict }: BuilderConfigBarProps) {
-  const { weaveType, buckleId, innerCoreColorId, outerEdgeColorId } = useBuilderStore();
+  const { model, weaveType, sizeId, customSizeValue, buckleId, innerCoreColorId, outerEdgeColorId } = useBuilderStore();
   const [copied, setCopied] = useState(false);
 
   const weaveLabel = getWeaveLabel(dict, weaveType);
   const innerLabel = getColorLabel(dict, innerCoreColorId);
   const outerLabel = getColorLabel(dict, outerEdgeColorId);
   const buckleLabel = getBuckleLabel(dict, buckleId);
-  const summary = buildConfigSummary(weaveLabel, innerLabel, outerLabel, buckleLabel);
+  const sizeLabel =
+    model === "bracelet"
+      ? sizeId === "custom"
+        ? customSizeValue
+          ? `${customSizeValue} cm`
+          : dict.sizes.custom
+        : dict.sizes[sizeId]
+      : undefined;
+  const summary = buildConfigSummary(
+    weaveLabel,
+    innerLabel,
+    outerLabel,
+    buckleLabel,
+    sizeLabel
+  );
 
   const copyOptions = useCallback(async () => {
     if (!summary) return;

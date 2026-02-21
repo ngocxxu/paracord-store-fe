@@ -1,8 +1,9 @@
 "use client";
 
-import { ChevronDown, ChevronUp, Minus } from "lucide-react";
+import { ChevronDown, ChevronUp, Minus, Pencil, Ruler } from "lucide-react";
 import { useState } from "react";
-import { BASE_PRICE, BUILDER_MODELS, CUSTOMIZATION_PRICE, KEYCHAIN_WEAVE_OPTIONS, WEAVE_OPTIONS } from "../data";
+import { BASE_PRICE, BUILDER_MODELS, CUSTOMIZATION_PRICE, KEYCHAIN_WEAVE_OPTIONS, SIZE_CUSTOM_ID, SIZE_PRESETS, WEAVE_OPTIONS } from "../data";
+import { MeasureGuideModal } from "./MeasureGuideModal";
 import { useBuilderStore } from "../store";
 import type { BuilderDict, BuilderModel } from "../types";
 
@@ -11,9 +12,9 @@ interface BuilderSidebarProps {
 }
 
 export function BuilderSidebar({ dict }: BuilderSidebarProps) {
-  const { model, weaveType, setModel, setWeaveType, getTotalPrice } = useBuilderStore();
-  const [sizeOpen, setSizeOpen] = useState(false);
+  const { model, weaveType, sizeId, customSizeValue, setModel, setWeaveType, setSizeId, setCustomSizeValue, getTotalPrice } = useBuilderStore();
   const [addOnsOpen, setAddOnsOpen] = useState(false);
+  const [measureModalOpen, setMeasureModalOpen] = useState(false);
 
   const total = getTotalPrice();
   const hasSelection = model !== null || weaveType !== null;
@@ -136,18 +137,87 @@ export function BuilderSidebar({ dict }: BuilderSidebarProps) {
           </section>
         )}
 
-        <section>
-          <button
-            type="button"
-            onClick={() => setSizeOpen((o) => !o)}
-            className="flex w-full items-center justify-between text-sm font-medium uppercase tracking-wide text-brand-text-high"
-            aria-expanded={sizeOpen}
-          >
-            {dict.sizeAndFit}
-            {sizeOpen ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
-          </button>
-          {sizeOpen && <div className="mt-2 text-sm text-brand-text-medium">—</div>}
-        </section>
+        {model === "bracelet" && (
+          <section>
+            <div className="flex items-center justify-between gap-2">
+              <h3 className="flex shrink-0 items-center gap-2 whitespace-nowrap text-sm font-bold uppercase tracking-wide text-brand-text-high">
+                <Minus className="h-4 w-4 shrink-0" aria-hidden />
+                {dict.sizeAndFit}
+              </h3>
+              <button
+                type="button"
+                onClick={() => setMeasureModalOpen(true)}
+                className="flex shrink-0 items-center gap-1 whitespace-nowrap text-xs font-medium uppercase tracking-wide text-brand-accent hover:underline"
+              >
+                <Ruler className="h-3.5 w-3.5 shrink-0" aria-hidden />
+                {dict.howToMeasure}
+              </button>
+              <MeasureGuideModal
+                open={measureModalOpen}
+                onOpenChange={setMeasureModalOpen}
+                dict={dict}
+              />
+            </div>
+            <div className="mt-3 space-y-3">
+              <div className="flex gap-2">
+                {SIZE_PRESETS.map(({ id, labelKey }) => {
+                  const active = sizeId === id;
+                  return (
+                    <button
+                      key={id}
+                      type="button"
+                      onClick={() => setSizeId(id)}
+                      className={`flex-1 rounded-lg px-3 py-2 text-sm font-medium uppercase ${
+                        active
+                          ? "bg-brand-accent text-brand-text-high"
+                          : "border border-brand-border bg-brand-bg-card text-brand-text-high"
+                      }`}
+                      aria-pressed={active}
+                    >
+                      {dict.sizes[labelKey] ?? id}
+                    </button>
+                  );
+                })}
+              </div>
+              <button
+                type="button"
+                onClick={() => setSizeId(SIZE_CUSTOM_ID)}
+                className={`flex w-full items-center justify-center gap-2 rounded-lg border px-3 py-2 text-sm font-medium ${
+                  sizeId === SIZE_CUSTOM_ID
+                    ? "border-brand-accent bg-brand-accent text-brand-text-high"
+                    : "border-brand-border bg-brand-bg-card text-brand-text-high"
+                }`}
+                aria-pressed={sizeId === SIZE_CUSTOM_ID}
+              >
+                {dict.sizes.custom}
+                <Pencil className="h-4 w-4" aria-hidden />
+              </button>
+              {sizeId === SIZE_CUSTOM_ID && (
+                <label className="block">
+                  <input
+                    type="number"
+                    inputMode="decimal"
+                    step="0.1"
+                    min={0}
+                    value={customSizeValue}
+                    onChange={(e) => {
+                      const v = e.target.value;
+                      if (v === "" || /^\d*\.?\d*$/.test(v)) setCustomSizeValue(v);
+                    }}
+                    placeholder={dict.customSizePlaceholder}
+                    className="w-full rounded-lg border border-brand-border bg-brand-bg-card px-3 py-2 text-sm text-brand-text-high placeholder:text-brand-text-medium [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                    aria-label={dict.customSizePlaceholder}
+                  />
+                </label>
+              )}
+              {sizeId !== SIZE_CUSTOM_ID && dict.fitDescription[sizeId] && (
+                <p className="text-sm text-brand-text-medium">
+                  {dict.fitDescription[sizeId]}
+                </p>
+              )}
+            </div>
+          </section>
+        )}
 
         <section>
           <button

@@ -25,6 +25,19 @@ export const KEYCHAIN_WEAVE_OPTIONS: WeaveOption[] = [
 export const BRACELET_WEAVE_IDS = WEAVE_OPTIONS.map((w) => w.id);
 export const KEYCHAIN_WEAVE_IDS = KEYCHAIN_WEAVE_OPTIONS.map((w) => w.id);
 
+export const SIZE_PRESETS = [
+  { id: "s", labelKey: "s" },
+  { id: "m", labelKey: "m" },
+  { id: "l", labelKey: "l" },
+  { id: "xl", labelKey: "xl" },
+] as const;
+
+export const SIZE_CUSTOM_ID = "custom" as const;
+
+export const MEASURE_VIDEO_ID =
+  (typeof process.env.NEXT_PUBLIC_MEASURE_VIDEO_ID === "string" && process.env.NEXT_PUBLIC_MEASURE_VIDEO_ID) ||
+  "";
+
 export const BUCKLE_OPTIONS: BuckleOption[] = [
   { id: "matteBlack", labelKey: "matteBlack" },
   { id: "stainless", labelKey: "stainless" },
