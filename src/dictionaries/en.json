@@ -112,7 +112,10 @@
     },
     "priceRange": {
       "min": "$0",
-      "max": "$100+"
+      "max": "$100+",
+      "from": "From ($)",
+      "to": "To ($)",
+      "apply": "Apply"
     },
     "pagination": {
       "prev": "Previous",

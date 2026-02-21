@@ -40,7 +40,7 @@ export interface ShopDict {
   priceRangeLabel: string;
   categories: Record<ShopCategory, string>;
   cordTypes: Record<CordType, string>;
-  priceRange: { min: string; max: string };
+  priceRange: { min: string; max: string; from: string; to: string; apply: string };
   pagination: { prev: string; next: string };
 }
 

@@ -48,7 +48,7 @@ export interface LandingDict {
     priceRangeLabel: string;
     categories: Record<string, string>;
     cordTypes: Record<string, string>;
-    priceRange: { min: string; max: string };
+    priceRange: { min: string; max: string; from: string; to: string; apply: string };
     pagination: { prev: string; next: string };
   };
 }

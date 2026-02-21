@@ -139,7 +139,13 @@ export function ShopSidebar({ lang, basePath, params, dict, allProducts }: ShopS
             basePath={basePath}
             minPrice={params.minPrice}
             maxPrice={params.maxPrice}
-            priceRangeLabel={{ min: dict.priceRange.min, max: dict.priceRange.max }}
+            priceRangeLabel={{
+              min: dict.priceRange.min,
+              max: dict.priceRange.max,
+              from: dict.priceRange.from,
+              to: dict.priceRange.to,
+              apply: dict.priceRange.apply,
+            }}
           />
         </section>
       </div>

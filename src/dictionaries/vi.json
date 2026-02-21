@@ -112,7 +112,10 @@
     },
     "priceRange": {
       "min": "0đ",
-      "max": "100+"
+      "max": "100+",
+      "from": "Từ ($)",
+      "to": "Đến ($)",
+      "apply": "Áp dụng"
     },
     "pagination": {
       "prev": "Trước",
