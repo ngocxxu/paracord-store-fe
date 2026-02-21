@@ -124,6 +124,23 @@
   },
   "builder": {
     "title": "Tạo dây paracord tùy chọn",
-    "selectColor": "Chọn màu"
+    "selectColor": "Chọn màu",
+    "selectModel": "CHỌN MẪU",
+    "weaveType": "KIỂU DỆT",
+    "buckle": "KHOÁ",
+    "innerCoreColor": "MÀU LÕI",
+    "outerEdgeColor": "MÀU VIỀN",
+    "buildConfiguration": "CẤU HÌNH",
+    "copyOptions": "SAO CHÉP",
+    "addToCart": "THÊM VÀO GIỎ",
+    "basePrice": "GIÁ GỐC",
+    "customizations": "TÙY CHỌN",
+    "total": "TỔNG",
+    "sizeAndFit": "KÍCH CỠ",
+    "addOns": "PHỤ KIỆN",
+    "models": { "bracelet": "Vòng tay", "keychain": "Móc khóa" },
+    "weaves": { "cobra": "Cobra", "fishtail": "Đuôi cá", "snakeKnot": "Nút rắn", "kingCobra": "King Cobra" },
+    "buckles": { "matteBlack": "Đen mờ", "stainless": "Inox" },
+    "colors": { "black": "Đen", "orange": "Cam", "odGreen": "Xanh lá", "grey": "Xám", "red": "Đỏ", "yellow": "Vàng", "blue": "Xanh dương", "white": "Trắng" }
   }
 }

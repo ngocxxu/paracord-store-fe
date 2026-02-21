@@ -1,4 +1,8 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
 
 interface NavDict {
   shop: string;
@@ -7,8 +11,10 @@ interface NavDict {
   theCraft: string;
 }
 
-export function Navigation({ lang, dict }: { lang: string; dict: NavDict }) {
+export function Navigation({ lang, dict }: Readonly<{ lang: string; dict: NavDict }>) {
+  const pathname = usePathname();
   const base = `/${lang}`;
+  const isBuilder = pathname === `${base}/builder`;
   return (
     <nav className="flex gap-6" aria-label="Main">
       <Link
@@ -19,7 +25,10 @@ export function Navigation({ lang, dict }: { lang: string; dict: NavDict }) {
       </Link>
       <Link
         href={`${base}/builder`}
-        className="text-sm font-medium uppercase tracking-wide text-brand-text-high hover:underline"
+        className={cn(
+          "text-sm font-medium uppercase tracking-wide text-brand-text-high hover:underline",
+          isBuilder && "border-b-2 border-brand-accent text-brand-accent"
+        )}
       >
         {dict.customBuild}
       </Link>

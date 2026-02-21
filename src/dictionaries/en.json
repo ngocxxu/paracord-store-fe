@@ -124,6 +124,23 @@
   },
   "builder": {
     "title": "Custom Paracord Builder",
-    "selectColor": "Select color"
+    "selectColor": "Select color",
+    "selectModel": "SELECT MODEL",
+    "weaveType": "WEAVE TYPE",
+    "buckle": "BUCKLE",
+    "innerCoreColor": "INNER CORE COLOR",
+    "outerEdgeColor": "OUTER EDGE COLOR",
+    "buildConfiguration": "BUILD CONFIGURATION",
+    "copyOptions": "COPY OPTIONS",
+    "addToCart": "ADD TO CART",
+    "basePrice": "BASE PRICE",
+    "customizations": "CUSTOMIZATIONS",
+    "total": "TOTAL",
+    "sizeAndFit": "SIZE & FIT",
+    "addOns": "ADD-ONS",
+    "models": { "bracelet": "Bracelets", "keychain": "Keychains" },
+    "weaves": { "cobra": "Cobra Weave", "fishtail": "Fishtail", "snakeKnot": "Snake Knot", "kingCobra": "King Cobra" },
+    "buckles": { "matteBlack": "Matte Black", "stainless": "Stainless" },
+    "colors": { "black": "Black", "orange": "Orange", "odGreen": "OD Green", "grey": "Grey", "red": "Red", "yellow": "Yellow", "blue": "Blue", "white": "White" }
   }
 }
