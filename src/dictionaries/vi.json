@@ -141,7 +141,13 @@
       "cobra": "Cobra",
       "fishtail": "Đuôi cá",
       "snakeKnot": "Nút rắn",
-      "kingCobra": "King Cobra"
+      "kingCobra": "King Cobra",
+      "adn": "ADN",
+      "box": "Box",
+      "snake": "Snake",
+      "butterfly": "Bướm",
+      "circleStick": "Circle Stick",
+      "monkeysFist": "Nắm khỉ"
     },
     "buckles": { "matteBlack": "Đen mờ", "stainless": "Inox" },
     "colors": {

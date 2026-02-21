@@ -2,7 +2,7 @@
 
 import { ChevronDown, ChevronUp, Minus } from "lucide-react";
 import { useState } from "react";
-import { BUILDER_MODELS, WEAVE_OPTIONS, BASE_PRICE, CUSTOMIZATION_PRICE } from "../data";
+import { BASE_PRICE, BUILDER_MODELS, CUSTOMIZATION_PRICE, KEYCHAIN_WEAVE_OPTIONS, WEAVE_OPTIONS } from "../data";
 import { useBuilderStore } from "../store";
 import type { BuilderDict, BuilderModel } from "../types";
 
@@ -91,6 +91,43 @@ export function BuilderSidebar({ dict }: BuilderSidebarProps) {
                         ) : null}
                       </span>
                       <span className={active ? "text-brand-accent" : ""}>{label}</span>
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
+          </section>
+        )}
+
+        {model === "keychain" && (
+          <section>
+            <h3 className="flex items-center gap-2 text-sm font-medium uppercase tracking-wide text-brand-text-high">
+              <Minus className="h-4 w-4" aria-hidden />
+              {dict.weaveType}
+            </h3>
+            <ul className="mt-3 space-y-2">
+              {KEYCHAIN_WEAVE_OPTIONS.map((w) => {
+                const label = dict.weaves[w.labelKey] ?? w.id;
+                const active = weaveType === w.id;
+                return (
+                  <li key={w.id}>
+                    <button
+                      type="button"
+                      onClick={() => setWeaveType(active ? null : w.id)}
+                      className="flex w-full items-center gap-2 text-left text-sm text-brand-text-high hover:underline"
+                      aria-pressed={active}
+                    >
+                      <span
+                        className={
+                          active
+                            ? "flex h-4 w-4 items-center justify-center rounded border border-brand-accent bg-brand-accent"
+                            : "flex h-4 w-4 items-center justify-center rounded border border-brand-border"
+                        }
+                        aria-hidden
+                      >
+                        {active ? <span className="text-brand-text-high">✓</span> : null}
+                      </span>
+                      {label}
                     </button>
                   </li>
                 );

@@ -137,7 +137,18 @@
     "sizeAndFit": "SIZE & FIT",
     "addOns": "ADD-ONS",
     "models": { "bracelet": "Bracelets", "keychain": "Keychains" },
-    "weaves": { "cobra": "Cobra Weave", "fishtail": "Fishtail", "snakeKnot": "Snake Knot", "kingCobra": "King Cobra" },
+    "weaves": {
+      "cobra": "Cobra Weave",
+      "fishtail": "Fishtail",
+      "snakeKnot": "Snake Knot",
+      "kingCobra": "King Cobra",
+      "adn": "ADN",
+      "box": "Box",
+      "snake": "Snake",
+      "butterfly": "Butterfly",
+      "circleStick": "Circle Stick",
+      "monkeysFist": "Monkey's Fist"
+    },
     "buckles": { "matteBlack": "Matte Black", "stainless": "Stainless" },
     "colors": { "black": "Black", "orange": "Orange", "odGreen": "OD Green", "grey": "Grey", "red": "Red", "yellow": "Yellow", "blue": "Blue", "white": "White" }
   }

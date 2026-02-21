@@ -4,12 +4,26 @@ export const BUILDER_MODELS = ["bracelet", "keychain"] as const;
 
 const PLACEHOLDER_IMAGE = "https://placehold.co/800x600/2C2724/FF5E00?text=Bracelet";
 
+const KEYCHAIN_PLACEHOLDER = "https://placehold.co/800x600/2C2724/FF5E00?text=Keychain";
+
 export const WEAVE_OPTIONS: WeaveOption[] = [
   { id: "cobra", labelKey: "cobra", imageSrc: PLACEHOLDER_IMAGE },
   { id: "fishtail", labelKey: "fishtail", imageSrc: PLACEHOLDER_IMAGE },
   { id: "snakeKnot", labelKey: "snakeKnot", imageSrc: PLACEHOLDER_IMAGE },
   { id: "kingCobra", labelKey: "kingCobra", imageSrc: PLACEHOLDER_IMAGE },
 ];
+
+export const KEYCHAIN_WEAVE_OPTIONS: WeaveOption[] = [
+  { id: "adn", labelKey: "adn", imageSrc: KEYCHAIN_PLACEHOLDER },
+  { id: "box", labelKey: "box", imageSrc: KEYCHAIN_PLACEHOLDER },
+  { id: "snake", labelKey: "snake", imageSrc: KEYCHAIN_PLACEHOLDER },
+  { id: "butterfly", labelKey: "butterfly", imageSrc: KEYCHAIN_PLACEHOLDER },
+  { id: "circleStick", labelKey: "circleStick", imageSrc: KEYCHAIN_PLACEHOLDER },
+  { id: "monkeysFist", labelKey: "monkeysFist", imageSrc: KEYCHAIN_PLACEHOLDER },
+];
+
+export const BRACELET_WEAVE_IDS = WEAVE_OPTIONS.map((w) => w.id);
+export const KEYCHAIN_WEAVE_IDS = KEYCHAIN_WEAVE_OPTIONS.map((w) => w.id);
 
 export const BUCKLE_OPTIONS: BuckleOption[] = [
   { id: "matteBlack", labelKey: "matteBlack" },

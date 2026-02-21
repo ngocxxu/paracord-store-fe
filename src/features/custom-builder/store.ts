@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import type { BuilderModel } from "./types";
-import { BASE_PRICE, CUSTOMIZATION_PRICE } from "./data";
+import { BASE_PRICE, BRACELET_WEAVE_IDS, CUSTOMIZATION_PRICE, KEYCHAIN_WEAVE_IDS } from "./data";
 
 interface BuilderStore {
   model: BuilderModel | null;
@@ -26,11 +26,16 @@ export const useBuilderStore = create<BuilderStore>((set, get) => ({
   buckleId: defaultBuckle,
   innerCoreColorId: defaultInner,
   outerEdgeColorId: defaultOuter,
-  setModel: (model) =>
-    set({
-      model,
-      weaveType: model === "bracelet" ? get().weaveType ?? "cobra" : null,
-    }),
+  setModel: (model) => {
+    const current = get().weaveType;
+    const weaveType =
+      model === "bracelet"
+        ? (current && BRACELET_WEAVE_IDS.includes(current) ? current : "cobra")
+        : model === "keychain"
+          ? (current && KEYCHAIN_WEAVE_IDS.includes(current) ? current : null)
+          : null;
+    set({ model, weaveType });
+  },
   setWeaveType: (weaveType) => set({ weaveType }),
   setBuckleId: (buckleId) => set({ buckleId }),
   setInnerCoreColorId: (innerCoreColorId) => set({ innerCoreColorId }),
