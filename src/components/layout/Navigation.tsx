@@ -7,8 +7,6 @@ import { cn } from "@/lib/utils";
 interface NavDict {
   shop: string;
   customBuild: string;
-  lookbook: string;
-  theCraft: string;
 }
 
 export function Navigation({ lang, dict }: Readonly<{ lang: string; dict: NavDict }>) {
@@ -31,18 +29,6 @@ export function Navigation({ lang, dict }: Readonly<{ lang: string; dict: NavDic
         )}
       >
         {dict.customBuild}
-      </Link>
-      <Link
-        href={`${base}#lookbook`}
-        className="text-sm font-medium uppercase tracking-wide text-brand-text-high hover:underline"
-      >
-        {dict.lookbook}
-      </Link>
-      <Link
-        href={`${base}#gear-in-the-wild`}
-        className="text-sm font-medium uppercase tracking-wide text-brand-text-high hover:underline"
-      >
-        {dict.theCraft}
       </Link>
     </nav>
   );

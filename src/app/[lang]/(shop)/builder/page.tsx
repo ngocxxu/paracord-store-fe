@@ -22,7 +22,7 @@ export default async function BuilderPage({
           </h1>
         </div>
       </div>
-      <div className="flex flex-1 flex-col lg:flex-row">
+      <div className="container mx-auto flex flex-1 flex-col px-4 py-6 lg:flex-row">
         <BuilderSidebar dict={builderDict} />
         <BuilderCanvas dict={builderDict} />
       </div>

@@ -1,10 +1,8 @@
 {
   "topBar": "100% HANDCRAFTED | FREE SHIPPING OVER $50",
   "nav": {
-    "shop": "Shop",
-    "customBuild": "Custom Build",
-    "lookbook": "Lookbook",
-    "theCraft": "Gear in the Wild"
+    "shop": "Shop All",
+    "customBuild": "Custom Build"
   },
   "navAria": {
     "search": "Search",
@@ -13,14 +11,14 @@
   "hero": {
     "badge": "New Collection Drop",
     "headline": "Handwoven Gear for Everyday Carry",
-    "subheadline": "Engineered for durability. Styled for the streets. 100% USA Made.",
+    "subheadline": "Engineered for durability. Styled for the streets.",
     "ctaPrimary": "Shop the Collection",
     "ctaSecondary": "Build Your Own"
   },
   "valueProps": [
     {
       "title": "100% Handwoven",
-      "description": "Artisan crafted in the USA with precision"
+      "description": "Meticulously handcrafted with high precision"
     },
     {
       "title": "Custom Tailored Fit",

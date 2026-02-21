@@ -2,9 +2,7 @@
   "topBar": "100% THỦ CÔNG | MIỄN PHÍ VẬN CHUYỂN TRÊN $50",
   "nav": {
     "shop": "Cửa hàng",
-    "customBuild": "Tạo dây",
-    "lookbook": "Lookbook",
-    "theCraft": "Gear in the Wild"
+    "customBuild": "Tạo dây"
   },
   "navAria": {
     "search": "Tìm kiếm",
@@ -20,7 +18,7 @@
   "valueProps": [
     {
       "title": "100% Thủ Công",
-      "description": "Thủ công tại Mỹ với độ chính xác cao"
+      "description": "Chế tác thủ công tỉ mỉ với độ tinh xảo cao."
     },
     {
       "title": "Vừa Cổ Tay",
@@ -46,7 +44,7 @@
     "hashtag": "#KoraGear",
     "subtitleAfter": " để được góp mặt.",
     "cta": "Theo dõi Instagram",
-    "instagramUrl": "https://instagram.com"
+    "instagramUrl": "https://www.instagram.com/vong_paracord/"
   },
   "newsletter": {
     "headline": "Tham Gia Crew",
@@ -139,8 +137,22 @@
     "sizeAndFit": "KÍCH CỠ",
     "addOns": "PHỤ KIỆN",
     "models": { "bracelet": "Vòng tay", "keychain": "Móc khóa" },
-    "weaves": { "cobra": "Cobra", "fishtail": "Đuôi cá", "snakeKnot": "Nút rắn", "kingCobra": "King Cobra" },
+    "weaves": {
+      "cobra": "Cobra",
+      "fishtail": "Đuôi cá",
+      "snakeKnot": "Nút rắn",
+      "kingCobra": "King Cobra"
+    },
     "buckles": { "matteBlack": "Đen mờ", "stainless": "Inox" },
-    "colors": { "black": "Đen", "orange": "Cam", "odGreen": "Xanh lá", "grey": "Xám", "red": "Đỏ", "yellow": "Vàng", "blue": "Xanh dương", "white": "Trắng" }
+    "colors": {
+      "black": "Đen",
+      "orange": "Cam",
+      "odGreen": "Xanh lá",
+      "grey": "Xám",
+      "red": "Đỏ",
+      "yellow": "Vàng",
+      "blue": "Xanh dương",
+      "white": "Trắng"
+    }
   }
 }
