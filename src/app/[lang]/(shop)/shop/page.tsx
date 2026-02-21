@@ -21,8 +21,7 @@ export default async function ShopPage({
   params: Promise<{ lang: string }>;
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
-  const { lang } = await params;
-  const rawParams = await searchParams;
+  const [{ lang }, rawParams] = await Promise.all([params, searchParams]);
   const dict = (await getDictionary(lang)) as unknown as LandingDict;
   const shopDict = dict.shop;
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname, useRouter } from "next/navigation";
-import { useCallback, useEffect, useState, useTransition } from "react";
+import { useCallback, useState, useTransition } from "react";
 import { PRICE_MAX } from "./data";
 
 interface PriceRangeFilterProps {
@@ -23,11 +23,6 @@ export function PriceRangeFilter({
   const [, startTransition] = useTransition();
   const [min, setMin] = useState(initialMin);
   const [max, setMax] = useState(initialMax);
-
-  useEffect(() => {
-    setMin(initialMin);
-    setMax(initialMax);
-  }, [initialMin, initialMax]);
 
   const updateRange = useCallback(
     (newMin: number, newMax: number) => {

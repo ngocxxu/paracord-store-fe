@@ -135,6 +135,7 @@ export function ShopSidebar({ lang, basePath, params, dict, allProducts }: ShopS
             {dict.priceRangeLabel}
           </h3>
           <PriceRangeFilter
+            key={`${params.minPrice}-${params.maxPrice}`}
             lang={lang}
             basePath={basePath}
             minPrice={params.minPrice}

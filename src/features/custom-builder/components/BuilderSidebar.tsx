@@ -61,7 +61,7 @@ export function BuilderSidebar({ dict }: BuilderSidebarProps) {
           </ul>
         </section>
 
-        {model === "bracelet" && (
+        {model === "bracelet" ? (
           <section>
             <h3 className="flex items-center gap-2 text-sm font-medium uppercase tracking-wide text-brand-text-high">
               <Minus className="h-4 w-4" aria-hidden />
@@ -98,9 +98,9 @@ export function BuilderSidebar({ dict }: BuilderSidebarProps) {
               })}
             </ul>
           </section>
-        )}
+        ) : null}
 
-        {model === "keychain" && (
+        {model === "keychain" ? (
           <section>
             <h3 className="flex items-center gap-2 text-sm font-medium uppercase tracking-wide text-brand-text-high">
               <Minus className="h-4 w-4" aria-hidden />
@@ -135,9 +135,9 @@ export function BuilderSidebar({ dict }: BuilderSidebarProps) {
               })}
             </ul>
           </section>
-        )}
+        ) : null}
 
-        {model === "bracelet" && (
+        {model === "bracelet" ? (
           <section>
             <div className="flex items-center justify-between gap-2">
               <h3 className="flex shrink-0 items-center gap-2 whitespace-nowrap text-sm font-bold uppercase tracking-wide text-brand-text-high">
@@ -192,7 +192,7 @@ export function BuilderSidebar({ dict }: BuilderSidebarProps) {
                 {dict.sizes.custom}
                 <Pencil className="h-4 w-4" aria-hidden />
               </button>
-              {sizeId === SIZE_CUSTOM_ID && (
+              {sizeId === SIZE_CUSTOM_ID ? (
                 <label className="block">
                   <input
                     type="number"
@@ -209,15 +209,15 @@ export function BuilderSidebar({ dict }: BuilderSidebarProps) {
                     aria-label={dict.customSizePlaceholder}
                   />
                 </label>
-              )}
-              {sizeId !== SIZE_CUSTOM_ID && dict.fitDescription[sizeId] && (
+              ) : null}
+              {sizeId !== SIZE_CUSTOM_ID && dict.fitDescription[sizeId] ? (
                 <p className="text-sm text-brand-text-medium">
                   {dict.fitDescription[sizeId]}
                 </p>
-              )}
+              ) : null}
             </div>
           </section>
-        )}
+        ) : null}
 
         <section>
           <button
@@ -229,7 +229,7 @@ export function BuilderSidebar({ dict }: BuilderSidebarProps) {
             {dict.addOns}
             {addOnsOpen ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
           </button>
-          {addOnsOpen && <div className="mt-2 text-sm text-brand-text-medium">—</div>}
+          {addOnsOpen ? <div className="mt-2 text-sm text-brand-text-medium">—</div> : null}
         </section>
 
         <section className="border-t border-brand-border pt-4">
