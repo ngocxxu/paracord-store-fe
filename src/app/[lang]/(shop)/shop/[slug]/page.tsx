@@ -58,7 +58,7 @@ export default async function ProductDetailPage({
 
       <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
-          <ProductDetailGallery product={product} />
+          <ProductDetailGallery product={product} dict={shopDict.productDetail} />
           <ProductDetailInfo
             product={product}
             lang={lang}

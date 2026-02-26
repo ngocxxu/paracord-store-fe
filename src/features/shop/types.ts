@@ -48,6 +48,7 @@ export interface ProductDetailDict {
   material: { title: string; body: string; exploreLink: string };
   hardware: { title: string; body: string; tags: string[] };
   builtToOrder: { title: string; body: string; handmadeLabel: string };
+  dragToExploreMacroDetails: string;
 }
 
 export interface ShopDict {

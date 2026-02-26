@@ -15,6 +15,7 @@ interface ImageWithFallbackProps {
   readonly priority?: boolean;
   readonly unoptimized?: boolean;
   readonly ariaHidden?: boolean;
+  readonly draggable?: boolean;
 }
 
 export function ImageWithFallback({
@@ -28,6 +29,7 @@ export function ImageWithFallback({
   priority,
   unoptimized,
   ariaHidden,
+  draggable,
 }: ImageWithFallbackProps) {
   const [error, setError] = useState(false);
 
@@ -60,6 +62,7 @@ export function ImageWithFallback({
       priority={priority}
       unoptimized={unoptimized}
       aria-hidden={ariaHidden}
+      draggable={draggable}
       onError={() => setError(true)}
     />
   );
