@@ -118,6 +118,53 @@
     "pagination": {
       "prev": "Previous",
       "next": "Next"
+    },
+    "productDetail": {
+      "breadcrumb": {
+        "home": "Home",
+        "customGear": "Custom Gear"
+      },
+      "featuredBuildPrice": "FEATURED BUILD PRICE",
+      "featuredBuildTag": "FEATURED ARTISAN BUILD",
+      "reviews": "verified reviews",
+      "selectWristSize": "SELECT WRIST SIZE",
+      "howToMeasure": "HOW TO MEASURE YOUR WRIST",
+      "orEnterExactSize": "OR ENTER EXACT SIZE",
+      "customSizePlaceholder": "Custom size (e.g. 17.5)",
+      "wristSizes": {
+        "s": "S (16-17cm)",
+        "m": "M (17-18cm)",
+        "l": "L (18-19cm)",
+        "xl": "XL (19-20cm)"
+      },
+      "addToCart": "Add to Cart",
+      "shipping": "FAST SHIPPING: SHIPS IN 24-48 HOURS",
+      "customizer": {
+        "title": "Want a Unique Look?",
+        "description": "Experience our immersive 3D builder to select over 50+ colors and premium hardware finishes for a truly bespoke piece.",
+        "openCustomizer": "OPEN CUSTOMIZER"
+      },
+      "guarantees": {
+        "lifetimeGuarantee": "LIFETIME GUARANTEE",
+        "lifetimeGuaranteeDesc": "ARTISAN BUILD DURABILITY",
+        "expressBuild": "EXPRESS BUILD",
+        "expressBuildDesc": "CURRENT BUILD SHIPS FAST"
+      },
+      "material": {
+        "title": "The Material",
+        "body": "We use only certified Type III 550 Paracord. This is the same cord used by paratroopers in WWII. It features a 7-strand nylon core with a minimum breaking strength of 550lbs.",
+        "exploreLink": "Explore our materials"
+      },
+      "hardware": {
+        "title": "The Hardware",
+        "body": "Our 'D' Shackles are forged from 316L Stainless Steel. They are salt-water resistant, sweat-proof, and feature a screw-pin locking mechanism for ultimate security during activity.",
+        "tags": ["RUST PROOF", "TACTICAL GRADE"]
+      },
+      "builtToOrder": {
+        "title": "Built To Order",
+        "body": "Every bracelet is hand-woven by a single artisan. This ensures consistent tension in the weave and perfect alignment of the colors. No mass production. No compromises.",
+        "handmadeLabel": "HANDMADE IN USA"
+      }
     }
   },
   "builder": {
@@ -167,6 +214,15 @@
       "monkeysFist": "Monkey's Fist"
     },
     "buckles": { "matteBlack": "Matte Black", "stainless": "Stainless" },
-    "colors": { "black": "Black", "orange": "Orange", "odGreen": "OD Green", "grey": "Grey", "red": "Red", "yellow": "Yellow", "blue": "Blue", "white": "White" }
+    "colors": {
+      "black": "Black",
+      "orange": "Orange",
+      "odGreen": "OD Green",
+      "grey": "Grey",
+      "red": "Red",
+      "yellow": "Yellow",
+      "blue": "Blue",
+      "white": "White"
+    }
   }
 }

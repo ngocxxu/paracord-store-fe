@@ -2,24 +2,23 @@ import type { BuckleOption, ColorOption, WeaveOption } from "./types";
 
 export const BUILDER_MODELS = ["bracelet", "keychain"] as const;
 
-const PLACEHOLDER_IMAGE = "https://placehold.co/800x600/2C2724/FF5E00?text=Bracelet";
-
-const KEYCHAIN_PLACEHOLDER = "https://placehold.co/800x600/2C2724/FF5E00?text=Keychain";
+const PRODUCT_IMAGE =
+  "https://res.cloudinary.com/ngocxxu/image/upload/v1772070687/paracord/ewbw3koxkwpezgf9hm95.png";
 
 export const WEAVE_OPTIONS: WeaveOption[] = [
-  { id: "cobra", labelKey: "cobra", imageSrc: PLACEHOLDER_IMAGE },
-  { id: "fishtail", labelKey: "fishtail", imageSrc: PLACEHOLDER_IMAGE },
-  { id: "snakeKnot", labelKey: "snakeKnot", imageSrc: PLACEHOLDER_IMAGE },
-  { id: "kingCobra", labelKey: "kingCobra", imageSrc: PLACEHOLDER_IMAGE },
+  { id: "cobra", labelKey: "cobra", imageSrc: PRODUCT_IMAGE },
+  { id: "fishtail", labelKey: "fishtail", imageSrc: PRODUCT_IMAGE },
+  { id: "snakeKnot", labelKey: "snakeKnot", imageSrc: PRODUCT_IMAGE },
+  { id: "kingCobra", labelKey: "kingCobra", imageSrc: PRODUCT_IMAGE },
 ];
 
 export const KEYCHAIN_WEAVE_OPTIONS: WeaveOption[] = [
-  { id: "adn", labelKey: "adn", imageSrc: KEYCHAIN_PLACEHOLDER },
-  { id: "box", labelKey: "box", imageSrc: KEYCHAIN_PLACEHOLDER },
-  { id: "snake", labelKey: "snake", imageSrc: KEYCHAIN_PLACEHOLDER },
-  { id: "butterfly", labelKey: "butterfly", imageSrc: KEYCHAIN_PLACEHOLDER },
-  { id: "circleStick", labelKey: "circleStick", imageSrc: KEYCHAIN_PLACEHOLDER },
-  { id: "monkeysFist", labelKey: "monkeysFist", imageSrc: KEYCHAIN_PLACEHOLDER },
+  { id: "adn", labelKey: "adn", imageSrc: PRODUCT_IMAGE },
+  { id: "box", labelKey: "box", imageSrc: PRODUCT_IMAGE },
+  { id: "snake", labelKey: "snake", imageSrc: PRODUCT_IMAGE },
+  { id: "butterfly", labelKey: "butterfly", imageSrc: PRODUCT_IMAGE },
+  { id: "circleStick", labelKey: "circleStick", imageSrc: PRODUCT_IMAGE },
+  { id: "monkeysFist", labelKey: "monkeysFist", imageSrc: PRODUCT_IMAGE },
 ];
 
 export const BRACELET_WEAVE_IDS = WEAVE_OPTIONS.map((w) => w.id);

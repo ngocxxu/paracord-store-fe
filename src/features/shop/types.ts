@@ -26,6 +26,30 @@ export interface ShopProductItem {
   filterColors: FilterColor[];
 }
 
+export interface ProductDetailDict {
+  breadcrumb: { home: string; customGear: string };
+  featuredBuildPrice: string;
+  featuredBuildTag: string;
+  reviews: string;
+  selectWristSize: string;
+  howToMeasure: string;
+  orEnterExactSize: string;
+  customSizePlaceholder: string;
+  wristSizes: { s: string; m: string; l: string; xl: string };
+  addToCart: string;
+  shipping: string;
+  customizer: { title: string; description: string; openCustomizer: string };
+  guarantees: {
+    lifetimeGuarantee: string;
+    lifetimeGuaranteeDesc: string;
+    expressBuild: string;
+    expressBuildDesc: string;
+  };
+  material: { title: string; body: string; exploreLink: string };
+  hardware: { title: string; body: string; tags: string[] };
+  builtToOrder: { title: string; body: string; handmadeLabel: string };
+}
+
 export interface ShopDict {
   collectionLabel: string;
   allGear: string;
@@ -42,6 +66,7 @@ export interface ShopDict {
   cordTypes: Record<CordType, string>;
   priceRange: { min: string; max: string; from: string; to: string; apply: string };
   pagination: { prev: string; next: string };
+  productDetail?: ProductDetailDict;
 }
 
 export interface ResolvedShopProduct {

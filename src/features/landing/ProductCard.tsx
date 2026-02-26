@@ -1,12 +1,13 @@
-import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import type { ResolvedProduct } from "./types";
 
 interface ProductCardProps extends ResolvedProduct {
   locale: string;
+  detailHref?: string;
 }
 
 export function ProductCard({
@@ -19,8 +20,9 @@ export function ProductCard({
   locale,
   badge,
   colorSwatches,
+  detailHref,
 }: ProductCardProps) {
-  const href = `/${locale}/builder`;
+  const href = detailHref ?? `/${locale}/builder`;
   return (
     <Link href={href} className="group block">
       <Card className="h-full overflow-hidden border-brand-border bg-brand-bg-card shadow-card transition-transform duration-200 group-hover:scale-[1.02]">
@@ -32,13 +34,14 @@ export function ProductCard({
             )}
           >
             {imageSrc ? (
-              <Image
+              <ImageWithFallback
                 src={imageSrc}
                 alt={imageAlt ?? title}
                 width={400}
                 height={400}
                 className="h-full w-full object-cover"
                 sizes="(max-width: 768px) 100vw, 33vw"
+                unoptimized
               />
             ) : null}
             {badge ? (

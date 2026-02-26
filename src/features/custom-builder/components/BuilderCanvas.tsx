@@ -2,8 +2,8 @@
 
 import { Maximize2, Minus, Plus } from "lucide-react";
 import { useCallback, useState } from "react";
-import Image from "next/image";
 import { BUCKLE_OPTIONS, COLOR_OPTIONS, WEAVE_OPTIONS } from "../data";
+import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
 import { useBuilderStore } from "../store";
 import type { BuilderDict } from "../types";
 
@@ -30,7 +30,9 @@ export function BuilderCanvas({ dict }: BuilderCanvasProps) {
   const [scale, setScale] = useState(1);
 
   const weave = WEAVE_OPTIONS.find((w) => w.id === (weaveType ?? "cobra"));
-  const imageSrc = weave?.imageSrc ?? "/images/builder/bracelet-cobra.jpg";
+  const imageSrc =
+    weave?.imageSrc ??
+    "https://res.cloudinary.com/ngocxxu/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1772070687/paracord/ewbw3koxkwpezgf9hm95.png";
 
   const zoomIn = useCallback(() => setScale((s) => Math.min(s + 0.25, 2)), []);
   const zoomOut = useCallback(() => setScale((s) => Math.max(s - 0.25, 0.5)), []);
@@ -43,28 +45,16 @@ export function BuilderCanvas({ dict }: BuilderCanvasProps) {
         style={{ transform: `scale(${scale})` }}
       >
         <div className="relative aspect-[4/3] w-full max-w-2xl">
-          <Image
+          <ImageWithFallback
             src={imageSrc}
             alt="Paracord bracelet"
+            width={672}
+            height={504}
             fill
             className="object-contain"
             sizes="(max-width: 768px) 100vw, 672px"
-            onError={(e) => {
-              const target = e.currentTarget;
-              target.style.display = "none";
-              const fallback = target.nextElementSibling as HTMLElement;
-              if (fallback) fallback.style.display = "block";
-            }}
+            unoptimized
           />
-          <div
-            className="absolute inset-0 bg-brand-bg-surface"
-            style={{ display: "none" }}
-            aria-hidden
-          >
-            <div className="flex h-full items-center justify-center text-brand-text-medium">
-              Bracelet
-            </div>
-          </div>
 
           <svg
             className="absolute inset-0 h-full w-full"

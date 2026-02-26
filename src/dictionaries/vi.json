@@ -118,6 +118,53 @@
     "pagination": {
       "prev": "Trước",
       "next": "Sau"
+    },
+    "productDetail": {
+      "breadcrumb": {
+        "home": "Trang chủ",
+        "customGear": "Custom Gear"
+      },
+      "featuredBuildPrice": "GIÁ BẢN NỔI BẬT",
+      "featuredBuildTag": "BẢN NỔI BẬT",
+      "reviews": "đánh giá xác thực",
+      "selectWristSize": "CHỌN KÍCH CỠ CỔ TAY",
+      "howToMeasure": "HƯỚNG DẪN ĐO CỔ TAY",
+      "orEnterExactSize": "HOẶC NHẬP SỐ ĐO CHÍNH XÁC",
+      "customSizePlaceholder": "Số đo (vd. 17.5)",
+      "wristSizes": {
+        "s": "S (16-17cm)",
+        "m": "M (17-18cm)",
+        "l": "L (18-19cm)",
+        "xl": "XL (19-20cm)"
+      },
+      "addToCart": "Thêm vào giỏ",
+      "shipping": "GIAO NHANH: GỬI TRONG 24-48 GIỜ",
+      "customizer": {
+        "title": "Muốn phong cách riêng?",
+        "description": "Dùng builder 3D để chọn hơn 50 màu và kiểu khóa cao cấp.",
+        "openCustomizer": "MỞ CUSTOMIZER"
+      },
+      "guarantees": {
+        "lifetimeGuarantee": "BẢO HÀNH TRỌN ĐỜI",
+        "lifetimeGuaranteeDesc": "BỀN BỈ BẢN NỔI BẬT",
+        "expressBuild": "GIAO NHANH",
+        "expressBuildDesc": "BẢN HIỆN TẠI GỬI NHANH"
+      },
+      "material": {
+        "title": "Chất liệu",
+        "body": "Chúng tôi dùng dây Paracord Type III 550 chứng nhận. Dây 7 sợi nylon, lực đứt tối thiểu 550lbs.",
+        "exploreLink": "Xem chất liệu"
+      },
+      "hardware": {
+        "title": "Khóa",
+        "body": "Khóa D Shackle làm từ thép không gỉ 316L, chống nước mặn, mồ hôi, khóa vít an toàn.",
+        "tags": ["CHỐNG GỈ", "CHẤT LƯỢNG TACTICAL"]
+      },
+      "builtToOrder": {
+        "title": "Làm theo đơn",
+        "body": "Mỗi vòng do một thợ đan tay, đảm bảo độ căng đồng đều và màu sắc chuẩn.",
+        "handmadeLabel": "LÀM TAY TẠI USA"
+      }
     }
   },
   "builder": {

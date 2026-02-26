@@ -98,6 +98,7 @@ export default async function ShopPage({
                   badge={product.badge}
                   colorSwatches={product.colorSwatches}
                   locale={lang}
+                  detailHref={`/${lang}/shop/${product.slug}`}
                 />
               ))}
             </div>

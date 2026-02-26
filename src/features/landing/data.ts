@@ -1,5 +1,8 @@
 import type { FeaturedProductItem } from "./types";
 
+const PRODUCT_IMAGE =
+  "https://res.cloudinary.com/ngocxxu/image/upload/v1772070687/paracord/ewbw3koxkwpezgf9hm95.png";
+
 export const FEATURED_PRODUCTS: FeaturedProductItem[] = [
   {
     id: "cobra",
@@ -7,6 +10,8 @@ export const FEATURED_PRODUCTS: FeaturedProductItem[] = [
     titleKey: "cobra",
     descriptionKey: "cobra",
     price: "$24.00",
+    imageSrc: PRODUCT_IMAGE,
+    imageAlt: "Paracord keychain",
     badge: "bestseller",
     colorSwatches: ["#FF5E00", "#332F2C", "#4B5320"],
   },
@@ -16,6 +21,8 @@ export const FEATURED_PRODUCTS: FeaturedProductItem[] = [
     titleKey: "hkSnapLanyard",
     descriptionKey: "hkSnapLanyard",
     price: "$18.00",
+    imageSrc: PRODUCT_IMAGE,
+    imageAlt: "Paracord keychain",
     colorSwatches: ["#FF5E00", "#332F2C"],
   },
   {
@@ -24,16 +31,18 @@ export const FEATURED_PRODUCTS: FeaturedProductItem[] = [
     titleKey: "titanSurvivalCord",
     descriptionKey: "titanSurvivalCord",
     price: "$32.00",
+    imageSrc: PRODUCT_IMAGE,
+    imageAlt: "Paracord keychain",
     badge: "limited",
     colorSwatches: ["#AFA9A4", "#4B5320"],
   },
 ];
 
 export const GEAR_IN_THE_WILD_IMAGES: { src: string; alt: string }[] = [
-  { src: "https://placehold.co/600x450/2C2724/AFA9A4?text=1", alt: "Gear in the wild" },
-  { src: "https://placehold.co/600x450/2C2724/AFA9A4?text=2", alt: "Gear in the wild" },
-  { src: "https://placehold.co/600x450/2C2724/AFA9A4?text=3", alt: "Gear in the wild" },
-  { src: "https://placehold.co/600x450/2C2724/AFA9A4?text=4", alt: "Gear in the wild" },
-  { src: "https://placehold.co/600x450/2C2724/AFA9A4?text=5", alt: "Gear in the wild" },
-  { src: "https://placehold.co/600x450/2C2724/AFA9A4?text=6", alt: "Gear in the wild" },
+  { src: PRODUCT_IMAGE, alt: "Paracord keychains" },
+  { src: PRODUCT_IMAGE, alt: "Paracord keychains" },
+  { src: PRODUCT_IMAGE, alt: "Paracord keychains" },
+  { src: PRODUCT_IMAGE, alt: "Paracord keychains" },
+  { src: PRODUCT_IMAGE, alt: "Paracord keychains" },
+  { src: PRODUCT_IMAGE, alt: "Paracord keychains" },
 ];

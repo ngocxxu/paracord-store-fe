@@ -1,6 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
 import { Button } from "@/components/ui/button";
 import type { LandingDict } from "./types";
 
@@ -22,9 +22,11 @@ export function Hero({ dict, locale, imageSrc, imageAlt }: HeroProps) {
         aria-hidden
       >
         {imageSrc ? (
-          <Image
+          <ImageWithFallback
             src={imageSrc}
             alt={imageAlt ?? ""}
+            width={1920}
+            height={1080}
             fill
             className="object-cover"
             priority

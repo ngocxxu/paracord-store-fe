@@ -1,6 +1,7 @@
 import type { ShopProductItem } from "./types";
 
-const PLACEHOLDER = "https://placehold.co/400x400/2C2724/AFA9A4?text=";
+const PRODUCT_IMAGE =
+  "https://res.cloudinary.com/ngocxxu/image/upload/v1772070687/paracord/ewbw3koxkwpezgf9hm95.png";
 
 export const SHOP_PRODUCTS: ShopProductItem[] = [
   {
@@ -10,8 +11,8 @@ export const SHOP_PRODUCTS: ShopProductItem[] = [
     descriptionKey: "cobra",
     price: "$24.00",
     priceNum: 24,
-    imageSrc: `${PLACEHOLDER}cobra`,
-    imageAlt: "The Cobra Weave bracelet",
+    imageSrc: PRODUCT_IMAGE,
+    imageAlt: "Paracord keychain",
     badge: "bestseller",
     colorSwatches: ["#FF5E00", "#332F2C", "#4B5320"],
     category: "bracelets",
@@ -25,8 +26,8 @@ export const SHOP_PRODUCTS: ShopProductItem[] = [
     descriptionKey: "hkSnapLanyard",
     price: "$18.00",
     priceNum: 18,
-    imageSrc: `${PLACEHOLDER}hk`,
-    imageAlt: "HK Snap Lanyard",
+    imageSrc: PRODUCT_IMAGE,
+    imageAlt: "Paracord keychain",
     colorSwatches: ["#DC2626", "#2563EB"],
     category: "lanyards",
     cordType: "550",
@@ -39,8 +40,8 @@ export const SHOP_PRODUCTS: ShopProductItem[] = [
     descriptionKey: "titanSurvivalCord",
     price: "$32.00",
     priceNum: 32,
-    imageSrc: `${PLACEHOLDER}titan`,
-    imageAlt: "Titan Survival Cord",
+    imageSrc: PRODUCT_IMAGE,
+    imageAlt: "Paracord keychain",
     badge: "limited",
     colorSwatches: ["#4B5320", "#FF5E00", "#2563EB"],
     category: "keychains",
@@ -54,8 +55,8 @@ export const SHOP_PRODUCTS: ShopProductItem[] = [
     descriptionKey: "monkeyFistKeyfob",
     price: "$16.00",
     priceNum: 16,
-    imageSrc: `${PLACEHOLDER}keyfob`,
-    imageAlt: "Monkey Fist Keyfob",
+    imageSrc: PRODUCT_IMAGE,
+    imageAlt: "Paracord keychain",
     colorSwatches: ["#2563EB", "#6B7280"],
     category: "keychains",
     cordType: "550",
@@ -68,8 +69,8 @@ export const SHOP_PRODUCTS: ShopProductItem[] = [
     descriptionKey: "k9TacticalCollar",
     price: "$45.00",
     priceNum: 45,
-    imageSrc: `${PLACEHOLDER}k9`,
-    imageAlt: "K9 Tactical Collar",
+    imageSrc: PRODUCT_IMAGE,
+    imageAlt: "Paracord keychain",
     colorSwatches: ["#4B5320", "#78350f"],
     category: "petGear",
     cordType: "550",
@@ -82,8 +83,8 @@ export const SHOP_PRODUCTS: ShopProductItem[] = [
     descriptionKey: "tacticalWatchStrap",
     price: "$28.00",
     priceNum: 28,
-    imageSrc: `${PLACEHOLDER}watch`,
-    imageAlt: "Tactical Watch Strap",
+    imageSrc: PRODUCT_IMAGE,
+    imageAlt: "Paracord keychain",
     colorSwatches: ["#6B7280", "#FFFFFF"],
     category: "bracelets",
     cordType: "550",

@@ -1,11 +1,11 @@
 "use client";
 
-import { ChevronDown, ChevronUp, Minus, Pencil, Ruler } from "lucide-react";
+import { Minus, Pencil, Ruler } from "lucide-react";
 import { useState } from "react";
-import { BASE_PRICE, BUILDER_MODELS, CUSTOMIZATION_PRICE, KEYCHAIN_WEAVE_OPTIONS, SIZE_CUSTOM_ID, SIZE_PRESETS, WEAVE_OPTIONS } from "../data";
-import { MeasureGuideModal } from "./MeasureGuideModal";
+import { BUILDER_MODELS, CUSTOMIZATION_PRICE, KEYCHAIN_WEAVE_OPTIONS, SIZE_CUSTOM_ID, SIZE_PRESETS, WEAVE_OPTIONS } from "../data";
 import { useBuilderStore } from "../store";
 import type { BuilderDict, BuilderModel } from "../types";
+import { MeasureGuideModal } from "./MeasureGuideModal";
 
 interface BuilderSidebarProps {
   readonly dict: BuilderDict;
@@ -218,31 +218,6 @@ export function BuilderSidebar({ dict }: BuilderSidebarProps) {
             </div>
           </section>
         ) : null}
-
-        <section>
-          <button
-            type="button"
-            onClick={() => setAddOnsOpen((o) => !o)}
-            className="flex w-full items-center justify-between text-sm font-medium uppercase tracking-wide text-brand-text-high"
-            aria-expanded={addOnsOpen}
-          >
-            {dict.addOns}
-            {addOnsOpen ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
-          </button>
-          {addOnsOpen ? <div className="mt-2 text-sm text-brand-text-medium">—</div> : null}
-        </section>
-
-        <section className="border-t border-brand-border pt-4">
-          <p className="text-sm text-brand-text-medium">
-            {dict.basePrice} (${BASE_PRICE.toFixed(2)})
-          </p>
-          <p className="mt-1 text-sm text-brand-text-medium">
-            {dict.customizations} (+${customizations.toFixed(2)})
-          </p>
-          <p className="mt-2 text-sm font-medium text-brand-text-high">
-            {dict.total} (${total.toFixed(2)})
-          </p>
-        </section>
       </div>
     </aside>
   );
