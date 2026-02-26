@@ -1,11 +1,12 @@
-import { notFound } from "next/navigation";
-import Link from "next/link";
-import { getDictionary } from "@/lib/dictionary";
 import type { LandingDict } from "@/features/landing/types";
-import { getProductBySlug } from "@/features/shop/resolveProducts";
+import { ProductDetailContent } from "@/features/shop/ProductDetailContent";
+import type { ShopDict } from "@/features/shop/types";
 import { ProductDetailGallery } from "@/features/shop/ProductDetailGallery";
 import { ProductDetailInfo } from "@/features/shop/ProductDetailInfo";
-import { ProductDetailContent } from "@/features/shop/ProductDetailContent";
+import { getProductBySlug } from "@/features/shop/resolveProducts";
+import { getDictionary } from "@/lib/dictionary";
+import Link from "next/link";
+import { notFound } from "next/navigation";
 
 export default async function ProductDetailPage({
   params,
@@ -14,7 +15,7 @@ export default async function ProductDetailPage({
 }) {
   const { lang, slug } = await params;
   const dict = (await getDictionary(lang)) as unknown as LandingDict;
-  const shopDict = dict.shop;
+  const shopDict = dict.shop as ShopDict | undefined;
 
   if (!shopDict?.productDetail) {
     return (
@@ -57,13 +58,15 @@ export default async function ProductDetailPage({
       </div>
 
       <div className="container mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-stretch">
           <ProductDetailGallery product={product} dict={shopDict.productDetail} />
-          <ProductDetailInfo
+          <div className="flex h-full min-h-0 flex-col">
+            <ProductDetailInfo
             product={product}
             lang={lang}
             dict={shopDict.productDetail}
-          />
+            />
+          </div>
         </div>
 
         <ProductDetailContent dict={shopDict.productDetail} />

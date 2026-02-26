@@ -35,10 +35,17 @@ export interface ProductDetailDict {
   howToMeasure: string;
   orEnterExactSize: string;
   customSizePlaceholder: string;
+  resetSelection: string;
+  precisionFitNote: string;
   wristSizes: { s: string; m: string; l: string; xl: string };
   addToCart: string;
   shipping: string;
-  customizer: { title: string; description: string; openCustomizer: string };
+  customizer: {
+    tagline: string;
+    title: string;
+    description: string;
+    openCustomizer: string;
+  };
   guarantees: {
     lifetimeGuarantee: string;
     lifetimeGuaranteeDesc: string;

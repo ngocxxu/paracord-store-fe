@@ -131,6 +131,8 @@
       "howToMeasure": "HOW TO MEASURE YOUR WRIST",
       "orEnterExactSize": "OR ENTER EXACT SIZE",
       "customSizePlaceholder": "Custom size (e.g. 17.5)",
+      "resetSelection": "RESET SELECTION",
+      "precisionFitNote": "Precision fit: recommended for heavy hardware and 'D' shackle styles.",
       "wristSizes": {
         "s": "S (16-17cm)",
         "m": "M (17-18cm)",
@@ -140,6 +142,7 @@
       "addToCart": "Add to Cart",
       "shipping": "FAST SHIPPING: SHIPS IN 24-48 HOURS",
       "customizer": {
+        "tagline": "DEEP CUSTOMIZATION",
         "title": "Want a Unique Look?",
         "description": "Experience our immersive 3D builder to select over 50+ colors and premium hardware finishes for a truly bespoke piece.",
         "openCustomizer": "OPEN CUSTOMIZER"

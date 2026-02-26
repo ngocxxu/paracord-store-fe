@@ -131,6 +131,8 @@
       "howToMeasure": "HƯỚNG DẪN ĐO CỔ TAY",
       "orEnterExactSize": "HOẶC NHẬP SỐ ĐO CHÍNH XÁC",
       "customSizePlaceholder": "Số đo (vd. 17.5)",
+      "resetSelection": "ĐẶT LẠI",
+      "precisionFitNote": "Vừa khít: nên dùng cho hardware nặng và kiểu khóa 'D' shackle.",
       "wristSizes": {
         "s": "S (16-17cm)",
         "m": "M (17-18cm)",
@@ -140,6 +142,7 @@
       "addToCart": "Thêm vào giỏ",
       "shipping": "GIAO NHANH: GỬI TRONG 24-48 GIỜ",
       "customizer": {
+        "tagline": "TÙY BIẾN SÂU",
         "title": "Muốn phong cách riêng?",
         "description": "Dùng builder 3D để chọn hơn 50 màu và kiểu khóa cao cấp.",
         "openCustomizer": "MỞ CUSTOMIZER"

@@ -42,6 +42,7 @@ export function FeaturedCollection({
               key={product.id}
               {...product}
               locale={locale}
+              detailHref={`/${locale}/shop/${product.slug}`}
             />
           ))}
         </div>
