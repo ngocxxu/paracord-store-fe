@@ -2,7 +2,8 @@
   "topBar": "100% HANDCRAFTED | FREE SHIPPING OVER $50",
   "nav": {
     "shop": "Shop All",
-    "customBuild": "Custom Build"
+    "customBuild": "Custom Build",
+    "trackOrder": "Track Order"
   },
   "navAria": {
     "search": "Search",
@@ -251,6 +252,36 @@
       "yellow": "Yellow",
       "blue": "Blue",
       "white": "White"
+    }
+  },
+  "trackOrder": {
+    "title": "Track your order",
+    "subtitle": "Enter your details below to see the current status of your handcrafted accessory.",
+    "phoneLabel": "Phone number",
+    "phonePlaceholder": "e.g. 090 123 4567",
+    "trackCta": "Track now",
+    "orderIdLabel": "Order ID",
+    "currentStatusLabel": "Current status",
+    "statuses": {
+      "confirmed": "Confirmed",
+      "inProduction": "In production",
+      "shipped": "Shipped",
+      "delivered": "Delivered"
+    },
+    "orderSummaryLabel": "Order summary",
+    "estimatedCompletionLabel": "Estimated completion",
+    "totalAmountLabel": "Total amount",
+    "helpText": "Having trouble finding your order?",
+    "contactSupport": "Contact support",
+    "shippingPolicy": "Shipping policy",
+    "exampleOrder": {
+      "id": "#FC-2940283",
+      "productTitle": "Tactical Custom Paracord Bracelet",
+      "productSubtitle": "Midnight Camo / Safety Orange / Matte Black Steel",
+      "estimatedCompletion": "October 24, 2024",
+      "totalAmount": "$45.00",
+      "priceLabel": "$45.00",
+      "quantityLabel": "Qty 1"
     }
   }
 }

@@ -6,17 +6,23 @@ import { LanguageSwitcher } from "./LanguageSwitcher";
 import { cn } from "@/lib/utils";
 
 interface HeaderDict {
-  nav: { shop: string; customBuild: string; lookbook: string; theCraft: string };
+  nav: {
+    shop: string;
+    customBuild: string;
+    lookbook: string;
+    theCraft: string;
+    trackOrder: string;
+  };
   navAria: { search: string; cart: string };
 }
 
 export function Header({
   lang,
   dict,
-}: {
+}: Readonly<{
   lang: string;
   dict: HeaderDict;
-}) {
+}>) {
   const base = `/${lang}`;
   return (
     <header className={cn("border-b border-brand-border bg-brand-bg-surface")}>

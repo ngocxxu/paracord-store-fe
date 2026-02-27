@@ -7,13 +7,15 @@ import { usePathname } from "next/navigation";
 interface NavDict {
   shop: string;
   customBuild: string;
+  trackOrder: string;
 }
 
 export function Navigation({ lang, dict }: Readonly<{ lang: string; dict: NavDict }>) {
-   const pathname = usePathname();
+  const pathname = usePathname();
   const base = `/${lang}`;
   const isShop = pathname === `${base}/shop` || pathname.startsWith(`${base}/shop/`);
   const isBuilder = pathname === `${base}/builder`;
+  const isTrackOrder = pathname === `${base}/track-order`;
   return (
     <nav className="flex gap-6" aria-label="Main">
       <Link
@@ -33,6 +35,15 @@ export function Navigation({ lang, dict }: Readonly<{ lang: string; dict: NavDic
         )}
       >
         {dict.customBuild}
+      </Link>
+      <Link
+        href={`${base}/track-order`}
+        className={cn(
+          "text-sm font-medium uppercase tracking-wide text-brand-text-high hover:underline",
+          isTrackOrder && "border-b-2 border-brand-accent text-brand-accent"
+        )}
+      >
+        {dict.trackOrder}
       </Link>
     </nav>
   );

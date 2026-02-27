@@ -2,7 +2,8 @@
   "topBar": "100% THỦ CÔNG | MIỄN PHÍ VẬN CHUYỂN TRÊN $50",
   "nav": {
     "shop": "Cửa hàng",
-    "customBuild": "Tạo dây"
+    "customBuild": "Tạo dây",
+    "trackOrder": "Tra cứu đơn"
   },
   "navAria": {
     "search": "Tìm kiếm",
@@ -251,6 +252,36 @@
       "yellow": "Vàng",
       "blue": "Xanh dương",
       "white": "Trắng"
+    }
+  },
+  "trackOrder": {
+    "title": "Tra cứu đơn hàng",
+    "subtitle": "Nhập thông tin bên dưới để xem trạng thái hiện tại của món phụ kiện làm thủ công của bạn.",
+    "phoneLabel": "Số điện thoại",
+    "phonePlaceholder": "vd. 090 123 4567",
+    "trackCta": "Tra cứu ngay",
+    "orderIdLabel": "Mã đơn hàng",
+    "currentStatusLabel": "Trạng thái hiện tại",
+    "statuses": {
+      "confirmed": "Đã xác nhận",
+      "inProduction": "Đang sản xuất",
+      "shipped": "Đã gửi hàng",
+      "delivered": "Đã giao"
+    },
+    "orderSummaryLabel": "Tóm tắt đơn hàng",
+    "estimatedCompletionLabel": "Hoàn thành dự kiến",
+    "totalAmountLabel": "Tổng cộng",
+    "helpText": "Không tìm thấy đơn hàng của bạn?",
+    "contactSupport": "Liên hệ hỗ trợ",
+    "shippingPolicy": "Chính sách vận chuyển",
+    "exampleOrder": {
+      "id": "#FC-2940283",
+      "productTitle": "Vòng tay paracord tuỳ chỉnh",
+      "productSubtitle": "Midnight Camo / Safety Orange / Matte Black Steel",
+      "estimatedCompletion": "24 Tháng 10, 2024",
+      "totalAmount": "$45.00",
+      "priceLabel": "$45.00",
+      "quantityLabel": "Số lượng 1"
     }
   }
 }

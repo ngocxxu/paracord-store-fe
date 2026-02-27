@@ -2,7 +2,13 @@ import type { ShopDict } from "@/features/shop/types";
 
 export interface LandingDict {
   topBar: string;
-  nav: { shop: string; customBuild: string; lookbook: string; theCraft: string };
+  nav: {
+    shop: string;
+    customBuild: string;
+    lookbook: string;
+    theCraft: string;
+    trackOrder: string;
+  };
   hero: {
     badge: string;
     headline: string;
@@ -41,6 +47,36 @@ export interface LandingDict {
   };
   navAria: { search: string; cart: string };
   products: Record<string, { title: string; description: string }>;
+  trackOrder: {
+    title: string;
+    subtitle: string;
+    phoneLabel: string;
+    phonePlaceholder: string;
+    trackCta: string;
+    orderIdLabel: string;
+    currentStatusLabel: string;
+    statuses: {
+      confirmed: string;
+      inProduction: string;
+      shipped: string;
+      delivered: string;
+    };
+    orderSummaryLabel: string;
+    estimatedCompletionLabel: string;
+    totalAmountLabel: string;
+    helpText: string;
+    contactSupport: string;
+    shippingPolicy: string;
+    exampleOrder: {
+      id: string;
+      productTitle: string;
+      productSubtitle: string;
+      estimatedCompletion: string;
+      totalAmount: string;
+      priceLabel: string;
+      quantityLabel: string;
+    };
+  };
   shop?: ShopDict;
 }
 
