@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { Search, ShoppingCart } from "lucide-react";
+import { Search } from "lucide-react";
 import { Logo } from "@/components/Logo";
+import { CartIconButton } from "./CartIconButton";
 import { Navigation } from "./Navigation";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { cn } from "@/lib/utils";
@@ -40,13 +41,7 @@ export function Header({
           >
             <Search className="h-5 w-5" aria-hidden />
           </button>
-          <Link
-            href={`${base}/cart`}
-            className="rounded p-2 text-brand-text-high hover:bg-brand-bg-card"
-            aria-label={dict.navAria.cart}
-          >
-            <ShoppingCart className="h-5 w-5" aria-hidden />
-          </Link>
+          <CartIconButton basePath={base} ariaLabel={dict.navAria.cart} />
         </div>
       </div>
     </header>

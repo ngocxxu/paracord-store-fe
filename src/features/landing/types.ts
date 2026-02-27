@@ -1,3 +1,4 @@
+import type { CartDict } from "@/features/cart/types";
 import type { ShopDict } from "@/features/shop/types";
 
 export interface LandingDict {
@@ -78,6 +79,7 @@ export interface LandingDict {
     };
   };
   shop?: ShopDict;
+  cart?: CartDict;
 }
 
 export interface FeaturedProductItem {

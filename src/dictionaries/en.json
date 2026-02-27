@@ -283,5 +283,25 @@
       "priceLabel": "$45.00",
       "quantityLabel": "Qty 1"
     }
+  },
+  "cart": {
+    "title": "Your Cart",
+    "itemSingular": "Item",
+    "itemPlural": "Items",
+    "emptyTitle": "Your cart is empty",
+    "emptySubtitle": "Add something from the shop or build your own custom piece.",
+    "emptyCta": "Back to Shop",
+    "handmadeLabel": "Handmade in USA",
+    "lifetimeGuaranteeLabel": "Lifetime Guarantee",
+    "summary": {
+      "title": "Order Summary",
+      "subtotal": "Subtotal",
+      "shipping": "Estimated Shipping",
+      "shippingFree": "FREE",
+      "tax": "Tax",
+      "total": "Total",
+      "checkoutCta": "Proceed to Checkout",
+      "note": "Every piece is handcrafted to order. Please allow 3-5 days for production before shipment."
+    }
   }
 }

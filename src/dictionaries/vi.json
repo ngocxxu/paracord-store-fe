@@ -283,5 +283,25 @@
       "priceLabel": "$45.00",
       "quantityLabel": "Số lượng 1"
     }
+  },
+  "cart": {
+    "title": "Giỏ hàng",
+    "itemSingular": "Sản phẩm",
+    "itemPlural": "Sản phẩm",
+    "emptyTitle": "Giỏ hàng trống",
+    "emptySubtitle": "Thêm sản phẩm từ cửa hàng hoặc tự thiết kế món riêng.",
+    "emptyCta": "Quay lại cửa hàng",
+    "handmadeLabel": "Làm tay tại USA",
+    "lifetimeGuaranteeLabel": "Bảo hành trọn đời",
+    "summary": {
+      "title": "Tóm tắt đơn hàng",
+      "subtotal": "Tạm tính",
+      "shipping": "Vận chuyển ước tính",
+      "shippingFree": "MIỄN PHÍ",
+      "tax": "Thuế",
+      "total": "Tổng cộng",
+      "checkoutCta": "Thanh toán",
+      "note": "Mỗi món được làm thủ công theo đơn. Vui lòng chờ 3-5 ngày sản xuất trước khi giao."
+    }
   }
 }

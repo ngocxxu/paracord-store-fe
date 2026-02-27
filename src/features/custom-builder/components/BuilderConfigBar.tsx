@@ -1,6 +1,8 @@
 "use client";
 
-import Link from "next/link";
+import { useCartStore } from "@/features/cart/store";
+import { formatPrice } from "@/lib/pricing";
+import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
 import { BUCKLE_OPTIONS, COLOR_OPTIONS, WEAVE_OPTIONS } from "../data";
 import { buildConfigSummary, useBuilderStore } from "../store";
@@ -28,7 +30,10 @@ function getBuckleLabel(dict: BuilderDict, buckleId: string): string {
 }
 
 export function BuilderConfigBar({ lang, dict }: BuilderConfigBarProps) {
-  const { model, weaveType, sizeId, customSizeValue, buckleId, innerCoreColorId, outerEdgeColorId } = useBuilderStore();
+  const { model, weaveType, sizeId, customSizeValue, buckleId, innerCoreColorId, outerEdgeColorId, getTotalPrice } = useBuilderStore();
+  const totalPrice = getTotalPrice();
+  const addItem = useCartStore((s) => s.addItem);
+  const router = useRouter();
   const [copied, setCopied] = useState(false);
 
   const weaveLabel = getWeaveLabel(dict, weaveType);
@@ -75,6 +80,19 @@ export function BuilderConfigBar({ lang, dict }: BuilderConfigBarProps) {
     }
   }, [summary]);
 
+  const handleAddToCart = useCallback(() => {
+    if (totalPrice <= 0) return;
+    addItem({
+      type: "builder",
+      productId: `builder-${model ?? "unknown"}`,
+      name: dict.title,
+      unitPrice: totalPrice,
+      displayPrice: formatPrice(totalPrice, lang),
+      optionsSummary: summary ?? "",
+    });
+    router.push(`/${lang}/cart`);
+  }, [addItem, dict.title, lang, model, router, summary, totalPrice]);
+
   return (
     <div className="border-t border-brand-border bg-brand-bg-surface px-4 py-3">
       <div className="container mx-auto flex flex-wrap items-center justify-between gap-4">
@@ -93,12 +111,14 @@ export function BuilderConfigBar({ lang, dict }: BuilderConfigBarProps) {
           >
             {copied ? "Copied" : dict.copyOptions}
           </button>
-          <Link
-            href={`/${lang}/cart`}
-            className="rounded bg-brand-accent px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-brand-accent-hover"
+          <button
+            type="button"
+            onClick={handleAddToCart}
+            disabled={totalPrice <= 0}
+            className="rounded bg-brand-accent px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-brand-accent-hover disabled:opacity-50"
           >
             {dict.addToCart}
-          </Link>
+          </button>
         </div>
       </div>
     </div>

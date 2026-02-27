@@ -2,10 +2,11 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useCartStore } from "@/features/cart/store";
 import { cn } from "@/lib/utils";
 import { Box, Check, PenTool, RotateCcw, Ruler, ShoppingCart, Star, Zap } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import type { ProductDetailDict, ResolvedShopProduct } from "./types";
 
 type WristSizeKey = "s" | "m" | "l" | "xl";
@@ -21,9 +22,32 @@ const REVIEW_COUNT = 123;
 export function ProductDetailInfo({ product, lang, dict }: ProductDetailInfoProps) {
   const [selectedSize, setSelectedSize] = useState<WristSizeKey | null>("m");
   const [customSize, setCustomSize] = useState("");
+  const addItem = useCartStore((s) => s.addItem);
 
   const isBracelet = product.category === "bracelets";
   const sizeKeys: WristSizeKey[] = ["s", "m", "l", "xl"];
+
+  const sizeLabel = isBracelet
+    ? customSize
+      ? `Size: ${customSize} cm`
+      : selectedSize
+        ? `Size: ${dict.wristSizes[selectedSize]}`
+        : "Size: —"
+    : "";
+  const handleAddToCart = useCallback(() => {
+    const unitPrice = product.priceNum;
+    if (unitPrice <= 0) return;
+    addItem({
+      type: "product",
+      productId: product.id,
+      name: product.title,
+      unitPrice,
+      displayPrice: product.price,
+      imageSrc: product.imageSrc,
+      imageAlt: product.imageAlt,
+      optionsSummary: sizeLabel,
+    });
+  }, [addItem, product, sizeLabel]);
 
   return (
     <div className="flex h-full flex-col justify-between gap-6">
@@ -135,6 +159,7 @@ export function ProductDetailInfo({ product, lang, dict }: ProductDetailInfoProp
         <Button
           size="lg"
           className="w-full bg-brand-accent font-medium uppercase text-brand-text-high hover:bg-brand-accent-hover"
+          onClick={handleAddToCart}
         >
           <ShoppingCart className="h-5 w-5" />
           {dict.addToCart} - {product.price}
