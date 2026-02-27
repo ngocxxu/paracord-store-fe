@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { Button } from "@/components/ui/button";
 import {
   Carousel,
   CarouselContent,
@@ -9,9 +9,10 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import type { LandingDict } from "./types";
+import Autoplay from "embla-carousel-autoplay";
+import Link from "next/link";
 import { HERO_SLIDES } from "./data";
+import type { LandingDict } from "./types";
 
 interface HeroCarouselProps {
   dict: LandingDict["hero"];
@@ -26,6 +27,7 @@ export function HeroCarousel({ dict, heroSlides, locale }: HeroCarouselProps) {
     <section className="relative w-full overflow-hidden">
       <Carousel
         opts={{ loop: true }}
+        plugins={[Autoplay({ delay: 5000 })]}
         className="relative min-h-[70vh]"
       >
         <CarouselContent className="-ml-0">
