@@ -7,7 +7,44 @@
   },
   "navAria": {
     "search": "Search",
-    "cart": "Shopping cart"
+    "cart": "Shopping cart",
+    "signIn": "Sign in",
+    "signUp": "Sign up"
+  },
+  "auth": {
+    "signIn": {
+      "backToHome": "Back to Home",
+      "title": "Sign In",
+      "subtitle": "Welcome back. Your gear is waiting.",
+      "emailLabel": "EMAIL ADDRESS",
+      "emailPlaceholder": "name@example.com",
+      "passwordLabel": "PASSWORD",
+      "passwordPlaceholder": "••••••••",
+      "submit": "Sign In",
+      "or": "OR",
+      "continueWithGoogle": "Continue with Google",
+      "forgotPassword": "Forgot password?",
+      "newUser": "New to Forge & Cord?",
+      "createAccount": "Create an account",
+      "footerTagline": "HANDCRAFTED EXCELLENCE • SECURE AUTHENTICATION"
+    },
+    "signUp": {
+      "backToHome": "Back to Home",
+      "title": "Sign Up",
+      "subtitle": "Join us. Your next piece is a click away.",
+      "emailLabel": "EMAIL ADDRESS",
+      "emailPlaceholder": "name@example.com",
+      "passwordLabel": "PASSWORD",
+      "passwordPlaceholder": "••••••••",
+      "confirmPasswordLabel": "CONFIRM PASSWORD",
+      "confirmPasswordPlaceholder": "••••••••",
+      "submit": "Sign Up",
+      "or": "OR",
+      "continueWithGoogle": "Continue with Google",
+      "alreadyHaveAccount": "Already have an account?",
+      "signIn": "Sign In",
+      "footerTagline": "HANDCRAFTED EXCELLENCE • SECURE AUTHENTICATION"
+    }
   },
   "hero": {
     "badge": "New Collection Drop",

@@ -1,3 +1,4 @@
+import type { SignInDict, SignUpDict } from "@/features/auth/types";
 import type { CartDict } from "@/features/cart/types";
 import type { CheckoutDict } from "@/features/checkout/types";
 import type { ShopDict } from "@/features/shop/types";
@@ -48,7 +49,8 @@ export interface LandingDict {
     contact: string;
     copyright: string;
   };
-  navAria: { search: string; cart: string };
+  navAria: { search: string; cart: string; signIn: string; signUp: string };
+  auth?: { signIn: SignInDict; signUp: SignUpDict };
   products: Record<string, { title: string; description: string }>;
   trackOrder: {
     title: string;

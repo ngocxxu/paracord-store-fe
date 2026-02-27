@@ -7,7 +7,44 @@
   },
   "navAria": {
     "search": "Tìm kiếm",
-    "cart": "Giỏ hàng"
+    "cart": "Giỏ hàng",
+    "signIn": "Đăng nhập",
+    "signUp": "Đăng ký"
+  },
+  "auth": {
+    "signIn": {
+      "backToHome": "Về trang chủ",
+      "title": "Đăng nhập",
+      "subtitle": "Chào bạn trở lại. Gear đang chờ bạn.",
+      "emailLabel": "EMAIL",
+      "emailPlaceholder": "name@example.com",
+      "passwordLabel": "MẬT KHẨU",
+      "passwordPlaceholder": "••••••••",
+      "submit": "Đăng nhập",
+      "or": "HOẶC",
+      "continueWithGoogle": "Tiếp tục với Google",
+      "forgotPassword": "Quên mật khẩu?",
+      "newUser": "Chưa có tài khoản?",
+      "createAccount": "Tạo tài khoản",
+      "footerTagline": "CHẾ TÁC THỦ CÔNG • XÁC THỰC AN TOÀN"
+    },
+    "signUp": {
+      "backToHome": "Về trang chủ",
+      "title": "Đăng ký",
+      "subtitle": "Tham gia. Món tiếp theo chỉ cần một cú nhấp.",
+      "emailLabel": "EMAIL",
+      "emailPlaceholder": "name@example.com",
+      "passwordLabel": "MẬT KHẨU",
+      "passwordPlaceholder": "••••••••",
+      "confirmPasswordLabel": "XÁC NHẬN MẬT KHẨU",
+      "confirmPasswordPlaceholder": "••••••••",
+      "submit": "Đăng ký",
+      "or": "HOẶC",
+      "continueWithGoogle": "Tiếp tục với Google",
+      "alreadyHaveAccount": "Đã có tài khoản?",
+      "signIn": "Đăng nhập",
+      "footerTagline": "CHẾ TÁC THỦ CÔNG • XÁC THỰC AN TOÀN"
+    }
   },
   "hero": {
     "badge": "Bộ Sưu Tập Mới",
