@@ -99,6 +99,8 @@ export default async function ShopPage({
                   colorSwatches={product.colorSwatches}
                   locale={lang}
                   detailHref={`/${lang}/shop/${product.slug}`}
+                  priceNum={product.priceNum}
+                  addToCartLabel={shopDict.productDetail?.addToCart ?? "Add to Cart"}
                 />
               ))}
             </div>
