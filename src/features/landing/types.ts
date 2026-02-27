@@ -1,3 +1,5 @@
+import type { ShopDict } from "@/features/shop/types";
+
 export interface LandingDict {
   topBar: string;
   nav: { shop: string; customBuild: string; lookbook: string; theCraft: string };
@@ -39,23 +41,7 @@ export interface LandingDict {
   };
   navAria: { search: string; cart: string };
   products: Record<string, { title: string; description: string }>;
-  shop?: {
-    collectionLabel: string;
-    allGear: string;
-    sortBy: string;
-    featured: string;
-    priceAsc: string;
-    priceDesc: string;
-    clearAll: string;
-    categoryLabel: string;
-    cordTypeLabel: string;
-    colorLabel: string;
-    priceRangeLabel: string;
-    categories: Record<string, string>;
-    cordTypes: Record<string, string>;
-    priceRange: { min: string; max: string; from: string; to: string; apply: string };
-    pagination: { prev: string; next: string };
-  };
+  shop?: ShopDict;
 }
 
 export interface FeaturedProductItem {
