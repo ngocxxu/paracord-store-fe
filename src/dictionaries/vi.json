@@ -15,6 +15,23 @@
     "ctaPrimary": "Xem bộ sưu tập",
     "ctaSecondary": "Tự thiết kế"
   },
+  "heroSlides": [
+    {
+      "badge": "Bộ Sưu Tập Mới",
+      "headline": "Dây Paracord Cho EDC",
+      "subheadline": "Bền bỉ. Phong cách. 100% sản xuất tại Mỹ."
+    },
+    {
+      "badge": "Sẵn Sàng Ra Ngoài Trời",
+      "headline": "Paracord Luôn Ở Bên Bạn",
+      "subheadline": "Từ phố thị đến rừng núi, dây dắt tay dệt tay luôn đáng tin cậy."
+    },
+    {
+      "badge": "Chế Tác Thủ Công",
+      "headline": "Mỗi Nút Thắt Đều Có Chủ Ý",
+      "subheadline": "Lô nhỏ, hardware xịn, hoàn thiện chuẩn cho từng cổ tay."
+    }
+  ],
   "valueProps": [
     {
       "title": "100% Thủ Công",

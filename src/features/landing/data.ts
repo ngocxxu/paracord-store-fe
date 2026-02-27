@@ -3,6 +3,21 @@ import type { FeaturedProductItem } from "./types";
 const PRODUCT_IMAGE =
   "https://res.cloudinary.com/ngocxxu/image/upload/v1772070687/paracord/ewbw3koxkwpezgf9hm95.png";
 
+export const HERO_SLIDES: { imageSrc: string; imageAlt: string }[] = [
+  {
+    imageSrc: "/hero/slide-1.png",
+    imageAlt: "Hands weaving a paracord bracelet",
+  },
+  {
+    imageSrc: "/hero/slide-2.png",
+    imageAlt: "Camo paracord bracelet on dark surface",
+  },
+  {
+    imageSrc: "/hero/slide-3.png",
+    imageAlt: "Green paracord survival straps on fabric background",
+  },
+];
+
 export const FEATURED_PRODUCTS: FeaturedProductItem[] = [
   {
     id: "cobra",

@@ -15,6 +15,23 @@
     "ctaPrimary": "Shop the Collection",
     "ctaSecondary": "Build Your Own"
   },
+  "heroSlides": [
+    {
+      "badge": "New Collection Drop",
+      "headline": "Handwoven Gear for Everyday Carry",
+      "subheadline": "Engineered for durability. Styled for the streets."
+    },
+    {
+      "badge": "Built for the Field",
+      "headline": "Paracord You Can Rely On",
+      "subheadline": "From city carry to backcountry, our weaves are tested in real conditions."
+    },
+    {
+      "badge": "Crafted by Hand",
+      "headline": "Every Knot Tied With Care",
+      "subheadline": "Small-batch builds with premium hardware and precision finishing."
+    }
+  ],
   "valueProps": [
     {
       "title": "100% Handwoven",

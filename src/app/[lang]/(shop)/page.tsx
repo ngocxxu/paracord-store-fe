@@ -1,6 +1,6 @@
 import { FeaturedCollection } from "@/features/landing/FeaturedCollection";
 import { GearInTheWildSection } from "@/features/landing/GearInTheWildSection";
-import { Hero } from "@/features/landing/Hero";
+import { HeroCarousel } from "@/features/landing/HeroCarousel";
 import { SectionWrapper } from "@/features/landing/SectionWrapper";
 import { ValueProps } from "@/features/landing/ValueProps";
 import { FEATURED_PRODUCTS, GEAR_IN_THE_WILD_IMAGES } from "@/features/landing/data";
@@ -35,7 +35,7 @@ export default async function LandingPage({
 
   return (
     <>
-      <Hero dict={dict.hero} locale={lang} />
+      <HeroCarousel dict={dict.hero} heroSlides={dict.heroSlides} locale={lang} />
       <SectionWrapper variant="surface" ariaLabel="Value propositions">
         <ValueProps items={dict.valueProps} />
       </SectionWrapper>

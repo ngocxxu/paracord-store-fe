@@ -8,6 +8,11 @@ export interface LandingDict {
     ctaPrimary: string;
     ctaSecondary: string;
   };
+  heroSlides?: Array<{
+    badge: string;
+    headline: string;
+    subheadline: string;
+  }>;
   valueProps: Array<{ title: string; description: string }>;
   featured: { label: string; title: string; viewAll: string };
   gearInTheWild: {

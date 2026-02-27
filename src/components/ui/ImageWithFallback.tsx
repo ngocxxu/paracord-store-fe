@@ -33,6 +33,10 @@ export function ImageWithFallback({
 }: ImageWithFallbackProps) {
   const [error, setError] = useState(false);
 
+  // #region agent log
+  if (typeof fetch !== 'undefined') { fetch('http://127.0.0.1:7250/ingest/e463248e-0ad5-429a-8866-967a21d6021a',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'905c8d'},body:JSON.stringify({sessionId:'905c8d',hypothesisId:'H4',runId:'hero-slides',location:'ImageWithFallback.tsx:render',message:'image mount',data:{src,fill,error},timestamp:Date.now()})}).catch(()=>{}); }
+  // #endregion
+
   if (error) {
     return (
       <div
@@ -63,7 +67,12 @@ export function ImageWithFallback({
       unoptimized={unoptimized}
       aria-hidden={ariaHidden}
       draggable={draggable}
-      onError={() => setError(true)}
+      onError={() => {
+        // #region agent log
+        fetch('http://127.0.0.1:7250/ingest/e463248e-0ad5-429a-8866-967a21d6021a',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'905c8d'},body:JSON.stringify({sessionId:'905c8d',hypothesisId:'H3',runId:'hero-slides',location:'ImageWithFallback.tsx:onError',message:'image load failed',data:{src},timestamp:Date.now()})}).catch(()=>{});
+        // #endregion
+        setError(true);
+      }}
     />
   );
 }
