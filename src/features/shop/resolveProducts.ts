@@ -18,6 +18,7 @@ function resolveItem(item: ShopProductItem, dict: ProductsDict): ResolvedShopPro
     colorSwatches: item.colorSwatches,
     category: item.category,
     cordType: item.cordType,
+    weaveType: item.weaveType,
     filterColors: item.filterColors,
   };
 }

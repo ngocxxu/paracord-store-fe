@@ -1,5 +1,6 @@
 export type ShopCategory = "bracelets" | "lanyards" | "keychains" | "petGear";
 export type CordType = "550" | "titan";
+export type WeaveType = "cobra" | "fishtail" | "snakeKnot" | "kingCobra";
 export type FilterColor =
   | "red"
   | "orange"
@@ -23,6 +24,7 @@ export interface ShopProductItem {
   colorSwatches: string[];
   category: ShopCategory;
   cordType?: CordType;
+  weaveType?: WeaveType;
   filterColors: FilterColor[];
 }
 
@@ -68,10 +70,12 @@ export interface ShopDict {
   clearAll: string;
   categoryLabel: string;
   cordTypeLabel: string;
+  weaveTypeLabel: string;
   colorLabel: string;
   priceRangeLabel: string;
   categories: Record<ShopCategory, string>;
   cordTypes: Record<CordType, string>;
+  weaveTypes: Record<WeaveType, string>;
   priceRange: { min: string; max: string; from: string; to: string; apply: string };
   pagination: { prev: string; next: string };
   productDetail?: ProductDetailDict;
@@ -90,5 +94,6 @@ export interface ResolvedShopProduct {
   colorSwatches: string[];
   category: ShopCategory;
   cordType?: CordType;
+  weaveType?: WeaveType;
   filterColors: FilterColor[];
 }

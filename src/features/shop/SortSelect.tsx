@@ -1,7 +1,14 @@
 "use client";
 
-import { useRouter, usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useTransition } from "react";
+import { ChevronDown, Check } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import type { SortOption } from "./utils";
 
 const SORT_KEYS: { value: SortOption; labelKey: string }[] = [
@@ -20,8 +27,7 @@ export function SortSelect({ currentSort, labels }: SortSelectProps) {
   const pathname = usePathname();
   const [isPending, startTransition] = useTransition();
 
-  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const sort = e.target.value as SortOption;
+  const handleSelect = (sort: SortOption) => {
     const params = new URLSearchParams(typeof window !== "undefined" ? window.location.search : "");
     if (sort === "featured") params.delete("sort");
     else params.set("sort", sort);
@@ -32,24 +38,49 @@ export function SortSelect({ currentSort, labels }: SortSelectProps) {
     });
   };
 
+  const currentLabel =
+    (labels as Record<string, string>)[SORT_KEYS.find((k) => k.value === currentSort)?.labelKey ?? "featured"] ??
+    "NEWEST FIRST";
+
   return (
     <div className="flex items-center gap-2">
-      <label htmlFor="shop-sort" className="text-sm text-brand-text-medium">
+      <span className="text-sm text-brand-text-medium" id="shop-sort-label">
         {labels.sortBy ?? "Sort by:"}
-      </label>
-      <select
-        id="shop-sort"
-        value={currentSort}
-        onChange={handleChange}
-        disabled={isPending}
-        className="rounded border border-brand-border bg-brand-bg-surface px-3 py-2 text-sm font-medium uppercase text-brand-text-high focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent"
-      >
-        {SORT_KEYS.map(({ value, labelKey }) => (
-          <option key={value} value={value}>
-            {(labels as Record<string, string>)[labelKey] ?? value}
-          </option>
-        ))}
-      </select>
+      </span>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <button
+            type="button"
+            disabled={isPending}
+            aria-labelledby="shop-sort-label"
+            aria-haspopup="listbox"
+            aria-expanded={undefined}
+            className="inline-flex h-9 min-w-[8rem] items-center justify-between gap-2 rounded-md border-2 border-brand-accent bg-brand-bg-surface px-3 py-2 text-sm font-medium uppercase text-brand-text-high focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-bg-primary disabled:opacity-50"
+          >
+            {currentLabel}
+            <ChevronDown className="h-4 w-4 shrink-0 text-brand-text-high" aria-hidden />
+          </button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent
+          align="start"
+          className="min-w-[8rem] border-brand-border bg-brand-bg-surface text-brand-text-high"
+        >
+          {SORT_KEYS.map(({ value, labelKey }) => {
+            const label = (labels as Record<string, string>)[labelKey] ?? value;
+            const isActive = currentSort === value;
+            return (
+              <DropdownMenuItem
+                key={value}
+                onClick={() => handleSelect(value)}
+                className={isActive ? "text-brand-accent" : ""}
+              >
+                {isActive ? <Check className="mr-2 h-4 w-4" aria-hidden /> : <span className="mr-2 w-4" />}
+                {label}
+              </DropdownMenuItem>
+            );
+          })}
+        </DropdownMenuContent>
+      </DropdownMenu>
     </div>
   );
 }

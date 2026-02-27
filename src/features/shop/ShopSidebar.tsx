@@ -1,13 +1,9 @@
-import { Minus } from "lucide-react";
+import { Check, Minus } from "lucide-react";
 import Link from "next/link";
-import { FILTER_COLORS } from "./data";
 import { PriceRangeFilter } from "./PriceRangeFilter";
-import type { CordType, FilterColor, ResolvedShopProduct, ShopCategory, ShopDict } from "./types";
+import type { ResolvedShopProduct, ShopCategory, ShopDict } from "./types";
 import type { ShopParams } from "./utils";
-import { buildShopQuery, getCategoryCounts } from "./utils";
-
-const CATEGORIES: ShopCategory[] = ["bracelets", "lanyards", "keychains", "petGear"];
-const CORD_TYPES: CordType[] = ["550", "titan"];
+import { buildShopQuery, CATEGORIES, getCategoryCounts, WEAVE_TYPES } from "./utils";
 
 interface ShopSidebarProps {
   lang: string;
@@ -19,10 +15,6 @@ interface ShopSidebarProps {
 
 function toggleCategory(current: ShopCategory[], cat: ShopCategory): ShopCategory[] {
   return current.includes(cat) ? current.filter((c) => c !== cat) : [...current, cat];
-}
-
-function toggleColor(current: FilterColor[], color: FilterColor): FilterColor[] {
-  return current.includes(color) ? current.filter((c) => c !== color) : [...current, color];
 }
 
 export function ShopSidebar({ lang, basePath, params, dict, allProducts }: ShopSidebarProps) {
@@ -39,15 +31,14 @@ export function ShopSidebar({ lang, basePath, params, dict, allProducts }: ShopS
             <Minus className="h-4 w-4" aria-hidden />
             {dict.categoryLabel}
           </h3>
-          <ul className="mt-3 space-y-2">
-            {CATEGORIES.map((cat) => {
+            <ul className="mt-3 space-y-2">
+              {CATEGORIES.map((cat) => {
               const count = categoryCounts[cat];
               const active = params.categories.includes(cat);
               const nextCategories = toggleCategory(params.categories, cat);
-              const q = buildShopQuery(
-                { categories: nextCategories, page: 1 },
-                { ...params, categories: nextCategories }
-              );
+              const partial: Parameters<typeof buildShopQuery>[0] = { categories: nextCategories, page: 1 };
+              if (!nextCategories.includes("bracelets")) partial.weaveType = null;
+              const q = buildShopQuery(partial, { ...params, ...partial });
               return (
                 <li key={cat}>
                   <Link
@@ -70,64 +61,41 @@ export function ShopSidebar({ lang, basePath, params, dict, allProducts }: ShopS
           </ul>
         </section>
 
-        <section>
-          <h3 className="flex items-center gap-2 text-sm font-medium uppercase tracking-wide text-brand-text-high">
-            <Minus className="h-4 w-4" aria-hidden />
-            {dict.cordTypeLabel}
-          </h3>
-          <ul className="mt-3 space-y-2">
-            {CORD_TYPES.map((cord) => {
-              const isActive = params.cordType === cord;
-              const q = buildShopQuery(
-                { cordType: isActive ? null : cord, page: 1 },
-                { ...params, cordType: isActive ? null : cord }
-              );
-              return (
-                <li key={cord}>
-                  <Link
-                    href={`${basePath}${q}`}
-                    className="flex items-center gap-2 text-sm text-brand-text-high hover:underline"
-                  >
-                    <span
-                      className={isActive ? "h-4 w-4 rounded-full border-2 border-brand-accent bg-brand-accent" : "h-4 w-4 rounded-full border-2 border-brand-border"}
-                      aria-hidden
-                    />
-                    {dict.cordTypes[cord]}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-        </section>
-
-        <section>
-          <h3 className="flex items-center gap-2 text-sm font-medium uppercase tracking-wide text-brand-text-high">
-            <Minus className="h-4 w-4" aria-hidden />
-            {dict.colorLabel}
-          </h3>
-          <div className="mt-3 flex flex-wrap gap-2">
-            {FILTER_COLORS.map(({ id, hex }) => {
-              const colorId = id as FilterColor;
-              const active = params.colors.includes(colorId);
-              const nextColors = toggleColor(params.colors, colorId);
-              const q = buildShopQuery(
-                { colors: nextColors, page: 1 },
-                { ...params, colors: nextColors }
-              );
-              return (
-                <Link
-                  key={id}
-                  href={`${basePath}${q}`}
-                  className={`h-8 w-8 rounded-full border-2 transition-opacity hover:opacity-90 ${active ? "border-brand-accent ring-2 ring-brand-accent" : "border-brand-border"}`}
-                  style={{ backgroundColor: hex }}
-                  aria-pressed={active}
-                  aria-label={id}
-                  title={id}
-                />
-              );
-            })}
-          </div>
-        </section>
+        {params.categories.includes("bracelets") ? (
+          <section>
+            <h3 className="flex items-center gap-2 text-sm font-medium uppercase tracking-wide text-brand-text-high">
+              <Minus className="h-4 w-4" aria-hidden />
+              {dict.weaveTypeLabel}
+            </h3>
+            <ul className="mt-3 space-y-2">
+              {WEAVE_TYPES.map((weave) => {
+                const isActive = params.weaveType === weave;
+                const q = buildShopQuery(
+                  { weaveType: isActive ? null : weave, page: 1 },
+                  { ...params, weaveType: isActive ? null : weave }
+                );
+                return (
+                  <li key={weave}>
+                    <Link
+                      href={`${basePath}${q}`}
+                      className="flex items-center gap-2 text-sm text-brand-text-high hover:underline"
+                    >
+                      <span
+                        className={isActive ? "flex h-4 w-4 items-center justify-center rounded-full border-2 border-brand-accent bg-brand-accent text-brand-bg-primary" : "h-4 w-4 rounded-full border-2 border-brand-border"}
+                        aria-hidden
+                      >
+                        {isActive ? <Check className="h-2.5 w-2.5" strokeWidth={3} /> : null}
+                      </span>
+                      <span className={isActive ? "text-brand-accent" : undefined}>
+                        {dict.weaveTypes[weave]}
+                      </span>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </section>
+        ) : null}
 
         <section>
           <h3 className="flex items-center gap-2 text-sm font-medium uppercase tracking-wide text-brand-text-high">

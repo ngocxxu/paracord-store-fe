@@ -1,6 +1,5 @@
-import type { ShopCategory } from "./types";
+import type { ShopCategory, WeaveType } from "./types";
 import type { FilterColor } from "./types";
-import type { CordType } from "./types";
 import { PRICE_MAX, PRODUCTS_PER_PAGE } from "./data";
 import type { ResolvedShopProduct } from "./types";
 
@@ -8,7 +7,7 @@ export type SortOption = "featured" | "price-asc" | "price-desc";
 
 export interface ShopParams {
   categories: ShopCategory[];
-  cordType: CordType | null;
+  weaveType: WeaveType | null;
   colors: FilterColor[];
   minPrice: number;
   maxPrice: number;
@@ -16,8 +15,8 @@ export interface ShopParams {
   page: number;
 }
 
-const CATEGORIES: ShopCategory[] = ["bracelets", "lanyards", "keychains", "petGear"];
-const CORD_TYPES: CordType[] = ["550", "titan"];
+export const CATEGORIES: ShopCategory[] = ["bracelets", "keychains", "petGear"];
+export const WEAVE_TYPES: WeaveType[] = ["cobra", "fishtail", "snakeKnot", "kingCobra"];
 const COLORS: FilterColor[] = [
   "red", "orange", "blue", "yellow", "green", "white", "black", "brown",
 ];
@@ -41,7 +40,7 @@ export function parseShopParams(searchParams: Record<string, string | string[] |
   };
   return {
     categories: parseList(get("category"), CATEGORIES) as ShopCategory[],
-    cordType: (get("cordType") === "titan" || get("cordType") === "550" ? get("cordType") : null) as CordType | null,
+    weaveType: (WEAVE_TYPES.includes(get("weaveType") as WeaveType) ? get("weaveType") : null) as WeaveType | null,
     colors: parseList(get("color"), COLORS) as FilterColor[],
     minPrice: parseNum(get("minPrice"), 0, 0, PRICE_MAX),
     maxPrice: parseNum(get("maxPrice"), PRICE_MAX, 0, PRICE_MAX),
@@ -53,7 +52,7 @@ export function parseShopParams(searchParams: Record<string, string | string[] |
 export function filterProducts(products: ResolvedShopProduct[], params: ShopParams): ResolvedShopProduct[] {
   return products.filter((p) => {
     if (params.categories.length && !params.categories.includes(p.category)) return false;
-    if (params.cordType && p.cordType !== params.cordType) return false;
+    if (params.weaveType && p.weaveType !== params.weaveType) return false;
     if (params.colors.length) {
       const match = params.colors.some((c) => p.filterColors.includes(c));
       if (!match) return false;
@@ -84,7 +83,7 @@ export function paginateProducts(
 export function buildShopQuery(partial: Partial<ShopParams>, current: ShopParams): string {
   const q = new URLSearchParams();
   const categories = partial.categories !== undefined ? partial.categories : current.categories;
-  const cordType = partial.cordType !== undefined ? partial.cordType : current.cordType;
+  const weaveType = partial.weaveType !== undefined ? partial.weaveType : current.weaveType;
   const colors = partial.colors !== undefined ? partial.colors : current.colors;
   const minPrice = partial.minPrice !== undefined ? partial.minPrice : current.minPrice;
   const maxPrice = partial.maxPrice !== undefined ? partial.maxPrice : current.maxPrice;
@@ -92,7 +91,7 @@ export function buildShopQuery(partial: Partial<ShopParams>, current: ShopParams
   const page = partial.page !== undefined ? partial.page : current.page;
 
   if (categories.length) q.set("category", categories.join(","));
-  if (cordType) q.set("cordType", cordType);
+  if (weaveType) q.set("weaveType", weaveType);
   if (colors.length) q.set("color", colors.join(","));
   if (minPrice > 0) q.set("minPrice", String(minPrice));
   if (maxPrice < PRICE_MAX) q.set("maxPrice", String(maxPrice));

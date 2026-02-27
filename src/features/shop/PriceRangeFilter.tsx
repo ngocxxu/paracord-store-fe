@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname, useRouter } from "next/navigation";
-import { useCallback, useState, useTransition } from "react";
+import { useCallback, useRef, useState, useTransition } from "react";
 import { PRICE_MAX } from "./data";
 
 interface PriceRangeFilterProps {
@@ -10,6 +10,14 @@ interface PriceRangeFilterProps {
   minPrice: number;
   maxPrice: number;
   priceRangeLabel: { min: string; max: string; from: string; to: string; apply: string };
+}
+
+function valueFromClientX(trackRef: React.RefObject<HTMLDivElement | null>, clientX: number): number {
+  const el = trackRef.current;
+  if (!el) return 0;
+  const rect = el.getBoundingClientRect();
+  const pct = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+  return Math.round(pct * PRICE_MAX);
 }
 
 export function PriceRangeFilter({
@@ -23,6 +31,7 @@ export function PriceRangeFilter({
   const [, startTransition] = useTransition();
   const [min, setMin] = useState(initialMin);
   const [max, setMax] = useState(initialMax);
+  const trackRef = useRef<HTMLDivElement>(null);
 
   const updateRange = useCallback(
     (newMin: number, newMax: number) => {
@@ -40,17 +49,33 @@ export function PriceRangeFilter({
     [pathname, router]
   );
 
-  const handleMinSlider = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const v = Number(e.target.value);
-    setMin(Math.min(v, max));
-  };
-
-  const handleMaxSlider = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const v = Number(e.target.value);
-    setMax(Math.max(v, min));
-  };
-
   const clamp = (n: number) => Math.min(PRICE_MAX, Math.max(0, n));
+
+  const handleThumbDrag = useCallback(
+    (kind: "min" | "max", clientX: number) => {
+      const apply = (x: number) => {
+        const v = valueFromClientX(trackRef, x);
+        if (kind === "min") setMin((m) => Math.min(Math.max(v, 0), max));
+        else setMax((m) => Math.max(Math.min(v, PRICE_MAX), min));
+      };
+      apply(clientX);
+      const onMove = (e: MouseEvent) => apply(e.clientX);
+      const onMoveTouch = (e: TouchEvent) => {
+        if (e.touches.length) apply(e.touches[0].clientX);
+      };
+      const cleanup = () => {
+        document.removeEventListener("mousemove", onMove);
+        document.removeEventListener("mouseup", cleanup);
+        document.removeEventListener("touchmove", onMoveTouch);
+        document.removeEventListener("touchend", cleanup);
+      };
+      document.addEventListener("mousemove", onMove);
+      document.addEventListener("mouseup", cleanup);
+      document.addEventListener("touchmove", onMoveTouch, { passive: true });
+      document.addEventListener("touchend", cleanup);
+    },
+    [min, max]
+  );
 
   const handleFromBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     const v = clamp(Number(e.target.value) || 0);
@@ -70,67 +95,54 @@ export function PriceRangeFilter({
   const maxPct = (max / PRICE_MAX) * 100;
   const fillWidth = maxPct - minPct;
 
-  const thumbClass =
-    "h-8 w-full appearance-none bg-transparent [&::-moz-range-thumb]:h-4 [&::-moz-range-thumb]:w-4 [&::-moz-range-thumb]:cursor-pointer [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border-2 [&::-moz-range-thumb]:border-white [&::-moz-range-thumb]:bg-brand-accent [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-white [&::-webkit-slider-thumb]:bg-brand-accent";
+  const thumb =
+    "absolute top-1/2 z-10 flex h-4 w-4 -translate-x-1/2 -translate-y-1/2 cursor-grab flex-col items-center rounded-full border-2 border-white bg-brand-accent touch-none active:cursor-grabbing";
+  const thumbLabel =
+    "absolute bottom-full left-1/2 mb-1 -translate-x-1/2 whitespace-nowrap rounded bg-brand-bg-card px-1.5 py-0.5 text-xs font-medium text-brand-text-high shadow";
 
   return (
-    <div className="space-y-4">
-      <div className="relative pt-6 pb-2">
-        <div className="absolute left-0 right-0 top-6 h-8" aria-hidden>
-          <div className="absolute left-0 right-0 top-1/2 h-2 -translate-y-1/2 rounded-full bg-brand-border" aria-hidden />
-          <div
-            className="absolute top-1/2 h-2 -translate-y-1/2 rounded-full bg-brand-accent"
-            style={{ left: `${minPct}%`, width: `${fillWidth}%` }}
-            aria-hidden
-          />
-        </div>
+    <div className="mt-3 flex flex-col gap-5">
+      <div ref={trackRef} className="relative h-8 touch-none pt-12">
+        <div className="absolute inset-x-0 top-1/2 h-2 -translate-y-1/2 rounded-full bg-brand-border" aria-hidden />
         <div
-          className="absolute top-6 z-10 h-8"
-          style={{ left: 0, width: `${maxPct}%` }}
+          className="absolute top-1/2 h-2 -translate-y-1/2 rounded-full bg-brand-accent"
+          style={{ left: `${minPct}%`, width: `${fillWidth}%` }}
+          aria-hidden
+        />
+        <button
+          type="button"
+          className={thumb}
+          style={{ left: `${minPct}%` }}
+          aria-label="Minimum price"
+          onMouseDown={(e) => {
+            e.preventDefault();
+            handleThumbDrag("min", e.clientX);
+          }}
+          onTouchStart={(e) => {
+            if (e.touches.length) handleThumbDrag("min", e.touches[0].clientX);
+          }}
         >
-          <input
-            type="range"
-            min={0}
-            max={Math.max(max, 1)}
-            value={min}
-            onChange={handleMinSlider}
-            className={thumbClass}
-            aria-label="Minimum price"
-          />
-        </div>
-        <div
-          className="absolute top-6 z-20 h-8"
-          style={{ left: `${minPct}%`, width: `${100 - minPct}%` }}
+          <span className={thumbLabel}>${min}</span>
+        </button>
+        <button
+          type="button"
+          className={thumb}
+          style={{ left: `${maxPct}%` }}
+          aria-label="Maximum price"
+          onMouseDown={(e) => {
+            e.preventDefault();
+            handleThumbDrag("max", e.clientX);
+          }}
+          onTouchStart={(e) => {
+            if (e.touches.length) handleThumbDrag("max", e.touches[0].clientX);
+          }}
         >
-          <input
-            type="range"
-            min={min}
-            max={PRICE_MAX}
-            value={max}
-            onChange={handleMaxSlider}
-            className={thumbClass}
-            aria-label="Maximum price"
-          />
-        </div>
-        <span
-          className="absolute top-0 rounded bg-brand-bg-card px-1.5 py-0.5 text-xs font-medium text-brand-text-high"
-          style={{ left: `${minPct}%`, transform: "translateX(-50%)" }}
-        >
-          ${min}
-        </span>
-        <span
-          className="absolute top-0 rounded bg-brand-bg-card px-1.5 py-0.5 text-xs font-medium text-brand-text-high"
-          style={{ left: `${maxPct}%`, transform: "translateX(-50%)" }}
-        >
-          {max >= PRICE_MAX ? priceRangeLabel.max : `$${max}`}
-        </span>
-        <span className="absolute left-0 top-14 text-xs text-brand-text-medium">{priceRangeLabel.min}</span>
-        <span className="absolute right-0 top-14 text-xs text-brand-text-medium">{priceRangeLabel.max}</span>
+          <span className={thumbLabel}>{max >= PRICE_MAX ? priceRangeLabel.max : `$${max}`}</span>
+        </button>
       </div>
-
       <div className="grid grid-cols-2 gap-3">
-        <label className="flex flex-col gap-1">
-          <span className="text-xs font-medium text-brand-text-high">{priceRangeLabel.from}</span>
+        <label className="flex flex-col gap-2">
+          <span className="text-xs font-medium text-brand-text-medium">{priceRangeLabel.from}</span>
           <input
             type="number"
             min={0}
@@ -138,12 +150,12 @@ export function PriceRangeFilter({
             value={min}
             onChange={(e) => setMin(clamp(Number(e.target.value) || 0))}
             onBlur={handleFromBlur}
-            className="rounded border border-brand-border bg-brand-bg-card px-2 py-1.5 text-sm text-brand-text-high [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+            className="h-10 rounded-md border border-brand-border bg-brand-bg-card px-3 text-sm text-brand-text-high outline-none transition-colors placeholder:text-brand-text-muted focus:border-brand-accent [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
             aria-label={priceRangeLabel.from}
           />
         </label>
-        <label className="flex flex-col gap-1">
-          <span className="text-xs font-medium text-brand-text-high">{priceRangeLabel.to}</span>
+        <label className="flex flex-col gap-2">
+          <span className="text-xs font-medium text-brand-text-medium">{priceRangeLabel.to}</span>
           <input
             type="number"
             min={0}
@@ -151,16 +163,15 @@ export function PriceRangeFilter({
             value={max}
             onChange={(e) => setMax(clamp(Number(e.target.value) ?? PRICE_MAX))}
             onBlur={handleToBlur}
-            className="rounded border border-brand-border bg-brand-bg-card px-2 py-1.5 text-sm text-brand-text-high [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+            className="h-10 rounded-md border border-brand-border bg-brand-bg-card px-3 text-sm text-brand-text-high outline-none transition-colors placeholder:text-brand-text-muted focus:border-brand-accent [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
             aria-label={priceRangeLabel.to}
           />
         </label>
       </div>
-
       <button
         type="button"
         onClick={handleApply}
-        className="w-full rounded bg-brand-accent py-2 text-sm font-medium text-brand-text-high hover:bg-brand-accent-hover"
+        className="w-full rounded-md bg-brand-accent py-2.5 text-sm font-medium text-white transition-colors hover:bg-brand-accent-hover focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-bg-primary"
       >
         {priceRangeLabel.apply}
       </button>

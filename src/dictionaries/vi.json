@@ -90,23 +90,30 @@
     "collectionLabel": "BỘ SƯU TẬP",
     "allGear": "TẤT CẢ GEAR",
     "sortBy": "Sắp xếp:",
-    "featured": "NỔI BẬT",
+    "featured": "MỚI NHẤT",
     "priceAsc": "Giá: Thấp đến Cao",
     "priceDesc": "Giá: Cao đến Thấp",
     "clearAll": "XÓA HẾT",
     "categoryLabel": "DANH MỤC",
     "cordTypeLabel": "LOẠI DÂY",
+    "weaveTypeLabel": "KIỂU DỆT",
     "colorLabel": "MÀU",
     "priceRangeLabel": "KHOẢNG GIÁ",
     "categories": {
       "bracelets": "Vòng tay",
       "lanyards": "Dây đeo",
       "keychains": "Móc khóa",
-      "petGear": "Đồ thú cưng"
+      "petGear": "Khác"
     },
     "cordTypes": {
       "550": "550 Paracord",
       "titan": "Titan Cord"
+    },
+    "weaveTypes": {
+      "cobra": "Cobra Weave",
+      "fishtail": "Fishtail",
+      "snakeKnot": "Snake Knot",
+      "kingCobra": "King Cobra"
     },
     "priceRange": {
       "min": "0đ",

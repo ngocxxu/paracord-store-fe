@@ -90,23 +90,30 @@
     "collectionLabel": "THE COLLECTION",
     "allGear": "ALL GEAR",
     "sortBy": "Sort by:",
-    "featured": "FEATURED",
+    "featured": "NEWEST FIRST",
     "priceAsc": "Price: Low to High",
     "priceDesc": "Price: High to Low",
     "clearAll": "CLEAR ALL",
     "categoryLabel": "CATEGORY",
     "cordTypeLabel": "CORD TYPE",
+    "weaveTypeLabel": "WEAVE TYPE",
     "colorLabel": "COLOR",
     "priceRangeLabel": "PRICE RANGE",
     "categories": {
       "bracelets": "Bracelets",
       "lanyards": "Lanyards",
       "keychains": "Keychains",
-      "petGear": "Pet Gear"
+      "petGear": "Others"
     },
     "cordTypes": {
       "550": "550 Paracord",
       "titan": "Titan Cord"
+    },
+    "weaveTypes": {
+      "cobra": "Cobra Weave",
+      "fishtail": "Fishtail",
+      "snakeKnot": "Snake Knot",
+      "kingCobra": "King Cobra"
     },
     "priceRange": {
       "min": "$0",

@@ -17,6 +17,7 @@ export const SHOP_PRODUCTS: ShopProductItem[] = [
     colorSwatches: ["#FF5E00", "#332F2C", "#4B5320"],
     category: "bracelets",
     cordType: "550",
+    weaveType: "cobra",
     filterColors: ["orange", "black", "green"],
   },
   {
@@ -88,6 +89,7 @@ export const SHOP_PRODUCTS: ShopProductItem[] = [
     colorSwatches: ["#6B7280", "#FFFFFF"],
     category: "bracelets",
     cordType: "550",
+    weaveType: "fishtail",
     filterColors: ["white", "black"],
   },
 ];
