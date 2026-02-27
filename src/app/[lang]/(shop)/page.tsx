@@ -4,11 +4,20 @@ import { HeroCarousel } from "@/features/landing/HeroCarousel";
 import { SectionWrapper } from "@/features/landing/SectionWrapper";
 import { ValueProps } from "@/features/landing/ValueProps";
 import { FEATURED_PRODUCTS, GEAR_IN_THE_WILD_IMAGES } from "@/features/landing/data";
-import type { LandingDict, ResolvedProduct } from "@/features/landing/types";
+import type {
+  FeaturedProductItem,
+  LandingDict,
+  ResolvedProduct,
+} from "@/features/landing/types";
 import { getDictionary } from "@/lib/dictionary";
 
-function resolveProducts(dict: LandingDict): ResolvedProduct[] {
-  return FEATURED_PRODUCTS.map((item) => {
+function resolveProducts(
+  dict: LandingDict,
+  items: FeaturedProductItem[],
+  limit?: number
+): ResolvedProduct[] {
+  const source = limit === undefined ? items : items.slice(0, limit);
+  return source.map((item) => {
     const productDict = dict.products[item.titleKey];
     return {
       id: item.id,
@@ -31,7 +40,11 @@ export default async function LandingPage({
 }) {
   const { lang } = await params;
   const dict = (await getDictionary(lang)) as unknown as LandingDict;
-  const products = resolveProducts(dict);
+  const products = resolveProducts(dict, [
+    ...FEATURED_PRODUCTS,
+    ...FEATURED_PRODUCTS,
+  ]);
+  const keychainProducts = resolveProducts(dict, FEATURED_PRODUCTS, 4);
 
   return (
     <>
@@ -43,6 +56,12 @@ export default async function LandingPage({
         dict={dict.featured}
         products={products}
         locale={lang}
+      />
+      <FeaturedCollection
+        dict={dict.keychain}
+        products={keychainProducts}
+        locale={lang}
+        variant="surface"
       />
       <section id="gear-in-the-wild" aria-label="Gear in the Wild">
         <GearInTheWildSection

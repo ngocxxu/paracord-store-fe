@@ -10,7 +10,7 @@ interface GearInTheWildSectionProps {
 
 export function GearInTheWildSection({ dict, images }: GearInTheWildSectionProps) {
   return (
-    <SectionWrapper variant="surface" ariaLabel={dict.title}>
+    <SectionWrapper variant="primary" ariaLabel={dict.title}>
       <div className="flex flex-col items-center gap-6 text-center">
         <h2 className="text-3xl font-heading font-bold uppercase tracking-tight text-brand-text-high md:text-4xl">
           {dict.title}

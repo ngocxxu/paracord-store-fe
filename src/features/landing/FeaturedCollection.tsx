@@ -2,22 +2,23 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { SectionWrapper } from "./SectionWrapper";
 import { ProductCard } from "./ProductCard";
-import type { LandingDict } from "./types";
-import type { ResolvedProduct } from "./types";
+import type { LandingDict, ResolvedProduct } from "./types";
 
 interface FeaturedCollectionProps {
-  dict: LandingDict["featured"];
-  products: ResolvedProduct[];
-  locale: string;
+  readonly dict: LandingDict["featured"];
+  readonly products: ResolvedProduct[];
+  readonly locale: string;
+  readonly variant?: "primary" | "surface";
 }
 
 export function FeaturedCollection({
   dict,
   products,
   locale,
+  variant = "primary",
 }: FeaturedCollectionProps) {
   return (
-    <SectionWrapper variant="primary" ariaLabel={dict.title}>
+    <SectionWrapper variant={variant} ariaLabel={dict.title}>
       <div className="flex flex-col gap-8">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
@@ -37,9 +38,9 @@ export function FeaturedCollection({
           </Link>
         </div>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {products.map((product) => (
+          {products.map((product, index) => (
             <ProductCard
-              key={product.id}
+              key={`${product.id}-${index}`}
               {...product}
               locale={locale}
               detailHref={`/${locale}/shop/${product.slug}`}

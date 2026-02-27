@@ -1,4 +1,5 @@
 import type { CartDict } from "@/features/cart/types";
+import type { CheckoutDict } from "@/features/checkout/types";
 import type { ShopDict } from "@/features/shop/types";
 
 export interface LandingDict {
@@ -24,6 +25,7 @@ export interface LandingDict {
   }>;
   valueProps: Array<{ title: string; description: string }>;
   featured: { label: string; title: string; viewAll: string };
+  keychain: { label: string; title: string; viewAll: string };
   gearInTheWild: {
     title: string;
     subtitleBefore: string;
@@ -80,6 +82,7 @@ export interface LandingDict {
   };
   shop?: ShopDict;
   cart?: CartDict;
+  checkout?: CheckoutDict;
 }
 
 export interface FeaturedProductItem {

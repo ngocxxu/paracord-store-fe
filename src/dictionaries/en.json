@@ -52,8 +52,13 @@
     }
   ],
   "featured": {
-    "label": "The Standard Issue",
-    "title": "Featured Gear",
+    "label": "The Core Collection",
+    "title": "Signature Bracelets",
+    "viewAll": "View All Products"
+  },
+  "keychain": {
+    "label": "Daily Carry Cords",
+    "title": "Utility Keychain",
     "viewAll": "View All Products"
   },
   "gearInTheWild": {
@@ -62,7 +67,7 @@
     "hashtag": "#KoraGear",
     "subtitleAfter": " to be featured.",
     "cta": "Follow us on Instagram",
-    "instagramUrl": "https://instagram.com"
+    "instagramUrl": "https://www.instagram.com/vong_paracord/"
   },
   "newsletter": {
     "headline": "Join the Crew",
@@ -282,6 +287,42 @@
       "totalAmount": "$45.00",
       "priceLabel": "$45.00",
       "quantityLabel": "Qty 1"
+    }
+  },
+  "checkout": {
+    "title": "Checkout",
+    "subtitle": "Enter your details below to complete your handcrafted build.",
+    "contact": {
+      "title": "Contact",
+      "emailLabel": "Email address",
+      "phoneLabel": "Phone number",
+      "phonePlaceholder": "e.g. 090 123 4567"
+    },
+    "shipping": {
+      "title": "Shipping details",
+      "fullNameLabel": "Full name",
+      "addressLabel": "Street address",
+      "cityLabel": "City",
+      "stateLabel": "State / Province",
+      "postalCodeLabel": "ZIP / Postal code",
+      "countryLabel": "Country / Region"
+    },
+    "payment": {
+      "title": "Payment",
+      "body": "This is a demo checkout. No real payment will be processed.",
+      "cardNameLabel": "Name on card",
+      "cardNumberLabel": "Card number",
+      "expiryLabel": "Expiry",
+      "cvcLabel": "CVC"
+    },
+    "orderNotes": {
+      "label": "Order notes (optional)",
+      "placeholder": "Add any sizing notes or special requests for your build."
+    },
+    "summary": {
+      "placeOrderCta": "Place Order",
+      "reviewOrderCta": "Review & Place Order",
+      "disclaimer": "Every piece is handcrafted to order. Please allow 3-5 days for production before shipment."
     }
   },
   "cart": {

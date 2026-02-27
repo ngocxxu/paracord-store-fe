@@ -52,8 +52,13 @@
     }
   ],
   "featured": {
-    "label": "The Standard Issue",
-    "title": "Sản Phẩm Nổi Bật",
+    "label": "Bộ Sưu Tập Cốt Lõi",
+    "title": "Vòng Tay Đặc Trưng",
+    "viewAll": "Xem tất cả"
+  },
+  "keychain": {
+    "label": "Trang Bị Hàng Ngày",
+    "title": "Móc Khóa Đa Năng",
     "viewAll": "Xem tất cả"
   },
   "gearInTheWild": {
@@ -282,6 +287,42 @@
       "totalAmount": "$45.00",
       "priceLabel": "$45.00",
       "quantityLabel": "Số lượng 1"
+    }
+  },
+  "checkout": {
+    "title": "Thanh toán",
+    "subtitle": "Nhập thông tin bên dưới để hoàn tất món đồ làm thủ công của bạn.",
+    "contact": {
+      "title": "Liên hệ",
+      "emailLabel": "Email",
+      "phoneLabel": "Số điện thoại",
+      "phonePlaceholder": "vd. 090 123 4567"
+    },
+    "shipping": {
+      "title": "Địa chỉ giao hàng",
+      "fullNameLabel": "Họ và tên",
+      "addressLabel": "Địa chỉ",
+      "cityLabel": "Thành phố",
+      "stateLabel": "Tỉnh / Bang",
+      "postalCodeLabel": "Mã bưu điện",
+      "countryLabel": "Quốc gia / Vùng"
+    },
+    "payment": {
+      "title": "Thanh toán",
+      "body": "Đây là trang demo, hệ thống sẽ không trừ tiền thật.",
+      "cardNameLabel": "Tên trên thẻ",
+      "cardNumberLabel": "Số thẻ",
+      "expiryLabel": "Hết hạn",
+      "cvcLabel": "CVC"
+    },
+    "orderNotes": {
+      "label": "Ghi chú đơn hàng (không bắt buộc)",
+      "placeholder": "Thêm ghi chú về size hoặc yêu cầu đặc biệt cho sản phẩm."
+    },
+    "summary": {
+      "placeOrderCta": "Đặt hàng",
+      "reviewOrderCta": "Xem lại & Đặt hàng",
+      "disclaimer": "Mỗi món đều được làm thủ công theo đơn. Vui lòng chờ 3-5 ngày sản xuất trước khi giao."
     }
   },
   "cart": {
