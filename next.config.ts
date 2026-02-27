@@ -1,7 +1,6 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  optimizePackageImports: ["lucide-react"],
   images: {
     remotePatterns: [
       { protocol: "https", hostname: "placehold.co", pathname: "/**" },
