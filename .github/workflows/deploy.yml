@@ -1,0 +1,142 @@
+name: Build and Push Docker image
+
+on:
+  push:
+    branches:
+      - main
+    # Skip tag push to avoid redundant triggers
+    tags-ignore:
+      - "**"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Grant write permission to push code/tag
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Fetch full history to analyze commits more accurately
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      # DRY Principle: Use a simpler script
+      - name: Determine version bump
+        id: version
+        run: |
+          # Get all commit messages from the latest tag to the current
+          LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+
+          if [ -z "$LAST_TAG" ]; then
+            COMMITS=$(git log --format=%B)
+          else
+            COMMITS=$(git log $LAST_TAG..HEAD --format=%B)
+          fi
+
+          echo "Analyzing commits..."
+
+          # Priority logic: Major > Minor > Patch
+          if echo "$COMMITS" | grep -E "BREAKING CHANGE:|feat!|fix!" > /dev/null; then
+            echo "bump_type=major" >> $GITHUB_OUTPUT
+            echo "Detected: MAJOR change"
+          elif echo "$COMMITS" | grep -E "^feat" > /dev/null; then
+            echo "bump_type=minor" >> $GITHUB_OUTPUT
+            echo "Detected: MINOR change"
+          else
+            echo "bump_type=patch" >> $GITHUB_OUTPUT
+            echo "Detected: PATCH change"
+          fi
+
+      - name: Bump version & Push
+        id: bump
+        # Combine bump and push into 1 step to make it atomic
+        run: |
+          # 1. Config Git Identity
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+
+          # 2. Bump version
+          npm version ${{ steps.version.outputs.bump_type }} --no-git-tag-version
+          NEW_VERSION=$(node -p "require('./package.json').version")
+
+          # 3. Commit & Tag with [skip ci] to prevent infinite loop
+          git add package.json
+          git commit -m "chore(release): bump version to $NEW_VERSION [skip ci]"
+          git tag "v$NEW_VERSION"
+
+          # 4. Push changes
+          git push origin HEAD:main --tags
+
+          # Output for next step
+          echo "version=$NEW_VERSION" >> $GITHUB_OUTPUT
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to DockerHub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        
+        with:
+          context: .
+          push: true
+          # Cache layers to build faster (Performance Optimization)
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          build-args: |
+            NEXT_PUBLIC_APP_URL=${{ secrets.NEXT_PUBLIC_APP_URL }}
+            NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL }}
+            NEXT_PUBLIC_SOCKET_URL=${{ secrets.NEXT_PUBLIC_SOCKET_URL }}
+            NEXT_PUBLIC_SUPABASE_URL=${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+            NEXT_PUBLIC_SUPABASE_ANON_KEY=${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/paracord-fe:${{ steps.bump.outputs.version }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/paracord-fe:latest
+
+      - name: Notify Discord Failure
+        if: failure()
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+          COMMIT_MSG: ${{ github.event.head_commit.message }}
+        run: |
+          ESCAPED_MSG=$(echo "$COMMIT_MSG" | head -c 200)
+          TIMESTAMP=$(date -u +%Y-%m-%dT%H:%M:%S.000Z)
+
+          jq -n \
+            --arg username "GitHub CI Monitor" \
+            --arg avatar "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" \
+            --arg title "Build/Push Failed" \
+            --arg desc "Pipeline failed on branch **${{ github.ref_name }}**." \
+            --arg sha "${{ github.sha }}" \
+            --arg msg "$ESCAPED_MSG" \
+            --arg actor "${{ github.actor }}" \
+            --arg url "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" \
+            --arg timestamp "$TIMESTAMP" \
+            '{
+              username: $username,
+              avatar_url: $avatar,
+              embeds: [{
+                title: $title,
+                url: $url,
+                color: 15158332,
+                timestamp: $timestamp,
+                description: $desc,
+                fields: [
+                  { name: "Commit Message", value: $msg, inline: false },
+                  { name: "Commit Hash", value: ("`" + $sha[0:7] + "`"), inline: true },
+                  { name: "Author", value: $actor, inline: true },
+                  { name: "View Logs", value: ("[Click Here](" + $url + ")"), inline: true }
+                ],
+                footer: { text: "Check GitHub Actions for details" }
+              }]
+            }' | curl -H "Content-Type: application/json" -d @- "$DISCORD_WEBHOOK"
