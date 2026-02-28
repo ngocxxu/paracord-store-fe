@@ -73,7 +73,7 @@ export const SHOP_PRODUCTS: ShopProductItem[] = [
     imageSrc: PRODUCT_IMAGE,
     imageAlt: "Paracord keychain",
     colorSwatches: ["#4B5320", "#78350f"],
-    category: "petGear",
+    category: "keychains",
     cordType: "550",
     filterColors: ["green", "brown"],
   },

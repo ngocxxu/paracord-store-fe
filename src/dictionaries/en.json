@@ -180,8 +180,7 @@
     "categories": {
       "bracelets": "Bracelets",
       "lanyards": "Lanyards",
-      "keychains": "Keychains",
-      "petGear": "Others"
+      "keychains": "Keychains"
     },
     "cordTypes": {
       "550": "550 Paracord",

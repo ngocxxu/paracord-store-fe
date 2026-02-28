@@ -1,4 +1,4 @@
-export type ShopCategory = "bracelets" | "lanyards" | "keychains" | "petGear";
+export type ShopCategory = "bracelets" | "lanyards" | "keychains";
 export type CordType = "550" | "titan";
 export type WeaveType = "cobra" | "fishtail" | "snakeKnot" | "kingCobra";
 export type FilterColor =
