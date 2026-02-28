@@ -16,8 +16,11 @@ export default async function BuilderPage({
   return (
     <div className="flex min-h-[calc(100vh-3.5rem)] flex-col bg-brand-bg-primary">
       <div className="border-y border-brand-border bg-black">
-        <div className="container mx-auto px-4 py-4">
-          <h1 className="text-xl font-heading font-bold uppercase tracking-tight text-brand-text-high md:text-2xl">
+        <div className="container mx-auto px-4 py-6">
+          <span className="text-sm font-medium uppercase tracking-widest-custom text-brand-accent">
+            {builderDict.collectionLabel}
+          </span>
+          <h1 className="mt-1 text-3xl font-heading font-bold uppercase tracking-tight text-brand-text-high md:text-4xl">
             {builderDict.title}
           </h1>
         </div>

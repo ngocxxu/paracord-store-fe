@@ -256,6 +256,7 @@
     }
   },
   "builder": {
+    "collectionLabel": "BỘ SƯU TẬP",
     "title": "Tạo dây paracord tùy chọn",
     "selectColor": "Chọn màu",
     "selectModel": "CHỌN MẪU",

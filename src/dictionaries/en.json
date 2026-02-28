@@ -256,6 +256,7 @@
     }
   },
   "builder": {
+    "collectionLabel": "THE COLLECTION",
     "title": "Custom Paracord Builder",
     "selectColor": "Select color",
     "selectModel": "SELECT MODEL",

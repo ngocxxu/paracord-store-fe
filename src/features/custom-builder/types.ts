@@ -18,6 +18,7 @@ export interface ColorOption {
 }
 
 export interface BuilderDict {
+  collectionLabel: string;
   title: string;
   selectModel: string;
   weaveType: string;
