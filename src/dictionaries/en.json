@@ -351,19 +351,32 @@
   "checkout": {
     "title": "Checkout",
     "subtitle": "Enter your details below to complete your handcrafted build.",
+    "breadcrumb": {
+      "cart": "Cart",
+      "information": "Information",
+      "shipping": "Shipping",
+      "payment": "Payment"
+    },
     "contact": {
-      "title": "Contact",
-      "emailLabel": "Email address",
+      "title": "Contact Information",
+      "emailLabel": "Email or mobile phone number",
+      "emailPlaceholder": "Email or mobile phone number",
       "phoneLabel": "Phone number",
-      "phonePlaceholder": "e.g. 090 123 4567"
+      "phonePlaceholder": "e.g. 090 123 4567",
+      "loginPrompt": "Already have an account?",
+      "loginLink": "Log in",
+      "newsletterCheckbox": "Keep me up to date on news and exclusive offers"
     },
     "shipping": {
-      "title": "Shipping details",
+      "title": "Shipping Address",
       "fullNameLabel": "Full name",
-      "addressLabel": "Street address",
+      "firstNameLabel": "First Name",
+      "lastNameLabel": "Last Name",
+      "addressLabel": "Address",
+      "apartmentPlaceholder": "Apartment, suite, etc. (optional)",
       "cityLabel": "City",
       "stateLabel": "State / Province",
-      "postalCodeLabel": "ZIP / Postal code",
+      "postalCodeLabel": "ZIP code",
       "countryLabel": "Country / Region"
     },
     "payment": {
@@ -379,10 +392,25 @@
       "placeholder": "Add any sizing notes or special requests for your build."
     },
     "summary": {
+      "orderSummaryTitle": "Order Summary",
+      "subtotal": "Subtotal",
+      "shippingLabel": "Shipping",
+      "shippingCalculatedNextStep": "Calculated at next step",
+      "estimatedTaxes": "Estimated Taxes",
+      "totalUsd": "Total USD",
       "placeOrderCta": "Place Order",
       "reviewOrderCta": "Review & Place Order",
       "disclaimer": "Every piece is handcrafted to order. Please allow 3-5 days for production before shipment."
-    }
+    },
+    "returnToCart": "Return to Cart",
+    "proceedToPayment": "Order Now",
+    "guarantee": {
+      "secureCheckout": "Secure 256-bit SSL encrypted payment",
+      "freeBuildShip": "Free build & ship on orders over $100"
+    },
+    "emptyTitle": "Your cart is empty",
+    "emptySubtitle": "Add items from the shop or build your own, then return to checkout.",
+    "emptyCta": "Back to Cart"
   },
   "cart": {
     "title": "Your Cart",

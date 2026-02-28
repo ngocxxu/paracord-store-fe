@@ -351,16 +351,29 @@
   "checkout": {
     "title": "Thanh toán",
     "subtitle": "Nhập thông tin bên dưới để hoàn tất món đồ làm thủ công của bạn.",
+    "breadcrumb": {
+      "cart": "Giỏ hàng",
+      "information": "Thông tin",
+      "shipping": "Giao hàng",
+      "payment": "Thanh toán"
+    },
     "contact": {
-      "title": "Liên hệ",
-      "emailLabel": "Email",
+      "title": "Thông tin liên hệ",
+      "emailLabel": "Email hoặc số điện thoại",
+      "emailPlaceholder": "Email hoặc số điện thoại",
       "phoneLabel": "Số điện thoại",
-      "phonePlaceholder": "vd. 090 123 4567"
+      "phonePlaceholder": "vd. 090 123 4567",
+      "loginPrompt": "Đã có tài khoản?",
+      "loginLink": "Đăng nhập",
+      "newsletterCheckbox": "Nhận tin tức và ưu đãi độc quyền"
     },
     "shipping": {
       "title": "Địa chỉ giao hàng",
       "fullNameLabel": "Họ và tên",
+      "firstNameLabel": "Tên",
+      "lastNameLabel": "Họ",
       "addressLabel": "Địa chỉ",
+      "apartmentPlaceholder": "Căn hộ, tòa nhà, v.v. (không bắt buộc)",
       "cityLabel": "Thành phố",
       "stateLabel": "Tỉnh / Bang",
       "postalCodeLabel": "Mã bưu điện",
@@ -379,10 +392,25 @@
       "placeholder": "Thêm ghi chú về size hoặc yêu cầu đặc biệt cho sản phẩm."
     },
     "summary": {
+      "orderSummaryTitle": "Tóm tắt đơn hàng",
+      "subtotal": "Tạm tính",
+      "shippingLabel": "Vận chuyển",
+      "shippingCalculatedNextStep": "Tính ở bước tiếp theo",
+      "estimatedTaxes": "Thuế ước tính",
+      "totalUsd": "Tổng USD",
       "placeOrderCta": "Đặt hàng",
       "reviewOrderCta": "Xem lại & Đặt hàng",
       "disclaimer": "Mỗi món đều được làm thủ công theo đơn. Vui lòng chờ 3-5 ngày sản xuất trước khi giao."
-    }
+    },
+    "returnToCart": "Quay lại giỏ hàng",
+    "proceedToPayment": "Đặt hàng ngay",
+    "guarantee": {
+      "secureCheckout": "Thanh toán mã hóa SSL 256-bit",
+      "freeBuildShip": "Miễn phí làm & giao đơn trên $100"
+    },
+    "emptyTitle": "Giỏ hàng trống",
+    "emptySubtitle": "Thêm sản phẩm từ cửa hàng hoặc tự thiết kế, sau đó quay lại thanh toán.",
+    "emptyCta": "Quay lại giỏ hàng"
   },
   "cart": {
     "title": "Giỏ hàng",
