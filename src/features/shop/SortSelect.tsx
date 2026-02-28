@@ -1,14 +1,14 @@
 "use client";
 
-import { usePathname, useRouter } from "next/navigation";
-import { useTransition } from "react";
-import { ChevronDown, Check } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Check, ChevronDown } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
+import { useTransition } from "react";
 import type { SortOption } from "./utils";
 
 const SORT_KEYS: { value: SortOption; labelKey: string }[] = [
@@ -55,7 +55,7 @@ export function SortSelect({ currentSort, labels }: SortSelectProps) {
             aria-labelledby="shop-sort-label"
             aria-haspopup="listbox"
             aria-expanded={undefined}
-            className="inline-flex h-9 min-w-[8rem] items-center justify-between gap-2 rounded-md border-2 border-brand-accent bg-brand-bg-surface px-3 py-2 text-sm font-medium uppercase text-brand-text-high focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-bg-primary disabled:opacity-50"
+            className="inline-flex h-9 min-w-[8rem] items-center justify-between gap-2 rounded-md border-2 border-brand-bg-primary bg-brand-bg-surface px-3 py-2 text-sm font-medium uppercase text-brand-text-high focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-bg-primary disabled:opacity-50"
           >
             {currentLabel}
             <ChevronDown className="h-4 w-4 shrink-0 text-brand-text-high" aria-hidden />
