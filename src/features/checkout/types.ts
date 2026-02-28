@@ -1,3 +1,5 @@
+import type { CartItem } from "@/features/cart/types";
+
 export interface CheckoutDict {
   title: string;
   subtitle: string;
@@ -15,7 +17,6 @@ export interface CheckoutDict {
     phonePlaceholder: string;
     loginPrompt: string;
     loginLink: string;
-    newsletterCheckbox: string;
   };
   shipping: {
     title: string;
@@ -24,10 +25,12 @@ export interface CheckoutDict {
     lastNameLabel: string;
     addressLabel: string;
     apartmentPlaceholder: string;
-    cityLabel: string;
-    stateLabel: string;
-    postalCodeLabel: string;
-    countryLabel: string;
+    provinceLabel: string;
+    districtLabel: string;
+    wardLabel: string;
+    selectProvince: string;
+    selectDistrict: string;
+    selectWard: string;
   };
   payment: {
     title: string;
@@ -47,7 +50,7 @@ export interface CheckoutDict {
     shippingLabel: string;
     shippingCalculatedNextStep: string;
     estimatedTaxes: string;
-    totalUsd: string;
+    total: string;
     placeOrderCta: string;
     reviewOrderCta: string;
     disclaimer: string;
@@ -61,5 +64,57 @@ export interface CheckoutDict {
   emptyTitle: string;
   emptySubtitle: string;
   emptyCta: string;
+  validation: {
+    emailRequired: string;
+    emailInvalid: string;
+    phoneRequired: string;
+    phoneInvalid: string;
+    firstNameRequired: string;
+    lastNameRequired: string;
+    nameMinLength: string;
+    addressRequired: string;
+    addressMinLength: string;
+    provinceRequired: string;
+    districtRequired: string;
+    wardRequired: string;
+  };
+}
+
+export interface OrderThankYouDict {
+  title: string;
+  message: string;
+  confirmationNumber: string;
+  printReceipt: string;
+  orderSummary: string;
+  subtotal: string;
+  shippingCalculatedOnConfirmation: string;
+  totalCharged: string;
+  contactInformation: string;
+  primaryEmail: string;
+  confirmationPhone: string;
+  shippingTo: string;
+  whatsNextTitle: string;
+  whatsNextBody: string;
+  backToShop: string;
+  needHelp: string;
+  supportEmail: string;
+}
+
+export interface OrderConfirmationPayload {
+  orderId: string;
+  email: string;
+  phone?: string;
+  shipping: {
+    firstName: string;
+    lastName: string;
+    address: string;
+    apartment?: string;
+    province: string;
+    district: string;
+    ward: string;
+  };
+  items: CartItem[];
+  subtotal: number;
+  total: number;
 }
 

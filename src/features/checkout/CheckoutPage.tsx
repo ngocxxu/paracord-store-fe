@@ -4,25 +4,132 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { getSubtotal, useCartStore } from "@/features/cart/store";
 import type { CartItem } from "@/features/cart/types";
-import type { CheckoutDict } from "@/features/checkout/types";
+import type { CheckoutDict, OrderConfirmationPayload } from "@/features/checkout/types";
+import { getDistricts, getProvinces, getWards } from "@/lib/vietnam-addresses";
+import { checkoutSchema } from "@/lib/validations/checkout";
 import { formatPrice } from "@/lib/pricing";
-import { Check, ChevronLeft } from "lucide-react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Check, ChevronDown, ChevronLeft } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { Controller, useForm } from "react-hook-form";
+import type { CheckoutFormValues } from "@/lib/validations/checkout";
+
+const ORDER_CONFIRMATION_KEY = "order-confirmation";
 
 const inputClassName =
   "rounded-lg border-brand-border bg-brand-bg-card text-brand-text-high placeholder:text-brand-text-medium focus-visible:ring-brand-accent";
+
+const selectTriggerClassName =
+  "flex h-9 w-full items-center justify-between gap-2 rounded-lg border border-brand-border bg-brand-bg-card px-3 py-2 text-left text-base text-brand-text-high focus:outline-none focus:ring-1 focus:ring-brand-accent disabled:opacity-50 md:text-sm";
 
 export function CheckoutPage({
   lang,
   dict,
 }: Readonly<{ lang: string; dict: CheckoutDict }>) {
+  const router = useRouter();
   const items = useCartStore((s) => s.items);
   const basePath = `/${lang}`;
   const subtotal = getSubtotal(items);
   const estimatedTaxRate = 0.0825;
   const estimatedTax = Math.round(subtotal * estimatedTaxRate * 100) / 100;
   const total = subtotal + estimatedTax;
+
+  const [provinces, setProvinces] = useState<Array<{ code: number; name: string }>>([]);
+  const [districts, setDistricts] = useState<Array<{ code: number; name: string }>>([]);
+  const [wards, setWards] = useState<Array<{ code: number; name: string }>>([]);
+
+  const {
+    register,
+    control,
+    handleSubmit,
+    watch,
+    setValue,
+    formState: { errors },
+  } = useForm<CheckoutFormValues>({
+    resolver: zodResolver(checkoutSchema(dict.validation)),
+    defaultValues: {
+      email: "",
+      phone: "",
+      firstName: "",
+      lastName: "",
+      address: "",
+      apartment: "",
+      province: "",
+      district: "",
+      ward: "",
+    },
+  });
+
+  const provinceValue = watch("province");
+  const districtValue = watch("district");
+
+  useEffect(() => {
+    getProvinces().then(setProvinces);
+  }, []);
+
+  useEffect(() => {
+    if (!provinceValue) {
+      setDistricts([]);
+      setWards([]);
+      setValue("district", "");
+      setValue("ward", "");
+      return;
+    }
+    const code = Number(provinceValue);
+    if (Number.isNaN(code)) return;
+    getDistricts(code).then((list) => {
+      setDistricts(list);
+      setWards([]);
+      setValue("district", "");
+      setValue("ward", "");
+    });
+  }, [provinceValue, setValue]);
+
+  useEffect(() => {
+    if (!districtValue) {
+      setWards([]);
+      setValue("ward", "");
+      return;
+    }
+    const code = Number(districtValue);
+    if (Number.isNaN(code)) return;
+    getWards(code).then(setWards);
+  }, [districtValue, setValue]);
+
+  function handleOrderNow(form: CheckoutFormValues) {
+    const provinceName = provinces.find((p) => String(p.code) === form.province)?.name ?? form.province;
+    const districtName = districts.find((d) => String(d.code) === form.district)?.name ?? form.district;
+    const wardName = wards.find((w) => String(w.code) === form.ward)?.name ?? form.ward;
+    const orderId = `#ORD-${Math.floor(10000 + Math.random() * 90000)}-FC`;
+    const payload: OrderConfirmationPayload = {
+      orderId,
+      email: form.email,
+      phone: form.phone,
+      shipping: {
+        firstName: form.firstName,
+        lastName: form.lastName,
+        address: form.address,
+        apartment: form.apartment || undefined,
+        province: provinceName,
+        district: districtName,
+        ward: wardName,
+      },
+      items: [...items],
+      subtotal,
+      total,
+    };
+    sessionStorage.setItem(ORDER_CONFIRMATION_KEY, JSON.stringify(payload));
+    router.push(`${basePath}/checkout/thank-you`);
+  }
 
   if (items.length === 0) {
     return (
@@ -72,7 +179,7 @@ export function CheckoutPage({
         </nav>
 
         <div className="grid gap-8 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:items-start">
-          <div className="space-y-8">
+          <form className="space-y-8" onSubmit={handleSubmit(handleOrderNow)} noValidate>
             <section>
               <div className="mb-4 flex flex-wrap items-center gap-3">
                 <span
@@ -101,18 +208,30 @@ export function CheckoutPage({
                   </label>
                   <Input
                     id="checkout-email"
-                    type="text"
+                    type="email"
                     placeholder={dict.contact.emailPlaceholder}
                     className={inputClassName}
+                    {...register("email")}
                   />
+                  {errors.email && (
+                    <p className="mt-1 text-sm text-red-500" role="alert">{errors.email.message}</p>
+                  )}
                 </div>
-                <label className="flex cursor-pointer items-center gap-2 text-sm text-brand-text-medium">
-                  <input
-                    type="checkbox"
-                    className="h-4 w-4 rounded border-brand-border bg-brand-bg-card text-brand-accent focus:ring-brand-accent"
+                <div>
+                  <label htmlFor="checkout-phone" className="sr-only">
+                    {dict.contact.phoneLabel}
+                  </label>
+                  <Input
+                    id="checkout-phone"
+                    type="tel"
+                    placeholder={dict.contact.phonePlaceholder}
+                    className={inputClassName}
+                    {...register("phone")}
                   />
-                  <span>{dict.contact.newsletterCheckbox}</span>
-                </label>
+                  {errors.phone && (
+                    <p className="mt-1 text-sm text-red-500" role="alert">{errors.phone.message}</p>
+                  )}
+                </div>
               </div>
             </section>
 
@@ -138,7 +257,11 @@ export function CheckoutPage({
                     type="text"
                     placeholder={dict.shipping.firstNameLabel}
                     className={inputClassName}
+                    {...register("firstName")}
                   />
+                  {errors.firstName && (
+                    <p className="mt-1 text-sm text-red-500" role="alert">{errors.firstName.message}</p>
+                  )}
                 </div>
                 <div>
                   <label htmlFor="checkout-lastname" className="sr-only">
@@ -149,7 +272,11 @@ export function CheckoutPage({
                     type="text"
                     placeholder={dict.shipping.lastNameLabel}
                     className={inputClassName}
+                    {...register("lastName")}
                   />
+                  {errors.lastName && (
+                    <p className="mt-1 text-sm text-red-500" role="alert">{errors.lastName.message}</p>
+                  )}
                 </div>
               </div>
               <div className="mt-4 space-y-4">
@@ -162,7 +289,11 @@ export function CheckoutPage({
                     type="text"
                     placeholder={dict.shipping.addressLabel}
                     className={inputClassName}
+                    {...register("address")}
                   />
+                  {errors.address && (
+                    <p className="mt-1 text-sm text-red-500" role="alert">{errors.address.message}</p>
+                  )}
                 </div>
                 <div>
                   <label htmlFor="checkout-apartment" className="sr-only">
@@ -173,57 +304,145 @@ export function CheckoutPage({
                     type="text"
                     placeholder={dict.shipping.apartmentPlaceholder}
                     className={inputClassName}
+                    {...register("apartment")}
                   />
                 </div>
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <div>
-                    <label htmlFor="checkout-city" className="sr-only">
-                      {dict.shipping.cityLabel}
-                    </label>
-                    <Input
-                      id="checkout-city"
-                      type="text"
-                      placeholder={dict.shipping.cityLabel}
-                      className={inputClassName}
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="checkout-country" className="sr-only">
-                      {dict.shipping.countryLabel}
-                    </label>
-                    <select
-                      id="checkout-country"
-                      className={`h-9 w-full rounded-lg border border-brand-border bg-brand-bg-card px-3 py-1 text-base text-brand-text-high focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand-accent md:text-sm ${inputClassName}`}
-                    >
-                      <option value="US">United States</option>
-                      <option value="VN">Vietnam</option>
-                      <option value="GB">United Kingdom</option>
-                    </select>
-                  </div>
+                <div>
+                  <label id="checkout-province-label" className="sr-only">
+                    {dict.shipping.provinceLabel}
+                  </label>
+                  <Controller
+                    name="province"
+                    control={control}
+                    render={({ field }) => (
+                      <DropdownMenu>
+                        <DropdownMenuTrigger
+                          type="button"
+                          aria-labelledby="checkout-province-label"
+                          aria-haspopup="listbox"
+                          className={selectTriggerClassName}
+                        >
+                          <span className="truncate">
+                            {field.value ? provinces.find((p) => String(p.code) === field.value)?.name : dict.shipping.selectProvince}
+                          </span>
+                          <ChevronDown className="h-4 w-4 shrink-0 opacity-70" aria-hidden />
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent
+                          align="start"
+                          className="max-h-[min(16rem,var(--radix-dropdown-menu-content-available-height))] min-w-[var(--radix-dropdown-menu-trigger-width)] overflow-y-auto border-brand-border bg-brand-bg-surface text-brand-text-high"
+                        >
+                          {provinces.map((p) => {
+                            const selected = field.value === String(p.code);
+                            return (
+                              <DropdownMenuItem
+                                key={p.code}
+                                onClick={() => field.onChange(String(p.code))}
+                                className={selected ? "text-brand-accent" : ""}
+                              >
+                                {selected ? <Check className="mr-2 h-4 w-4 shrink-0" aria-hidden /> : <span className="mr-2 w-4 shrink-0" />}
+                                {p.name}
+                              </DropdownMenuItem>
+                            );
+                          })}
+                        </DropdownMenuContent>
+                      </DropdownMenu>
+                    )}
+                  />
+                  {errors.province && (
+                    <p className="mt-1 text-sm text-red-500" role="alert">{errors.province.message}</p>
+                  )}
                 </div>
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <div>
-                    <label htmlFor="checkout-state" className="sr-only">
-                      {dict.shipping.stateLabel}
-                    </label>
-                    <Input
-                      id="checkout-state"
-                      type="text"
-                      placeholder={dict.shipping.stateLabel}
-                      className={inputClassName}
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="checkout-zip" className="sr-only">
-                      {dict.shipping.postalCodeLabel}
-                    </label>
-                    <Input
-                      id="checkout-zip"
-                      type="text"
-                      placeholder={dict.shipping.postalCodeLabel}
-                      className={inputClassName}
-                    />
-                  </div>
+                <div>
+                  <label id="checkout-district-label" className="sr-only">
+                    {dict.shipping.districtLabel}
+                  </label>
+                  <Controller
+                    name="district"
+                    control={control}
+                    render={({ field }) => (
+                      <DropdownMenu>
+                        <DropdownMenuTrigger
+                          type="button"
+                          aria-labelledby="checkout-district-label"
+                          aria-haspopup="listbox"
+                          disabled={!provinceValue}
+                          className={selectTriggerClassName}
+                        >
+                          <span className="truncate">
+                            {field.value ? districts.find((d) => String(d.code) === field.value)?.name : dict.shipping.selectDistrict}
+                          </span>
+                          <ChevronDown className="h-4 w-4 shrink-0 opacity-70" aria-hidden />
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent
+                          align="start"
+                          className="max-h-[min(16rem,var(--radix-dropdown-menu-content-available-height))] min-w-[var(--radix-dropdown-menu-trigger-width)] overflow-y-auto border-brand-border bg-brand-bg-surface text-brand-text-high"
+                        >
+                          {districts.map((d) => {
+                            const selected = field.value === String(d.code);
+                            return (
+                              <DropdownMenuItem
+                                key={d.code}
+                                onClick={() => field.onChange(String(d.code))}
+                                className={selected ? "text-brand-accent" : ""}
+                              >
+                                {selected ? <Check className="mr-2 h-4 w-4 shrink-0" aria-hidden /> : <span className="mr-2 w-4 shrink-0" />}
+                                {d.name}
+                              </DropdownMenuItem>
+                            );
+                          })}
+                        </DropdownMenuContent>
+                      </DropdownMenu>
+                    )}
+                  />
+                  {errors.district && (
+                    <p className="mt-1 text-sm text-red-500" role="alert">{errors.district.message}</p>
+                  )}
+                </div>
+                <div>
+                  <label id="checkout-ward-label" className="sr-only">
+                    {dict.shipping.wardLabel}
+                  </label>
+                  <Controller
+                    name="ward"
+                    control={control}
+                    render={({ field }) => (
+                      <DropdownMenu>
+                        <DropdownMenuTrigger
+                          type="button"
+                          aria-labelledby="checkout-ward-label"
+                          aria-haspopup="listbox"
+                          disabled={!districtValue}
+                          className={selectTriggerClassName}
+                        >
+                          <span className="truncate">
+                            {field.value ? wards.find((w) => String(w.code) === field.value)?.name : dict.shipping.selectWard}
+                          </span>
+                          <ChevronDown className="h-4 w-4 shrink-0 opacity-70" aria-hidden />
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent
+                          align="start"
+                          className="max-h-[min(16rem,var(--radix-dropdown-menu-content-available-height))] min-w-[var(--radix-dropdown-menu-trigger-width)] overflow-y-auto border-brand-border bg-brand-bg-surface text-brand-text-high"
+                        >
+                          {wards.map((w) => {
+                            const selected = field.value === String(w.code);
+                            return (
+                              <DropdownMenuItem
+                                key={w.code}
+                                onClick={() => field.onChange(String(w.code))}
+                                className={selected ? "text-brand-accent" : ""}
+                              >
+                                {selected ? <Check className="mr-2 h-4 w-4 shrink-0" aria-hidden /> : <span className="mr-2 w-4 shrink-0" />}
+                                {w.name}
+                              </DropdownMenuItem>
+                            );
+                          })}
+                        </DropdownMenuContent>
+                      </DropdownMenu>
+                    )}
+                  />
+                  {errors.ward && (
+                    <p className="mt-1 text-sm text-red-500" role="alert">{errors.ward.message}</p>
+                  )}
                 </div>
               </div>
             </section>
@@ -237,13 +456,13 @@ export function CheckoutPage({
                 {dict.returnToCart}
               </Link>
               <Button
+                type="submit"
                 className="rounded-lg bg-brand-accent px-6 font-medium uppercase text-white hover:bg-brand-accent-hover"
-                asChild
               >
-                <Link href="#">{dict.proceedToPayment}</Link>
+                {dict.proceedToPayment}
               </Button>
             </div>
-          </div>
+          </form>
 
           <div className="lg:sticky lg:top-6">
             <div className="rounded-2xl border border-brand-border bg-brand-bg-surface p-6 shadow-card">
@@ -277,7 +496,7 @@ export function CheckoutPage({
               </dl>
               <div className="mt-4 flex justify-between border-t border-brand-border pt-4">
                 <dt className="text-sm font-medium uppercase text-brand-text-medium">
-                  {dict.summary.totalUsd}
+                  {dict.summary.total}
                 </dt>
                 <dd className="text-xl font-bold text-brand-accent">
                   {formatPrice(total, lang)}

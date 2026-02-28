@@ -1,6 +1,6 @@
 import type { SignInDict, SignUpDict } from "@/features/auth/types";
 import type { CartDict } from "@/features/cart/types";
-import type { CheckoutDict } from "@/features/checkout/types";
+import type { CheckoutDict, OrderThankYouDict } from "@/features/checkout/types";
 import type { ShopDict } from "@/features/shop/types";
 
 export interface LandingDict {
@@ -87,6 +87,7 @@ export interface LandingDict {
   shop?: ShopDict;
   cart?: CartDict;
   checkout?: CheckoutDict;
+  orderThankYou?: OrderThankYouDict;
 }
 
 export interface FeaturedProductItem {

@@ -1,5 +1,5 @@
 {
-  "topBar": "100% THỦ CÔNG | MIỄN PHÍ VẬN CHUYỂN TRÊN $50",
+  "topBar": "100% THỦ CÔNG | MIỄN PHÍ VẬN CHUYỂN TRÊN 500.000 ₫",
   "nav": {
     "shop": "Cửa hàng",
     "customBuild": "Tạo dây",
@@ -194,10 +194,10 @@
       "kingCobra": "King Cobra"
     },
     "priceRange": {
-      "min": "0đ",
-      "max": "100+",
-      "from": "Từ ($)",
-      "to": "Đến ($)",
+      "min": "10.000 ₫",
+      "max": "200.000 ₫+",
+      "from": "Từ (₫)",
+      "to": "Đến (₫)",
       "apply": "Áp dụng"
     },
     "pagination": {
@@ -343,8 +343,8 @@
       "productTitle": "Vòng tay paracord tuỳ chỉnh",
       "productSubtitle": "Midnight Camo / Safety Orange / Matte Black Steel",
       "estimatedCompletion": "24 Tháng 10, 2024",
-      "totalAmount": "$45.00",
-      "priceLabel": "$45.00",
+      "totalAmount": "1.125.000 ₫",
+      "priceLabel": "1.125.000 ₫",
       "quantityLabel": "Số lượng 1"
     }
   },
@@ -359,13 +359,12 @@
     },
     "contact": {
       "title": "Thông tin liên hệ",
-      "emailLabel": "Email hoặc số điện thoại",
-      "emailPlaceholder": "Email hoặc số điện thoại",
+      "emailLabel": "Email",
+      "emailPlaceholder": "Địa chỉ email",
       "phoneLabel": "Số điện thoại",
       "phonePlaceholder": "vd. 090 123 4567",
       "loginPrompt": "Đã có tài khoản?",
-      "loginLink": "Đăng nhập",
-      "newsletterCheckbox": "Nhận tin tức và ưu đãi độc quyền"
+      "loginLink": "Đăng nhập"
     },
     "shipping": {
       "title": "Địa chỉ giao hàng",
@@ -374,10 +373,12 @@
       "lastNameLabel": "Họ",
       "addressLabel": "Địa chỉ",
       "apartmentPlaceholder": "Căn hộ, tòa nhà, v.v. (không bắt buộc)",
-      "cityLabel": "Thành phố",
-      "stateLabel": "Tỉnh / Bang",
-      "postalCodeLabel": "Mã bưu điện",
-      "countryLabel": "Quốc gia / Vùng"
+      "provinceLabel": "Tỉnh / Thành phố",
+      "districtLabel": "Quận / Huyện",
+      "wardLabel": "Phường / Xã",
+      "selectProvince": "Chọn Tỉnh/Thành phố",
+      "selectDistrict": "Chọn Quận/Huyện",
+      "selectWard": "Chọn Phường/Xã"
     },
     "payment": {
       "title": "Thanh toán",
@@ -397,7 +398,7 @@
       "shippingLabel": "Vận chuyển",
       "shippingCalculatedNextStep": "Tính ở bước tiếp theo",
       "estimatedTaxes": "Thuế ước tính",
-      "totalUsd": "Tổng USD",
+      "total": "Tổng",
       "placeOrderCta": "Đặt hàng",
       "reviewOrderCta": "Xem lại & Đặt hàng",
       "disclaimer": "Mỗi món đều được làm thủ công theo đơn. Vui lòng chờ 3-5 ngày sản xuất trước khi giao."
@@ -406,11 +407,44 @@
     "proceedToPayment": "Đặt hàng ngay",
     "guarantee": {
       "secureCheckout": "Thanh toán mã hóa SSL 256-bit",
-      "freeBuildShip": "Miễn phí làm & giao đơn trên $100"
+      "freeBuildShip": "Miễn phí làm & giao đơn trên 500.000 ₫"
     },
     "emptyTitle": "Giỏ hàng trống",
     "emptySubtitle": "Thêm sản phẩm từ cửa hàng hoặc tự thiết kế, sau đó quay lại thanh toán.",
-    "emptyCta": "Quay lại giỏ hàng"
+    "emptyCta": "Quay lại giỏ hàng",
+    "validation": {
+      "emailRequired": "Email là bắt buộc",
+      "emailInvalid": "Vui lòng nhập địa chỉ email hợp lệ",
+      "phoneRequired": "Số điện thoại là bắt buộc",
+      "phoneInvalid": "Nhập số điện thoại Việt Nam hợp lệ (10 số, vd. 0901234567)",
+      "firstNameRequired": "Tên là bắt buộc",
+      "lastNameRequired": "Họ là bắt buộc",
+      "nameMinLength": "Họ tên phải có ít nhất 2 ký tự",
+      "addressRequired": "Địa chỉ là bắt buộc",
+      "addressMinLength": "Địa chỉ phải có ít nhất 5 ký tự",
+      "provinceRequired": "Vui lòng chọn Tỉnh/Thành phố",
+      "districtRequired": "Vui lòng chọn Quận/Huyện",
+      "wardRequired": "Vui lòng chọn Phường/Xã"
+    }
+  },
+  "orderThankYou": {
+    "title": "Cảm ơn bạn đã đặt hàng!",
+    "message": "Đơn hàng của bạn đã được tiếp nhận. Đội ngũ sẽ liên hệ qua điện thoại để xác nhận chi tiết tùy chỉnh và hoàn tất đơn hàng.",
+    "confirmationNumber": "Mã xác nhận",
+    "printReceipt": "In hóa đơn",
+    "orderSummary": "Tóm tắt đơn hàng",
+    "subtotal": "Tạm tính",
+    "shippingCalculatedOnConfirmation": "Tính khi xác nhận",
+    "totalCharged": "Tổng thanh toán",
+    "contactInformation": "Thông tin liên hệ",
+    "primaryEmail": "Email chính",
+    "confirmationPhone": "Số điện thoại xác nhận",
+    "shippingTo": "Giao đến",
+    "whatsNextTitle": "Bước tiếp theo?",
+    "whatsNextBody": "Thợ thủ công sẽ xem xét mẫu dệt paracord tùy chỉnh và liên hệ xác nhận số đo cổ tay trong vòng 24 giờ.",
+    "backToShop": "Quay lại cửa hàng",
+    "needHelp": "Cần trợ giúp?",
+    "supportEmail": "support@forgeandcord.com"
   },
   "cart": {
     "title": "Giỏ hàng",

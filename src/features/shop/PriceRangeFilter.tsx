@@ -1,8 +1,9 @@
 "use client";
 
+import { formatPrice } from "@/lib/pricing";
 import { usePathname, useRouter } from "next/navigation";
 import { useCallback, useRef, useState, useTransition } from "react";
-import { PRICE_MAX } from "./data";
+import { PRICE_MAX, PRICE_MIN, PRICE_STEP } from "./data";
 
 interface PriceRangeFilterProps {
   lang: string;
@@ -12,20 +13,28 @@ interface PriceRangeFilterProps {
   priceRangeLabel: { min: string; max: string; from: string; to: string; apply: string };
 }
 
+function roundToStep(n: number): number {
+  const steps = Math.round((n - PRICE_MIN) / PRICE_STEP);
+  return Math.min(PRICE_MAX, Math.max(PRICE_MIN, PRICE_MIN + steps * PRICE_STEP));
+}
+
 function valueFromClientX(trackRef: React.RefObject<HTMLDivElement | null>, clientX: number): number {
   const el = trackRef.current;
-  if (!el) return 0;
+  if (!el) return PRICE_MIN;
   const rect = el.getBoundingClientRect();
   const pct = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
-  return Math.round(pct * PRICE_MAX);
+  const steps = Math.round((pct * (PRICE_MAX - PRICE_MIN)) / PRICE_STEP);
+  return PRICE_MIN + steps * PRICE_STEP;
 }
 
 export function PriceRangeFilter({
+  lang,
   basePath,
   minPrice: initialMin,
   maxPrice: initialMax,
   priceRangeLabel,
 }: PriceRangeFilterProps) {
+  const format = (amount: number) => formatPrice(amount, lang);
   const router = useRouter();
   const pathname = usePathname();
   const [, startTransition] = useTransition();
@@ -36,7 +45,7 @@ export function PriceRangeFilter({
   const updateRange = useCallback(
     (newMin: number, newMax: number) => {
       const params = new URLSearchParams(typeof window !== "undefined" ? window.location.search : "");
-      if (newMin > 0) params.set("minPrice", String(newMin));
+      if (newMin > PRICE_MIN) params.set("minPrice", String(newMin));
       else params.delete("minPrice");
       if (newMax < PRICE_MAX) params.set("maxPrice", String(newMax));
       else params.delete("maxPrice");
@@ -49,13 +58,13 @@ export function PriceRangeFilter({
     [pathname, router]
   );
 
-  const clamp = (n: number) => Math.min(PRICE_MAX, Math.max(0, n));
+  const clamp = (n: number) => roundToStep(Math.min(PRICE_MAX, Math.max(PRICE_MIN, n)));
 
   const handleThumbDrag = useCallback(
     (kind: "min" | "max", clientX: number) => {
       const apply = (x: number) => {
         const v = valueFromClientX(trackRef, x);
-        if (kind === "min") setMin((m) => Math.min(Math.max(v, 0), max));
+        if (kind === "min") setMin((m) => Math.min(Math.max(v, PRICE_MIN), max));
         else setMax((m) => Math.max(Math.min(v, PRICE_MAX), min));
       };
       apply(clientX);
@@ -78,12 +87,12 @@ export function PriceRangeFilter({
   );
 
   const handleFromBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-    const v = clamp(Number(e.target.value) || 0);
+    const v = clamp(Number(e.target.value) || PRICE_MIN);
     setMin(Math.min(v, max));
   };
 
   const handleToBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-    const v = clamp(Number(e.target.value) ?? PRICE_MAX);
+    const v = clamp(Number(e.target.value) || PRICE_MAX);
     setMax(Math.max(v, min));
   };
 
@@ -91,8 +100,9 @@ export function PriceRangeFilter({
     updateRange(min, max);
   };
 
-  const minPct = (min / PRICE_MAX) * 100;
-  const maxPct = (max / PRICE_MAX) * 100;
+  const range = PRICE_MAX - PRICE_MIN;
+  const minPct = ((min - PRICE_MIN) / range) * 100;
+  const maxPct = ((max - PRICE_MIN) / range) * 100;
   const fillWidth = maxPct - minPct;
 
   const thumb =
@@ -122,7 +132,7 @@ export function PriceRangeFilter({
             if (e.touches.length) handleThumbDrag("min", e.touches[0].clientX);
           }}
         >
-          <span className={thumbLabel}>${min}</span>
+          <span className={thumbLabel}>{format(min)}</span>
         </button>
         <button
           type="button"
@@ -137,7 +147,7 @@ export function PriceRangeFilter({
             if (e.touches.length) handleThumbDrag("max", e.touches[0].clientX);
           }}
         >
-          <span className={thumbLabel}>{max >= PRICE_MAX ? priceRangeLabel.max : `$${max}`}</span>
+          <span className={thumbLabel}>{max >= PRICE_MAX ? priceRangeLabel.max : format(max)}</span>
         </button>
       </div>
       <div className="grid grid-cols-2 gap-3">
@@ -145,10 +155,11 @@ export function PriceRangeFilter({
           <span className="text-xs font-medium text-brand-text-medium">{priceRangeLabel.from}</span>
           <input
             type="number"
-            min={0}
+            min={PRICE_MIN}
             max={PRICE_MAX}
+            step={PRICE_STEP}
             value={min}
-            onChange={(e) => setMin(clamp(Number(e.target.value) || 0))}
+            onChange={(e) => setMin(clamp(Number(e.target.value) || PRICE_MIN))}
             onBlur={handleFromBlur}
             className="h-10 rounded-md border border-brand-border bg-brand-bg-card px-3 text-sm text-brand-text-high outline-none transition-colors placeholder:text-brand-text-muted focus:border-brand-accent [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
             aria-label={priceRangeLabel.from}
@@ -158,10 +169,11 @@ export function PriceRangeFilter({
           <span className="text-xs font-medium text-brand-text-medium">{priceRangeLabel.to}</span>
           <input
             type="number"
-            min={0}
+            min={PRICE_MIN}
             max={PRICE_MAX}
+            step={PRICE_STEP}
             value={max}
-            onChange={(e) => setMax(clamp(Number(e.target.value) ?? PRICE_MAX))}
+            onChange={(e) => setMax(clamp(Number(e.target.value) || PRICE_MAX))}
             onBlur={handleToBlur}
             className="h-10 rounded-md border border-brand-border bg-brand-bg-card px-3 text-sm text-brand-text-high outline-none transition-colors placeholder:text-brand-text-muted focus:border-brand-accent [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
             aria-label={priceRangeLabel.to}

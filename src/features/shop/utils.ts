@@ -1,6 +1,6 @@
 import type { ShopCategory, WeaveType } from "./types";
 import type { FilterColor } from "./types";
-import { PRICE_MAX, PRODUCTS_PER_PAGE } from "./data";
+import { PRICE_MAX, PRICE_MIN, PRODUCTS_PER_PAGE } from "./data";
 import type { ResolvedShopProduct } from "./types";
 
 export type SortOption = "featured" | "price-asc" | "price-desc";
@@ -42,8 +42,8 @@ export function parseShopParams(searchParams: Record<string, string | string[] |
     categories: parseList(get("category"), CATEGORIES) as ShopCategory[],
     weaveType: (WEAVE_TYPES.includes(get("weaveType") as WeaveType) ? get("weaveType") : null) as WeaveType | null,
     colors: parseList(get("color"), COLORS) as FilterColor[],
-    minPrice: parseNum(get("minPrice"), 0, 0, PRICE_MAX),
-    maxPrice: parseNum(get("maxPrice"), PRICE_MAX, 0, PRICE_MAX),
+    minPrice: parseNum(get("minPrice"), PRICE_MIN, PRICE_MIN, PRICE_MAX),
+    maxPrice: parseNum(get("maxPrice"), PRICE_MAX, PRICE_MIN, PRICE_MAX),
     sort: SORT_OPTIONS.includes(get("sort") as SortOption) ? (get("sort") as SortOption) : "featured",
     page: Math.max(1, parseNum(get("page"), 1, 1, 999)),
   };
@@ -93,7 +93,7 @@ export function buildShopQuery(partial: Partial<ShopParams>, current: ShopParams
   if (categories.length) q.set("category", categories.join(","));
   if (weaveType) q.set("weaveType", weaveType);
   if (colors.length) q.set("color", colors.join(","));
-  if (minPrice > 0) q.set("minPrice", String(minPrice));
+  if (minPrice > PRICE_MIN) q.set("minPrice", String(minPrice));
   if (maxPrice < PRICE_MAX) q.set("maxPrice", String(maxPrice));
   if (sort !== "featured") q.set("sort", sort);
   if (page > 1) q.set("page", String(page));

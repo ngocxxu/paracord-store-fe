@@ -22,10 +22,10 @@ export function ShopSidebar({ lang, basePath, params, dict, allProducts }: ShopS
 
   return (
     <aside
-      className="w-full shrink-0 border-r border-brand-border bg-brand-bg-primary lg:w-64"
+      className="w-full shrink-0 border-r border-brand-border bg-brand-bg-primary lg:w-80"
       aria-label="Filters"
     >
-      <div className="sticky top-14 space-y-6 p-4">
+      <div className="sticky top-14 space-y-6 p-4 px-10">
         <section>
           <h3 className="flex items-center gap-2 text-sm font-medium uppercase tracking-wide text-brand-text-high">
             <Minus className="h-4 w-4" aria-hidden />

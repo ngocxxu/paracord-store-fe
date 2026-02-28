@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { X } from "lucide-react";
-import type { ShopCategory } from "./types";
+import { PRICE_MAX } from "./data";
+import type { ShopCategory, ShopDict } from "./types";
 import type { ShopParams } from "./utils";
 import { buildShopQuery } from "./utils";
-import type { ShopDict } from "./types";
 
 interface ShopActiveFiltersProps {
   basePath: string;
@@ -28,7 +28,7 @@ export function ShopActiveFilters({ basePath, params, dict }: ShopActiveFiltersP
     params.categories.length > 0 ||
     params.weaveType !== null ||
     params.minPrice > 0 ||
-    params.maxPrice < 100;
+    params.maxPrice < PRICE_MAX;
 
   if (!hasFilters) return null;
 

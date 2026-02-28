@@ -53,5 +53,5 @@ export const COLOR_OPTIONS: ColorOption[] = [
   { id: "white", hex: "#fafafa", labelKey: "white" },
 ];
 
-export const BASE_PRICE = 24;
-export const CUSTOMIZATION_PRICE = 5;
+export const BASE_PRICE = 60000;
+export const CUSTOMIZATION_PRICE = 12500;

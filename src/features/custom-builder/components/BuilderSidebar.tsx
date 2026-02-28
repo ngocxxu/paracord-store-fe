@@ -2,7 +2,7 @@
 
 import { Minus, Pencil, Ruler } from "lucide-react";
 import { useState } from "react";
-import { BUILDER_MODELS, CUSTOMIZATION_PRICE, KEYCHAIN_WEAVE_OPTIONS, SIZE_CUSTOM_ID, SIZE_PRESETS, WEAVE_OPTIONS } from "../data";
+import { BUILDER_MODELS, KEYCHAIN_WEAVE_OPTIONS, SIZE_CUSTOM_ID, SIZE_PRESETS, WEAVE_OPTIONS } from "../data";
 import { useBuilderStore } from "../store";
 import type { BuilderDict, BuilderModel } from "../types";
 import { MeasureGuideModal } from "./MeasureGuideModal";
@@ -12,13 +12,8 @@ interface BuilderSidebarProps {
 }
 
 export function BuilderSidebar({ dict }: BuilderSidebarProps) {
-  const { model, weaveType, sizeId, customSizeValue, setModel, setWeaveType, setSizeId, setCustomSizeValue, getTotalPrice } = useBuilderStore();
-  const [addOnsOpen, setAddOnsOpen] = useState(false);
+  const { model, weaveType, sizeId, customSizeValue, setModel, setWeaveType, setSizeId, setCustomSizeValue } = useBuilderStore();
   const [measureModalOpen, setMeasureModalOpen] = useState(false);
-
-  const total = getTotalPrice();
-  const hasSelection = model !== null || weaveType !== null;
-  const customizations = hasSelection ? CUSTOMIZATION_PRICE : 0;
 
   return (
     <aside
