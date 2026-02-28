@@ -5,10 +5,13 @@ import { Input } from "@/components/ui/input";
 import { AuthPageLayout } from "@/features/auth/AuthPageLayout";
 import { GoogleIcon } from "@/features/auth/GoogleIcon";
 import type { SignUpDict } from "@/features/auth/types";
+import { signUpSchema } from "@/lib/validations/auth";
 import { cn } from "@/lib/utils";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Lock, Mail } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { useCallback } from "react";
+import { useForm } from "react-hook-form";
 
 const inputClassName =
   "border-brand-border bg-brand-bg-card text-brand-text-high placeholder:text-brand-text-medium focus-visible:ring-brand-accent";
@@ -17,14 +20,18 @@ export function SignUpPage({
   lang,
   dict,
 }: Readonly<{ lang: string; dict: SignUpDict }>) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
   const base = `/${lang}`;
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-  }
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(signUpSchema(dict.validation)),
+    defaultValues: { email: "", password: "", confirmPassword: "" },
+  });
+
+  const onSubmit = useCallback(() => {}, []);
 
   return (
     <AuthPageLayout
@@ -37,7 +44,7 @@ export function SignUpPage({
           {dict.title}
         </h1>
         <p className="mt-2 text-sm text-brand-text-medium">{dict.subtitle}</p>
-        <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+        <form onSubmit={handleSubmit(onSubmit)} className="mt-6 space-y-4">
           <div>
             <label
               htmlFor="signup-email"
@@ -53,14 +60,20 @@ export function SignUpPage({
                 id="signup-email"
                 type="email"
                 placeholder={dict.emailPlaceholder}
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                {...register("email")}
                 className={cn(
                   "border-0 bg-transparent focus-visible:ring-1 focus-visible:ring-inset",
                   inputClassName
                 )}
+                aria-invalid={Boolean(errors.email)}
+                aria-describedby={errors.email ? "signup-email-error" : undefined}
               />
             </div>
+            {errors.email && (
+              <p id="signup-email-error" className="mt-1.5 text-xs text-red-600" role="alert">
+                {errors.email.message}
+              </p>
+            )}
           </div>
           <div>
             <label
@@ -77,14 +90,20 @@ export function SignUpPage({
                 id="signup-password"
                 type="password"
                 placeholder={dict.passwordPlaceholder}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                {...register("password")}
                 className={cn(
                   "border-0 bg-transparent focus-visible:ring-1 focus-visible:ring-inset",
                   inputClassName
                 )}
+                aria-invalid={Boolean(errors.password)}
+                aria-describedby={errors.password ? "signup-password-error" : undefined}
               />
             </div>
+            {errors.password && (
+              <p id="signup-password-error" className="mt-1.5 text-xs text-red-600" role="alert">
+                {errors.password.message}
+              </p>
+            )}
           </div>
           <div>
             <label
@@ -101,14 +120,20 @@ export function SignUpPage({
                 id="signup-confirm"
                 type="password"
                 placeholder={dict.confirmPasswordPlaceholder}
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
+                {...register("confirmPassword")}
                 className={cn(
                   "border-0 bg-transparent focus-visible:ring-1 focus-visible:ring-inset",
                   inputClassName
                 )}
+                aria-invalid={Boolean(errors.confirmPassword)}
+                aria-describedby={errors.confirmPassword ? "signup-confirm-error" : undefined}
               />
             </div>
+            {errors.confirmPassword && (
+              <p id="signup-confirm-error" className="mt-1.5 text-xs text-red-600" role="alert">
+                {errors.confirmPassword.message}
+              </p>
+            )}
           </div>
           <Button
             type="submit"

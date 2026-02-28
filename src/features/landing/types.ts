@@ -41,6 +41,7 @@ export interface LandingDict {
     placeholder: string;
     submit: string;
     privacyNote: string;
+    validation: { emailRequired: string; emailInvalid: string };
   };
   footer: {
     shop: string;
@@ -58,6 +59,7 @@ export interface LandingDict {
     phoneLabel: string;
     phonePlaceholder: string;
     trackCta: string;
+    validation: { phoneRequired: string; phoneInvalid: string };
     orderIdLabel: string;
     currentStatusLabel: string;
     statuses: {

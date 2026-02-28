@@ -26,7 +26,13 @@
       "forgotPassword": "Quên mật khẩu?",
       "newUser": "Chưa có tài khoản?",
       "createAccount": "Tạo tài khoản",
-      "footerTagline": "CHẾ TÁC THỦ CÔNG • XÁC THỰC AN TOÀN"
+      "footerTagline": "CHẾ TÁC THỦ CÔNG • XÁC THỰC AN TOÀN",
+      "validation": {
+        "emailRequired": "Vui lòng nhập email",
+        "emailInvalid": "Email không hợp lệ",
+        "passwordRequired": "Vui lòng nhập mật khẩu",
+        "passwordMin": "Mật khẩu cần ít nhất 8 ký tự"
+      }
     },
     "signUp": {
       "backToHome": "Về trang chủ",
@@ -43,7 +49,15 @@
       "continueWithGoogle": "Tiếp tục với Google",
       "alreadyHaveAccount": "Đã có tài khoản?",
       "signIn": "Đăng nhập",
-      "footerTagline": "CHẾ TÁC THỦ CÔNG • XÁC THỰC AN TOÀN"
+      "footerTagline": "CHẾ TÁC THỦ CÔNG • XÁC THỰC AN TOÀN",
+      "validation": {
+        "emailRequired": "Vui lòng nhập email",
+        "emailInvalid": "Email không hợp lệ",
+        "passwordRequired": "Vui lòng nhập mật khẩu",
+        "passwordMin": "Mật khẩu cần ít nhất 8 ký tự",
+        "confirmRequired": "Vui lòng xác nhận mật khẩu",
+        "passwordMismatch": "Hai mật khẩu không trùng khớp"
+      }
     }
   },
   "hero": {
@@ -111,7 +125,11 @@
     "description": "Nhận ưu đãi sớm và giảm 10% đơn đầu.",
     "placeholder": "Nhập email",
     "submit": "Đăng ký",
-    "privacyNote": "Không spam. Hủy bất cứ lúc nào."
+    "privacyNote": "Không spam. Hủy bất cứ lúc nào.",
+    "validation": {
+      "emailRequired": "Vui lòng nhập email",
+      "emailInvalid": "Email không hợp lệ"
+    }
   },
   "footer": {
     "shop": "Cửa hàng",
@@ -302,6 +320,10 @@
     "phoneLabel": "Số điện thoại",
     "phonePlaceholder": "vd. 090 123 4567",
     "trackCta": "Tra cứu ngay",
+    "validation": {
+      "phoneRequired": "Vui lòng nhập số điện thoại",
+      "phoneInvalid": "Số điện thoại không hợp lệ (9–20 ký tự số)"
+    },
     "orderIdLabel": "Mã đơn hàng",
     "currentStatusLabel": "Trạng thái hiện tại",
     "statuses": {

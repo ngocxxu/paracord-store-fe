@@ -1,3 +1,5 @@
+import type { SignInValidationMessages, SignUpValidationMessages } from "@/lib/validations/auth";
+
 export interface SignInDict {
   backToHome: string;
   title: string;
@@ -13,6 +15,7 @@ export interface SignInDict {
   newUser: string;
   createAccount: string;
   footerTagline: string;
+  validation: SignInValidationMessages;
 }
 
 export interface SignUpDict {
@@ -31,4 +34,5 @@ export interface SignUpDict {
   alreadyHaveAccount: string;
   signIn: string;
   footerTagline: string;
+  validation: SignUpValidationMessages;
 }

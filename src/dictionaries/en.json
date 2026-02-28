@@ -26,7 +26,13 @@
       "forgotPassword": "Forgot password?",
       "newUser": "New to Forge & Cord?",
       "createAccount": "Create an account",
-      "footerTagline": "HANDCRAFTED EXCELLENCE • SECURE AUTHENTICATION"
+      "footerTagline": "HANDCRAFTED EXCELLENCE • SECURE AUTHENTICATION",
+      "validation": {
+        "emailRequired": "Email is required",
+        "emailInvalid": "Please enter a valid email address",
+        "passwordRequired": "Password is required",
+        "passwordMin": "Password must be at least 8 characters"
+      }
     },
     "signUp": {
       "backToHome": "Back to Home",
@@ -43,7 +49,15 @@
       "continueWithGoogle": "Continue with Google",
       "alreadyHaveAccount": "Already have an account?",
       "signIn": "Sign In",
-      "footerTagline": "HANDCRAFTED EXCELLENCE • SECURE AUTHENTICATION"
+      "footerTagline": "HANDCRAFTED EXCELLENCE • SECURE AUTHENTICATION",
+      "validation": {
+        "emailRequired": "Email is required",
+        "emailInvalid": "Please enter a valid email address",
+        "passwordRequired": "Password is required",
+        "passwordMin": "Password must be at least 8 characters",
+        "confirmRequired": "Please confirm your password",
+        "passwordMismatch": "Passwords do not match"
+      }
     }
   },
   "hero": {
@@ -111,7 +125,11 @@
     "description": "Get early access to limited edition drops and 10% off your first order.",
     "placeholder": "Enter your email",
     "submit": "Subscribe",
-    "privacyNote": "No spam, just gear. Unsubscribe anytime."
+    "privacyNote": "No spam, just gear. Unsubscribe anytime.",
+    "validation": {
+      "emailRequired": "Email is required",
+      "emailInvalid": "Please enter a valid email address"
+    }
   },
   "footer": {
     "shop": "Shop",
@@ -302,6 +320,10 @@
     "phoneLabel": "Phone number",
     "phonePlaceholder": "e.g. 090 123 4567",
     "trackCta": "Track now",
+    "validation": {
+      "phoneRequired": "Phone number is required",
+      "phoneInvalid": "Please enter a valid phone number (9–20 digits)"
+    },
     "orderIdLabel": "Order ID",
     "currentStatusLabel": "Current status",
     "statuses": {

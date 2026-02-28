@@ -5,11 +5,13 @@ import { Input } from "@/components/ui/input";
 import { AuthPageLayout } from "@/features/auth/AuthPageLayout";
 import { GoogleIcon } from "@/features/auth/GoogleIcon";
 import type { SignInDict } from "@/features/auth/types";
+import { signInSchema } from "@/lib/validations/auth";
 import { cn } from "@/lib/utils";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Lock, Mail } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 const inputClassName =
   "border-brand-border bg-brand-bg-card text-brand-text-high placeholder:text-brand-text-medium focus-visible:ring-brand-accent";
@@ -18,19 +20,22 @@ export function SignInPage({
   lang,
   dict,
 }: Readonly<{ lang: string; dict: SignInDict }>) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const base = `/${lang}`;
-
   const router = useRouter();
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(signInSchema(dict.validation)),
+    defaultValues: { email: "", password: "" },
+  });
 
-    if (typeof globalThis !== "undefined" && "localStorage" in globalThis && email) {
-      globalThis.localStorage.setItem("authEmail", email);
+  function onSubmit(data: { email: string }) {
+    if (typeof globalThis !== "undefined" && "localStorage" in globalThis && data.email) {
+      globalThis.localStorage.setItem("authEmail", data.email);
     }
-
     router.push(base);
   }
 
@@ -45,7 +50,7 @@ export function SignInPage({
           {dict.title}
         </h1>
         <p className="mt-2 text-sm text-brand-text-medium">{dict.subtitle}</p>
-        <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+        <form onSubmit={handleSubmit(onSubmit)} className="mt-6 space-y-4">
           <div>
             <label
               htmlFor="signin-email"
@@ -61,14 +66,20 @@ export function SignInPage({
                 id="signin-email"
                 type="email"
                 placeholder={dict.emailPlaceholder}
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                {...register("email")}
                 className={cn(
                   "border-0 bg-transparent focus-visible:ring-1 focus-visible:ring-inset",
                   inputClassName
                 )}
+                aria-invalid={Boolean(errors.email)}
+                aria-describedby={errors.email ? "signin-email-error" : undefined}
               />
             </div>
+            {errors.email && (
+              <p id="signin-email-error" className="mt-1.5 text-xs text-red-600" role="alert">
+                {errors.email.message}
+              </p>
+            )}
           </div>
           <div>
             <label
@@ -85,14 +96,20 @@ export function SignInPage({
                 id="signin-password"
                 type="password"
                 placeholder={dict.passwordPlaceholder}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                {...register("password")}
                 className={cn(
                   "border-0 bg-transparent focus-visible:ring-1 focus-visible:ring-inset",
                   inputClassName
                 )}
+                aria-invalid={Boolean(errors.password)}
+                aria-describedby={errors.password ? "signin-password-error" : undefined}
               />
             </div>
+            {errors.password && (
+              <p id="signin-password-error" className="mt-1.5 text-xs text-red-600" role="alert">
+                {errors.password.message}
+              </p>
+            )}
           </div>
           <Button
             type="submit"

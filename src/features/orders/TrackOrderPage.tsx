@@ -6,6 +6,9 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import type { LandingDict } from "@/features/landing/types";
+import { trackOrderSchema } from "@/lib/validations/trackOrder";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 interface TrackOrderPageProps {
   readonly dict: LandingDict["trackOrder"];
@@ -21,6 +24,15 @@ interface StatusStep {
 }
 
 export function TrackOrderPage({ dict, lang }: Readonly<TrackOrderPageProps>) {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(trackOrderSchema(dict.validation)),
+    defaultValues: { phone: "" },
+  });
+
   const steps: StatusStep[] = [
     {
       key: "confirmed",
@@ -44,9 +56,7 @@ export function TrackOrderPage({ dict, lang }: Readonly<TrackOrderPageProps>) {
     },
   ];
 
-  const handleSubmit = useCallback((event: React.SyntheticEvent<HTMLFormElement>) => {
-    event.preventDefault();
-  }, []);
+  const onSubmit = useCallback(() => {}, []);
 
   const basePath = `/${lang}`;
 
@@ -62,7 +72,7 @@ export function TrackOrderPage({ dict, lang }: Readonly<TrackOrderPageProps>) {
           </p>
 
           <form
-            onSubmit={handleSubmit}
+            onSubmit={handleSubmit(onSubmit)}
             className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-end"
             aria-label={dict.title}
           >
@@ -77,9 +87,17 @@ export function TrackOrderPage({ dict, lang }: Readonly<TrackOrderPageProps>) {
                 id="track-order-phone"
                 type="tel"
                 placeholder={dict.phonePlaceholder}
-                className="mt-2 h-12 rounded-md border border-brand-border bg-brand-bg-card text-brand-text-high placeholder:text-brand-text-medium"
+                {...register("phone")}
+                className="mt-2 h-12 w-full rounded-md border border-brand-border bg-brand-bg-card text-brand-text-high placeholder:text-brand-text-medium"
                 aria-label={dict.phoneLabel}
+                aria-invalid={Boolean(errors.phone)}
+                aria-describedby={errors.phone ? "track-order-phone-error" : undefined}
               />
+              {errors.phone && (
+                <p id="track-order-phone-error" className="mt-1.5 text-xs text-red-600" role="alert">
+                  {errors.phone.message}
+                </p>
+              )}
             </div>
 
             <Button
@@ -233,4 +251,3 @@ function StatusIcon({ state }: Readonly<{ state: StepState }>) {
     </div>
   );
 }
-
