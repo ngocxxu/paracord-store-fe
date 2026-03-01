@@ -1,5 +1,18 @@
 export type BuilderModel = "bracelet" | "keychain";
 
+export type PartId = "buckle" | "innerCore" | "outerEdge";
+
+export interface PartPlacement {
+  top: number;
+  left?: number;
+  right?: number;
+}
+
+export interface WeaveCanvasConfig {
+  imageSrc: string;
+  parts: Partial<Record<PartId, PartPlacement>>;
+}
+
 export interface WeaveOption {
   id: string;
   labelKey: string;
@@ -9,11 +22,13 @@ export interface WeaveOption {
 export interface BuckleOption {
   id: string;
   labelKey: string;
+  imageSrc: string;
+  overlayLines?: string[];
 }
 
 export interface ColorOption {
   id: string;
-  hex: string;
+  imageSrc: string;
   labelKey: string;
 }
 
@@ -21,6 +36,8 @@ export interface BuilderDict {
   collectionLabel: string;
   title: string;
   selectModel: string;
+  selectModelToPreview: string;
+  selectWeaveTypeToPreview: string;
   weaveType: string;
   buckle: string;
   innerCoreColor: string;

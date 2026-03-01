@@ -22,7 +22,7 @@ interface BuilderStore {
 
 const defaultBuckle = "stainless";
 const defaultInner = "black";
-const defaultOuter = "green";
+const defaultOuter = "armyGreen";
 
 export const useBuilderStore = create<BuilderStore>((set, get) => ({
   model: null,
@@ -36,7 +36,7 @@ export const useBuilderStore = create<BuilderStore>((set, get) => ({
     const current = get().weaveType;
     const weaveType =
       model === "bracelet"
-        ? (current && BRACELET_WEAVE_IDS.includes(current) ? current : "cobra")
+        ? (current && BRACELET_WEAVE_IDS.includes(current) ? current : null)
         : model === "keychain"
           ? (current && KEYCHAIN_WEAVE_IDS.includes(current) ? current : null)
           : null;
