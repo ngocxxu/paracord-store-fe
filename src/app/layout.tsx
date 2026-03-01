@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Paracord Store",
+  title: "Koracord",
   description: "Custom paracord builder and shop",
 };
 
